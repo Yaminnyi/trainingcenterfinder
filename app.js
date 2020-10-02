@@ -497,8 +497,8 @@ const handleMessage = (sender_psid, received_message) => {
       case "hi":
           hiReply(sender_psid);
         break;
-      case "hospital":
-          hospitalAppointment(sender_psid);
+      case "choose":
+          choose(sender_psid);
         break;                
       case "text":
         textReply(sender_psid);
@@ -678,23 +678,23 @@ function webviewTest(sender_psid){
 /**************
 start hospital
 **************/
-const hospitalAppointment = (sender_psid) => {
-   let response1 = {"text": "Welcome to ABC Hospital"};
+const choose = (sender_psid) => {
+   let response1 = {"text": "Welcome. Have a nice day."};
    let response2 = {
-    "text": "Please select department",
+    "text": "Please select one",
     "quick_replies":[
             {
               "content_type":"text",
-              "title":"General Surgery",
-              "payload":"department:General Surgery",              
+              "title":"Seaman",
+              "payload":"department:Seaman",              
             },{
               "content_type":"text",
-              "title":"ENT",
-              "payload":"department:ENT",             
+              "title":"Training center",
+              "payload":"department:Training center",             
             },{
               "content_type":"text",
-              "title":"Dermatology",
-              "payload":"department:Dermatology", 
+              "title":"Agent",
+              "payload":"department:Agent",
             }
 
     ]
@@ -861,7 +861,7 @@ end hospital
 
 
 const hiReply =(sender_psid) => {
-  let response = {"text": "You sent hi message"};
+  let response = {"text":"Hi.ow can I help you?Please write choose"};
   callSend(sender_psid, response);
 }
 
