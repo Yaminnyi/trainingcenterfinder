@@ -861,7 +861,7 @@ end hospital
 
 
 const hiReply =(sender_psid) => {
-  let response = {"text":"Hi.ow can I help you?Please write choose"};
+  let response = {"text":"Hi. Please write choose"};
   callSend(sender_psid, response);
 }
 
