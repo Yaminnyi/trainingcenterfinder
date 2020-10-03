@@ -760,26 +760,16 @@ const showDoctor = (sender_psid) => {
 const firstOrFollowUp = (sender_psid) => {
 
   let response = {
-    "text": "Please select",
+    "text": "First Time Visit or Follow Up",
     "quick_replies":[
             {
               "content_type":"text",
-              "title":"Find Course",
-              "payload":"visit:Findcourse",      
+              "title":"First Time",
+              "payload":"visit:first time",              
             },{
               "content_type":"text",
-              "title":"Find Job",
-              "payload":"visit:Find Job",             
-            }
-            {
-              "content_type":"text",
-              "title":"Find Training center",
-              "payload":"visit:Find  Training center",             
-            }
-            {
-              "content_type":"text",
-              "title":"Give review or rate",
-              "payload":"visit:Give",             
+              "title":"Follow Up",
+              "payload":"visit:follow up",             
             }
     ]
   };
