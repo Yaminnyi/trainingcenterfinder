@@ -583,19 +583,17 @@ const handlePostback = (sender_psid, received_postback) => {
     userInputs[user_id].doctor = doctor_name;
     console.log('TEST', userInputs);
     firstOrFollowUp(sender_psid);
-  }else {
+  }else if 
     (payload.startsWith("Type:")){
     let type_name = payload.slice(5);
-    console.log('SELECTED DOCTOR IS: ', type_name);
+    console.log('SELECTED TYPE IS: ', type_name);
     userInputs[user_id].type = type_name;
     console.log('TEST', userInputs);
     firstOrFollowUp(sender_psid);
   }else{
 
       switch(payload) {        
-      case "Seaman":
-          showtype(sender_psid);
-        break;
+      
       case "no":
           showButtonReplyNo(sender_psid);
         break;                      
@@ -747,7 +745,7 @@ const showtype = (sender_psid) => {
                 {
                   "type": "postback",
                   "title": "Give review and rate",
-                  "payload": "Type:rivew",
+                  "payload": "Type:review",
                 },               
               ],
           }
@@ -758,8 +756,9 @@ const showtype = (sender_psid) => {
     }
 }
   
-  callSend(sender_psid, response);
-
+ callSend(sender_psid, response1).then(()=>{
+    return callSend(sender_psid, response2);
+  });
 }
 
 const firstOrFollowUp = (sender_psid) => {
