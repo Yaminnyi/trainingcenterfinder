@@ -586,10 +586,10 @@ const handlePostback = (sender_psid, received_postback) => {
   }else{
 
       switch(payload) {        
-      case "Seaman":
+      case "yes":
           showButtonReplyYes(sender_psid);
         break;
-      case "Training Center":
+      case "no":
           showButtonReplyNo(sender_psid);
         break;                      
       default:
@@ -678,7 +678,7 @@ function webviewTest(sender_psid){
 /**************
 start hospital
 **************/
-const choose = (sender_psid) => {
+const hiReply= (sender_psid) => {
    let response1 = {"text": "Welcome. Have a nice day."};
    let response2 = {
     "text": "Please select one",
@@ -706,7 +706,7 @@ const choose = (sender_psid) => {
 }
 
 
-const hiReply(sender_psid) => {
+const choose(sender_psid) => {
     let response = {
       "attachment": {
         "type": "template",
@@ -854,6 +854,10 @@ end hospital
 
 
 
+const hiReply =(sender_psid) => {
+  let response = {"text":"Hi. Please write choose"};
+  callSend(sender_psid, response);
+}
 
 
 const greetInMyanmar =(sender_psid) => {
