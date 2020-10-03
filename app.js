@@ -415,7 +415,7 @@ function handleQuickReply(sender_psid, received_message) {
   }else if(received_message.startsWith("department:")){
     let dept = received_message.slice(11);
     userInputs[user_id].department = dept;
-    showDoctor(sender_psid);
+    showtype(sender_psid);
   }else{
 
       switch(received_message) {                
@@ -494,7 +494,7 @@ const handleMessage = (sender_psid, received_message) => {
       user_message = user_message.toLowerCase(); 
 
       switch(user_message) { 
-      case "hi":
+      case "Get start":
           hiReply(sender_psid);
         break;
       case "choose":
@@ -581,6 +581,12 @@ const handlePostback = (sender_psid, received_postback) => {
     let doctor_name = payload.slice(7);
     console.log('SELECTED DOCTOR IS: ', doctor_name);
     userInputs[user_id].doctor = doctor_name;
+    console.log('TEST', userInputs);
+    firstOrFollowUp(sender_psid);
+  }else if(payload.startsWith("Type:")){
+    let type_name = payload.slice(5);
+    console.log('SELECTED DOCTOR IS: ', type_name);
+    userInputs[user_id].type = type_name;
     console.log('TEST', userInputs);
     firstOrFollowUp(sender_psid);
   }else{
@@ -706,43 +712,41 @@ const choose = (sender_psid) => {
 }
 
 
-const showDoctor = (sender_psid) => {
-    let response = {
+const showtype = (sender_psid) => {
+    let response1= {"text": "Hello, Welcome to our bot. You can choose from the following."
+    let response2 {
       "attachment": {
         "type": "template",
         "payload": {
           "template_type": "generic",
           "elements": [{
-            "title": "James Smith",
-            "subtitle": "General Surgeon",
+            "title": "You can find courses and training centers",
             "image_url":"https://image.freepik.com/free-vector/doctor-icon-avatar-white_136162-58.jpg",                       
             "buttons": [
                 {
                   "type": "postback",
-                  "title": "James Smith",
-                  "payload": "Doctor:James Smith",
+                  "title": "Find courses and training centers",
+                  "payload": "Type:Find courses",
                 },               
               ],
           },{
-            "title": "Kenneth Martinez",
-            "subtitle": "General Surgeon",
+            "title": "You can Find Jobs",
             "image_url":"https://image.freepik.com/free-vector/doctor-icon-avatar-white_136162-58.jpg",                       
             "buttons": [
                 {
                   "type": "postback",
-                  "title": "Kenneth Martinez",
-                  "payload": "Doctor:Kenneth Martinez",
+                  "title": "Find jobs",
+                  "payload": "Type:Find jobs", 
                 },               
               ],
           },{
-            "title": "Barbara Young",
-            "subtitle": "General Surgeon",
+            "title": "You can give review and rate",
             "image_url":"https://cdn.iconscout.com/icon/free/png-512/doctor-567-1118047.png",                       
             "buttons": [
                 {
                   "type": "postback",
-                  "title": "Barbara Young",
-                  "payload": "Doctor:Barbara Young",
+                  "title": "Give review and rate",
+                  "payload": "Type:rivew",
                 },               
               ],
           }
@@ -751,7 +755,7 @@ const showDoctor = (sender_psid) => {
         }
       }
     }
-
+}
   
   callSend(sender_psid, response);
 
