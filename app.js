@@ -499,10 +499,7 @@ const handleMessage = (sender_psid, received_message) => {
         break;
       case "choose":
           choose(sender_psid);
-        break;  
-        case "Seaman",
-          seaman(sender_psid);
-        break;              
+        break;                
       case "text":
         textReply(sender_psid);
         break;
