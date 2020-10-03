@@ -678,7 +678,7 @@ function webviewTest(sender_psid){
 /**************
 start hospital
 **************/
-const choose= (sender_psid) => {
+const choose = (sender_psid) => {
    let response1 = {"text": "Welcome. Have a nice day."};
    let response2 = {
     "text": "Please select one",
@@ -706,36 +706,43 @@ const choose= (sender_psid) => {
 }
 
 
-const choose(sender_psid) => {
+const showDoctor = (sender_psid) => {
     let response = {
       "attachment": {
         "type": "template",
         "payload": {
           "template_type": "generic",
-          "elements": [{                    
+          "elements": [{
+            "title": "James Smith",
+            "subtitle": "General Surgeon",
+            "image_url":"https://image.freepik.com/free-vector/doctor-icon-avatar-white_136162-58.jpg",                       
             "buttons": [
                 {
                   "type": "postback",
-                  "title": "Seaman",
-                  "payload": "Doctor:Seaman",
+                  "title": "James Smith",
+                  "payload": "Doctor:James Smith",
                 },               
               ],
           },{
-                                
+            "title": "Kenneth Martinez",
+            "subtitle": "General Surgeon",
+            "image_url":"https://image.freepik.com/free-vector/doctor-icon-avatar-white_136162-58.jpg",                       
             "buttons": [
                 {
                   "type": "postback",
-                  "title": "Training Center",
-                  "payload": "Doctor:Training Center",
+                  "title": "Kenneth Martinez",
+                  "payload": "Doctor:Kenneth Martinez",
                 },               
               ],
           },{
-                             
+            "title": "Barbara Young",
+            "subtitle": "General Surgeon",
+            "image_url":"https://cdn.iconscout.com/icon/free/png-512/doctor-567-1118047.png",                       
             "buttons": [
                 {
                   "type": "postback",
-                  "title": "Agents",
-                  "payload": "Doctor:Agents",
+                  "title": "Barbara Young",
+                  "payload": "Doctor:Barbara Young",
                 },               
               ],
           }
@@ -769,7 +776,6 @@ const firstOrFollowUp = (sender_psid) => {
   callSend(sender_psid, response);
 
 }
-
 
 const botQuestions = (current_question, sender_psid) => {
   if(current_question == 'q1'){
