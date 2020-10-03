@@ -583,7 +583,8 @@ const handlePostback = (sender_psid, received_postback) => {
     userInputs[user_id].doctor = doctor_name;
     console.log('TEST', userInputs);
     firstOrFollowUp(sender_psid);
-  }else if(payload.startsWith("Type:")){
+  }else {
+    (payload.startsWith("Type:")){
     let type_name = payload.slice(5);
     console.log('SELECTED DOCTOR IS: ', type_name);
     userInputs[user_id].type = type_name;
@@ -592,8 +593,8 @@ const handlePostback = (sender_psid, received_postback) => {
   }else{
 
       switch(payload) {        
-      case "yes":
-          showButtonReplyYes(sender_psid);
+      case "Seaman":
+          showtype(sender_psid);
         break;
       case "no":
           showButtonReplyNo(sender_psid);
@@ -604,9 +605,9 @@ const handlePostback = (sender_psid, received_postback) => {
 
   }
 
-
-  
 }
+  
+
 
 
 const generateRandom = (length) => {
