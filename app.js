@@ -720,7 +720,7 @@ const showtype = (sender_psid) => {
           "template_type": "generic",
           "elements": [{
             "title": "You can find courses and training centers",
-            "image_url":"https://image.freepik.com/free-vector/doctor-icon-avatar-white_136162-58.jpg",                       
+            "image_url":"https://cdn01.alison-static.net/courses/1703/alison_courseware_intro_1703.jpg",                       
             "buttons": [
                 {
                   "type": "postback",
@@ -730,7 +730,7 @@ const showtype = (sender_psid) => {
               ],
           },{
             "title": "You can Find Jobs",
-            "image_url":"https://image.freepik.com/free-vector/doctor-icon-avatar-white_136162-58.jpg",                       
+            "image_url":"https://image.winudf.com/v2/image/Y29tLnN3YXBuaWxqYW1iaGFsZTE5LkZpbmRfam9iX3NjcmVlbl83XzE1MjM1ODUyMDBfMDM4/screen-7.jpg?fakeurl=1&type=.jpg",                       
             "buttons": [
                 {
                   "type": "postback",
@@ -740,7 +740,7 @@ const showtype = (sender_psid) => {
               ],
           },{
             "title": "You can give review and rate",
-            "image_url":"https://cdn.iconscout.com/icon/free/png-512/doctor-567-1118047.png",                       
+            "image_url":"https://s3.amazonaws.com/blog4.0/blog/wp-content/uploads/Feature-image-5-positive-Review-Examples-1-1140x634.png",                       
             "buttons": [
                 {
                   "type": "postback",
