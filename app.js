@@ -678,7 +678,7 @@ function webviewTest(sender_psid){
 /**************
 start hospital
 **************/
-const hiReply= (sender_psid) => {
+const choose= (sender_psid) => {
    let response1 = {"text": "Welcome. Have a nice day."};
    let response2 = {
     "text": "Please select one",
