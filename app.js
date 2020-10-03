@@ -405,10 +405,10 @@ function handleQuickReply(sender_psid, received_message) {
 
   received_message = received_message.toLowerCase();
 
-  if(received_message.startsWith("type")){
-    let type= received_message.slice(5);
+  if(received_message.startsWith("visit:")){
+    let visit = received_message.slice(6);
     
-    userInputs[user_id].type = type;
+    userInputs[user_id].visit = visit;
     
     current_question = 'q1';
     botQuestions(current_question, sender_psid);
@@ -499,9 +499,12 @@ const handleMessage = (sender_psid, received_message) => {
         break;
       case "choose":
           choose(sender_psid);
-        break;                
-      case "Seaman";
-        Seaman(sender_psid);
+        break;  
+        case "Seaman",
+          seaman(sender_psid);
+        break;              
+      case "text":
+        textReply(sender_psid);
         break;
       case "quick":
         quickReply(sender_psid);
@@ -583,7 +586,6 @@ const handlePostback = (sender_psid, received_postback) => {
     userInputs[user_id].doctor = doctor_name;
     console.log('TEST', userInputs);
     firstOrFollowUp(sender_psid);
-    choosetype(sender_psid);
   }else{
 
       switch(payload) {        
@@ -761,50 +763,33 @@ const showDoctor = (sender_psid) => {
 const firstOrFollowUp = (sender_psid) => {
 
   let response = {
-    "text": "First Time Visit or Follow Up",
-    "quick_replies":[
-            {
-              "content_type":"text",
-              "title":"First Time",
-              "payload":"visit:first time",      
-            },{
-              "content_type":"text",
-              "title":"Follow Up",
-              "payload":"visit:follow up",             
-            }
-    ]
-  };
-  callSend(sender_psid, response);
-
-}
-
-const choosetype = (sender_psid) => {
-
-  let response = {
     "text": "Please select",
     "quick_replies":[
             {
               "content_type":"text",
               "title":"Find Course",
-              "payload":"type:Find Course",
+              "payload":"visit:Findcourse",      
             },{
               "content_type":"text",
               "title":"Find Job",
-              "payload":"type:Find JOb",     
-            },{
+              "payload":"visit:Find Job",             
+            }
+            {
               "content_type":"text",
               "title":"Find Training center",
-              "payload":"type:Find Training center",    
-            },{
+              "payload":"visit:Find  Training center",             
+            }
+            {
               "content_type":"text",
-              "title":"Give Review or rate",
-              "payload":"type:review",        
+              "title":"Give review or rate",
+              "payload":"visit:Give",             
             }
     ]
   };
   callSend(sender_psid, response);
 
 }
+
 
 const botQuestions = (current_question, sender_psid) => {
   if(current_question == 'q1'){
