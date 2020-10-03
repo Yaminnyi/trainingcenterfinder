@@ -586,10 +586,10 @@ const handlePostback = (sender_psid, received_postback) => {
   }else{
 
       switch(payload) {        
-      case "yes":
+      case "Seaman":
           showButtonReplyYes(sender_psid);
         break;
-      case "no":
+      case "Training Center":
           showButtonReplyNo(sender_psid);
         break;                      
       default:
@@ -706,43 +706,36 @@ const choose = (sender_psid) => {
 }
 
 
-const showDoctor = (sender_psid) => {
+const hiReply(sender_psid) => {
     let response = {
       "attachment": {
         "type": "template",
         "payload": {
           "template_type": "generic",
-          "elements": [{
-            "title": "James Smith",
-            "subtitle": "General Surgeon",
-            "image_url":"https://image.freepik.com/free-vector/doctor-icon-avatar-white_136162-58.jpg",                       
+          "elements": [{                    
             "buttons": [
                 {
                   "type": "postback",
-                  "title": "James Smith",
-                  "payload": "Doctor:James Smith",
+                  "title": "Seaman",
+                  "payload": "Doctor:Seaman",
                 },               
               ],
           },{
-            "title": "Kenneth Martinez",
-            "subtitle": "General Surgeon",
-            "image_url":"https://image.freepik.com/free-vector/doctor-icon-avatar-white_136162-58.jpg",                       
+                                
             "buttons": [
                 {
                   "type": "postback",
-                  "title": "Kenneth Martinez",
-                  "payload": "Doctor:Kenneth Martinez",
+                  "title": "Training Center",
+                  "payload": "Doctor:Training Center",
                 },               
               ],
           },{
-            "title": "Barbara Young",
-            "subtitle": "General Surgeon",
-            "image_url":"https://cdn.iconscout.com/icon/free/png-512/doctor-567-1118047.png",                       
+                             
             "buttons": [
                 {
                   "type": "postback",
-                  "title": "Barbara Young",
-                  "payload": "Doctor:Barbara Young",
+                  "title": "Agents",
+                  "payload": "Doctor:Agents",
                 },               
               ],
           }
@@ -861,10 +854,6 @@ end hospital
 
 
 
-const hiReply =(sender_psid) => {
-  let response = {"text":"Hi. Please write choose"};
-  callSend(sender_psid, response);
-}
 
 
 const greetInMyanmar =(sender_psid) => {
