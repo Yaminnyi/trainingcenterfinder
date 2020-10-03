@@ -713,7 +713,7 @@ const choose = (sender_psid) => {
 
 const showtype = (sender_psid) => {
     let response1= {"text": "Hello, Welcome to our bot. You can choose from the following."
-    let response2 {
+    let response2={
       "attachment": {
         "type": "template",
         "payload": {
