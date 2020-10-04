@@ -500,7 +500,7 @@ const handleMessage = (sender_psid, received_message) => {
       case "choose":
         choose(sender_psid);
         break;                
-      case "text":
+   /*   case "text":
         textReply(sender_psid);
         break;
       case "quick":
@@ -511,7 +511,7 @@ const handleMessage = (sender_psid, received_message) => {
         break;
       case "webview":
         webviewTest(sender_psid);
-        break;       
+        break;   */    
       case "show images":
         showImages(sender_psid)
         break;               
