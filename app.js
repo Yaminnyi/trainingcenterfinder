@@ -500,21 +500,21 @@ const handleMessage = (sender_psid, received_message) => {
       case "choose":
           choose(sender_psid);
         break;                
- //     case "text":
-      //  textReply(sender_psid);
-       // break;
-    //  case "quick":
-     //   quickReply(sender_psid);
-     //   break;
-     // case "button":                  
-      //  buttonReply(sender_psid);
-      //  break;
-     // case "webview":
-      //  webviewTest(sender_psid);
-      //  break;       
-     // case "show images":
-     //   showImages(sender_psid)
-       // break;               
+      case "text":
+        textReply(sender_psid);
+        break;
+      case "quick":
+        quickReply(sender_psid);
+        break;
+      case "button":                  
+        buttonReply(sender_psid);
+        break;
+      case "webview":
+        webviewTest(sender_psid);
+        break;       
+      case "show images":
+        showImages(sender_psid)
+        break;               
       default:
           defaultReply(sender_psid);
       }       
@@ -595,6 +595,13 @@ const handlePostback = (sender_psid, received_postback) => {
     let lists_name = payload.slice(6);
     console.log('SELECTED LISTS IS: ', lists_name);
     userInputs[user_id].lists = lists_name;
+    console.log('TEST', userInputs);
+    STCW(sender_psid);
+  } else if 
+    (payload.startsWith("courses:")){
+    let courses_name = payload.slice(8);
+    console.log('SELECTED COURSES IS: ', courses_name);
+    userInputs[user_id].courses = courses_name;
     console.log('TEST', userInputs);
     firstOrFollowUp(sender_psid);
   } else{
@@ -811,7 +818,106 @@ const courses = (sender_psid) => {
 }
 
 
+const STCW = (sender_psid) => {
+    let response1 = {"text": "The following are course lists."};
+    let response2 = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [{
+            "title": "Basic Safety Training",
+            "image_url":"https://www.pinclipart.com/picdir/middle/137-1375478_machine-safety-training-health-and-safety-icons-free.png",                       
+            "buttons": [
+                {
+                  "type": "postback",
+                  "title": "Course details",
+                  "payload": "courses:BST",
+                },               
+              ],
+          },{
+            "title": "Survival Craft & Rescue Boat",
+             
+            "image_url":"https://image.shutterstock.com/image-vector/moving-rescue-boat-deep-sea-260nw-369697766.jpg",                       
+            "buttons": [
+                {
+                  "type": "postback",
+                  "title": "Course details",
+                 
+                  "payload": "courses:SCRB", 
+                },               
+              ],
+          },{
+            "title": "Advanced Fire Fighting",
+            "image_url":"https://www.pngkey.com/png/detail/200-2003225_fire-extinguisher-symbol-png-fire-extinguisher-point-sign.png",                       
+            "buttons": [
+                {
+                  "type": "postback",
+                  "title": "Course details",
+                 
+                  "payload": "courses:AFF", 
+                },               
+              ],
+          },{
+            "title": "Medical First Aid",
+             
+            "image_url":"https://st3.depositphotos.com/4326917/12569/v/950/depositphotos_125690588-stock-illustration-medical-first-aid-box-sign.jpg",                       
+            "buttons": [
+                {
+                  "type": "postback",
+                  "title": "Course details",
+                 
+                  "payload": "courses:MFA", 
+                },               
+              ],
+          },{
+            "title": "Ship Security Officer",
+             
+            "image_url":"https://png.pngtree.com/png-vector/20190306/ourlarge/pngtree-security-character-icon-png-image_780271.jpg",                       
+            "buttons": [
+                {
+                  "type": "postback",
+                  "title": "Course details",
+                 
+                  "payload": "courses:SSO", 
+                },               
+              ],
+          },{
+            "title": "Security Training (STCW 2010)",
+             
+            "image_url":"https://sqemarine.com/wp-content/uploads/2018/06/Ship-Safety-Officer.jpg",                       
+            "buttons": [
+                {
+                  "type": "postback",
+                  "title": "Course details",
+                 
+                  "payload": "courses:ST", 
+                },               
+              ],
+          },{
+            "title": "Security with Designated Duties",
+             
+            "image_url":"https://assets.iqpc.com/UploadedFiles/EventPage/28170.002/images/icon-3.png",                       
+            "buttons": [
+                {
+                  "type": "postback",
+                  "title": "Course details",
+                 
+                  "payload": "courses:SWDD", 
+                },               
+              ],
+          },
 
+
+          ]
+        }
+      }
+    }
+  
+ callSend(sender_psid, response1).then(()=>{
+    return callSend(sender_psid, response2);
+  });
+}
 
 const firstOrFollowUp = (sender_psid) => {
 
