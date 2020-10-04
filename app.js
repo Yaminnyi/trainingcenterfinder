@@ -777,7 +777,7 @@ const courses = (sender_psid) => {
           "template_type": "generic",
           "elements": [{
             "title": "STCW Certificates",
-            "subtitle": "STCW stands for 'Standards of Training, Certification and Watchkeeping'. It came into force in 1978 as Governments agreed to standardise training around the world.",
+            "subtitle": "STCW stands for 'Standards of Training, Certification and Watchkeeping'.",
             "image_url":"https://clydetrainingsolutions.com//wp-content/uploads/2020/06/STCW-Icon-Blue.png",                       
             "buttons": [
                 {
@@ -788,7 +788,7 @@ const courses = (sender_psid) => {
               ],
           },{
             "title": "Offshore Certificates",
-              "subtitle": "The Certificate in Offshore Field Development teaches the process of offshore oil and gas production, along with the specialist vessels supporting it, from exploration and surveying to drilling, construction and supply.",
+              "subtitle": "The Certificate in Offshore Field Development teaches the process of offshore oil and gas productiong.",
             "image_url":"https://www.flaticon.com/svg/static/icons/svg/1486/1486217.svg",                       
             "buttons": [
                 {
@@ -1056,19 +1056,19 @@ function testDelete(sender_psid){
   callSendAPI(sender_psid, response);
 }
 
-const defaultReply = (sender_psid) => {
-  let response1 = {"text": "To test text reply, type 'text'"};
-  let response2 = {"text": "To test quick reply, type 'quick'"};
-  let response3 = {"text": "To test button reply, type 'button'"};   
-  let response4 = {"text": "To test webview, type 'webview'"};
-    callSend(sender_psid, response1).then(()=>{
-      return callSend(sender_psid, response2).then(()=>{
-        return callSend(sender_psid, response3).then(()=>{
-          return callSend(sender_psid, response4);
-        });
-      });
-  });  
-}
+//const defaultReply = (sender_psid) => {
+ // let response1 = {"text": "To test text reply, type 'text'"};
+  //let response2 = {"text": "To test quick reply, type 'quick'"};
+ // let response3 = {"text": "To test button reply, type 'button'"};   
+ // let response4 = {"text": "To test webview, type 'webview'"};
+   // callSend(sender_psid, response1).then(()=>{
+    //  return callSend(sender_psid, response2).then(()=>{
+     //   return callSend(sender_psid, response3).then(()=>{
+      ///    return callSend(sender_psid, response4);
+      //  });
+      //});
+ // });  
+//}
 
 const callSendAPI = (sender_psid, response) => {   
   let request_body = {
