@@ -584,13 +584,6 @@ const handlePostback = (sender_psid, received_postback) => {
     console.log('TEST', userInputs);
     firstOrFollowUp(sender_psid);
   }else if 
-    (payload.startsWith("Type:")){
-    let type_name = payload.slice(5);
-    console.log('SELECTED TYPE IS: ', type_name);
-    userInputs[user_id].type = type_name;
-    console.log('TEST', userInputs);
-    courses(sender_psid);
-  } else if 
     (payload.startsWith("courses:")){
     let courses_name = payload.slice(8);
     console.log('SELECTED COURSES IS: ', courses_name);
@@ -600,7 +593,9 @@ const handlePostback = (sender_psid, received_postback) => {
   } else{
 
       switch(payload) {        
-      
+      case "Type:Find courses":
+          courses(sender_psid);
+        break; 
       case "Lists:STCW":
           STCW(sender_psid);
         break;                      
