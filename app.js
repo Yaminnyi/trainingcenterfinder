@@ -789,7 +789,7 @@ const courses = (sender_psid) => {
           },{
             "title": "Offshore Certificates",
               "subtitle": "The Certificate in Offshore Field Development teaches the process of offshore oil and gas productiong.",
-            "image_url":"https://www.flaticon.com/svg/static/icons/svg/1486/1486217.svg",                       
+            "image_url":"https://previews.123rf.com/images/alexutemov/alexutemov1604/alexutemov160400820/54707175-sea-oil-rig-platform-symbol-and-oil-drill-rig-in-sea-flat-vector-sea-oil-rig-offshore-platform-techn.jpg",                       
             "buttons": [
                 {
                   "type": "postback",
