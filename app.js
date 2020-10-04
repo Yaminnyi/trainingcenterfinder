@@ -597,6 +597,7 @@ const handlePostback = (sender_psid, received_postback) => {
     userInputs[user_id].lists = lists_name;
     console.log('TEST', userInputs);
     STCW(sender_psid);
+    offshore(sender_psid);
   } else if 
     (payload.startsWith("courses:")){
     let courses_name = payload.slice(8);
@@ -1162,19 +1163,19 @@ function testDelete(sender_psid){
   callSendAPI(sender_psid, response);
 }
 
-//const defaultReply = (sender_psid) => {
- // let response1 = {"text": "To test text reply, type 'text'"};
-  //let response2 = {"text": "To test quick reply, type 'quick'"};
- // let response3 = {"text": "To test button reply, type 'button'"};   
- // let response4 = {"text": "To test webview, type 'webview'"};
-   // callSend(sender_psid, response1).then(()=>{
-    //  return callSend(sender_psid, response2).then(()=>{
-     //   return callSend(sender_psid, response3).then(()=>{
-      ///    return callSend(sender_psid, response4);
-      //  });
-      //});
- // });  
-//}
+const defaultReply = (sender_psid) => {
+  let response1 = {"text": "To test text reply, type 'text'"};
+  let response2 = {"text": "To test quick reply, type 'quick'"};
+ let response3 = {"text": "To test button reply, type 'button'"};   
+ let response4 = {"text": "To test webview, type 'webview'"};
+ callSend(sender_psid, response1).then(()=>{
+      return callSend(sender_psid, response2).then(()=>{
+     return callSend(sender_psid, response3).then(()=>{
+          return callSend(sender_psid, response4);
+        });
+      });
+ });  
+}
 
 const callSendAPI = (sender_psid, response) => {   
   let request_body = {
