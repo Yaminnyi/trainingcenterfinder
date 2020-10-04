@@ -590,14 +590,6 @@ const handlePostback = (sender_psid, received_postback) => {
     userInputs[user_id].type = type_name;
     console.log('TEST', userInputs);
     courses(sender_psid);
-  }else if 
-    (payload.startsWith("Lists:")){
-    let lists_name = payload.slice(6);
-    console.log('SELECTED LISTS IS: ', lists_name);
-    userInputs[user_id].lists = lists_name;
-    console.log('TEST', userInputs);
-    STCW(sender_psid);
-    
   } else if 
     (payload.startsWith("courses:")){
     let courses_name = payload.slice(8);
@@ -609,8 +601,8 @@ const handlePostback = (sender_psid, received_postback) => {
 
       switch(payload) {        
       
-      case "no":
-          showButtonReplyNo(sender_psid);
+      case "Lists:STCW":
+          STCW(sender_psid);
         break;                      
       default:
           defaultReply(sender_psid);
