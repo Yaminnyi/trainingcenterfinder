@@ -597,7 +597,7 @@ const handlePostback = (sender_psid, received_postback) => {
     userInputs[user_id].lists = lists_name;
     console.log('TEST', userInputs);
     STCW(sender_psid);
-    offshore(sender_psid);
+    
   } else if 
     (payload.startsWith("courses:")){
     let courses_name = payload.slice(8);
