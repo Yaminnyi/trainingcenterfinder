@@ -589,8 +589,15 @@ const handlePostback = (sender_psid, received_postback) => {
     console.log('SELECTED TYPE IS: ', type_name);
     userInputs[user_id].type = type_name;
     console.log('TEST', userInputs);
+    courses(sender_psid);
+  }else if 
+    (payload.startsWith("Lists:")){
+    let lists_name = payload.slice(6);
+    console.log('SELECTED LISTS IS: ', lists_name);
+    userInputs[user_id].lists = lists_name;
+    console.log('TEST', userInputs);
     firstOrFollowUp(sender_psid);
-  }else{
+  } else{
 
       switch(payload) {        
       
@@ -759,6 +766,51 @@ const showtype = (sender_psid) => {
     return callSend(sender_psid, response2);
   });
 }
+
+
+const courses = (sender_psid) => {
+    let response1 = {"text": "The following are course Types."};
+    let response2 = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [{
+            "title": "STCW Certificates",
+            "subtitle": "STCW stands for 'Standards of Training, Certification and Watchkeeping'. It came into force in 1978 as Governments agreed to standardise training around the world.",
+            "image_url":"https://clydetrainingsolutions.com//wp-content/uploads/2020/06/STCW-Icon-Blue.png",                       
+            "buttons": [
+                {
+                  "type": "postback",
+                  "title": "View Lists",
+                  "payload": "Lists:STCW",
+                },               
+              ],
+          },{
+            "title": "Offshore Certificates",
+            "image_url":"https://www.flaticon.com/svg/static/icons/svg/1486/1486217.svg",                       
+            "buttons": [
+                {
+                  "type": "postback",
+                  "title": "View Lists",
+                   "subtitle": "The Certificate in Offshore Field Development teaches the process of offshore oil and gas production, along with the specialist vessels supporting it, from exploration and surveying to drilling, construction and supply.",
+                  "payload": "Lists:Offshore", 
+                },               
+              ],
+          },
+
+          ]
+        }
+      }
+    }
+  
+ callSend(sender_psid, response1).then(()=>{
+    return callSend(sender_psid, response2);
+  });
+}
+
+
+
 
 const firstOrFollowUp = (sender_psid) => {
 
