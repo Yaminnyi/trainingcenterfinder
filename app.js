@@ -419,7 +419,7 @@ function handleQuickReply(sender_psid, received_message) {
   }else{
 
       switch(received_message) {                
-        case "on":
+        case "register":
             showQuickReplyOn(sender_psid);
           break;
         case "off":
@@ -500,7 +500,7 @@ const handleMessage = (sender_psid, received_message) => {
       case "choose":
         choose(sender_psid);
         break;                
-   /*   case "text":
+      case "text":
         textReply(sender_psid);
         break;
       case "quick":
@@ -511,7 +511,7 @@ const handleMessage = (sender_psid, received_message) => {
         break;
       case "webview":
         webviewTest(sender_psid);
-        break;   */    
+        break;       
       case "show images":
         showImages(sender_psid)
         break;               
@@ -906,6 +906,31 @@ const STCW = (sender_psid) => {
     return callSend(sender_psid, response2);
   });
 }
+
+const register = (sender_psid) => {
+   let response1 = {"text": "Welcome. Have a nice day."};
+   let response2 = {
+    "text": "Please select one",
+    "quick_replies":[
+            {
+              "content_type":"text",
+              "title":"Register",
+              "payload":"register",              
+            },{
+              "content_type":"text",
+              "title":"Aleady registed",
+              "payload":"registed",             
+            },
+
+    ]
+  };
+
+  callSend(sender_psid, response1).then(()=>{
+    return callSend(sender_psid, response2);
+  });
+}
+
+
 
 const firstOrFollowUp = (sender_psid) => {
 
