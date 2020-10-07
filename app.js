@@ -412,14 +412,16 @@ function handleQuickReply(sender_psid, received_message) {
     
     current_question = 'q1';
     botQuestions(current_question, sender_psid);
-  }else if(received_message.startsWith("department:")){
-    let dept = received_message.slice(11);
-    userInputs[user_id].department = dept;
-    showtype(sender_psid);
   }else{
 
-      switch(received_message) {                
-        case "Training center":
+      switch(received_message) {  
+      case "seaman":
+            showtype(sender_psid);
+          break;              
+        case "training center":
+            register(sender_psid);
+          break;
+          case "agent":
             register(sender_psid);
           break;
         case "off":
@@ -693,15 +695,15 @@ const choose = (sender_psid) => {
             {
               "content_type":"text",
               "title":"Seaman",
-              "payload":"department:Seaman",              
+              "payload":"seaman",              
             },{
               "content_type":"text",
               "title":"Training center",
-              "payload":"Training center",             
+              "payload":"training center",             
             },{
               "content_type":"text",
               "title":"Agent",
-              "payload":"department:Agent",
+              "payload":"agent",
             }
 
     ]
