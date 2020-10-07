@@ -308,6 +308,11 @@ END Gallery Page
 **********************************************/
 
 //webview test
+app.get('/register/:sender_id',function(req,res){
+    const sender_id = req.params.sender_id;
+    res.render('register.ejs',{title:"Register", sender_id:sender_id});
+});
+
 app.get('/webview/:sender_id',function(req,res){
     const sender_id = req.params.sender_id;
     res.render('webview.ejs',{title:"Hello!! from WebView", sender_id:sender_id});
@@ -917,7 +922,9 @@ const register = (sender_psid) => {
             {
               "content_type":"text",
               "title":"Register",
-              "payload":"register",              
+              "url":APP_URL+"register/"+sender_psid,
+              "webview_height_ratio": "full",
+              "messenger_extensions": true,               
             },{
               "content_type":"text",
               "title":"Aleady registed",
