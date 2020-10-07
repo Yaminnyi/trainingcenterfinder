@@ -958,15 +958,15 @@ const STCW = (sender_psid) => {
 }
 
 const register = (sender_psid) => {
-    let response1 = {"text": "abc abc"};
+    let response1 = {"text": "Hello. Please choose one."};
     let response2 = {
       "attachment": {
         "type": "template",
         "payload": {
           "template_type": "generic",
           "elements": [{
-            "title":"User Click",
-            "image_url":"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTPfInME3GRGW7nBH9eoEaGP7IBtiJjPWNiJA&usqp=CAU",             
+            "title":"If you have not yet registered, register.",
+                  
             "buttons": [                
                   {
                 "type": "web_url",
@@ -978,7 +978,7 @@ const register = (sender_psid) => {
                 },    
                 {
                   "type": "postback",
-                  "title": "Sign up",
+                  "title": "Already registered",
                   
                   "payload": "signup",
                 },           
