@@ -146,10 +146,10 @@ app.post('/test',function(req,res){
     callSend(sender_psid, response);
 });
 
-app.get('/admin/appointments', async function(req,res){
+app.get('/admin/register', async function(req,res){
  
-  const appointmentsRef = db.collection('appointments');
-  const snapshot = await appointmentsRef.get();
+  const registerRef = db.collection('register');
+  const snapshot = await registerRef.get();
 
   if (snapshot.empty) {
     res.send('no data');
@@ -158,25 +158,25 @@ app.get('/admin/appointments', async function(req,res){
   let data = []; 
 
   snapshot.forEach(doc => {
-    let appointment = {};
-    appointment = doc.data();
-    appointment.doc_id = doc.id;
+    let register = {};
+    register = doc.data();
+    register.doc_id = doc.id;
 
-    data.push(appointment);
+    data.push(register);
     
   });
 
   console.log('DATA:', data);
 
-  res.render('appointments.ejs', {data:data});
+  res.render('register.ejs', {data:data});
   
 });
 
-app.get('/admin/updateappointment/:doc_id', async function(req,res){
+/*app.get('/admin/updateregister/:doc_id', async function(req,res){
   let doc_id = req.params.doc_id; 
   
-  const appoinmentRef = db.collection('appointments').doc(doc_id);
-  const doc = await appoinmentRef.get();
+  const registerRef = db.collection('register').doc(doc_id);
+  const doc = await registerRef.get();
   if (!doc.exists) {
     console.log('No such document!');
   } else {
@@ -218,7 +218,7 @@ app.post('/admin/updateappointment', function(req,res){
       res.redirect('/admin/appointments');
   }).catch((err)=>console.log('ERROR:', error)); 
  
-});
+});*/
 
 /*********************************************
 Gallery page
