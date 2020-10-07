@@ -915,6 +915,43 @@ const STCW = (sender_psid) => {
 }
 
 const register = (sender_psid) => {
+    let response1 = {"text": "abc abc"};
+    let response2 = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [{
+            "title":"User Click",
+            "image_url":"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTPfInME3GRGW7nBH9eoEaGP7IBtiJjPWNiJA&usqp=CAU",             
+            "buttons": [                
+                  {
+                "type": "web_url",
+                "title": "Register",
+                "url":APP_URL+"register/"+sender_psid,
+                 "webview_height_ratio": "full",
+                "messenger_extensions": true,          
+              
+                },    
+                {
+                  "type": "postback",
+                  "title": "Sign up",
+                  
+                  "payload": "signup",
+                },           
+              ],
+          }
+
+          ]
+        }
+      }
+    }
+     callSend(sender_psid, response1).then(()=>{
+        return callSend(sender_psid, response2)
+      });
+}
+
+/*const register = (sender_psid) => {
    let response1 = {"text": "Welcome. Have a nice day"};
     let response2 = {
       "attachment": {
@@ -932,7 +969,7 @@ const register = (sender_psid) => {
                  "messenger_extensions": true,  
                 },{
                   "type": "postback",
-                  "title": "Already register",
+                  "title": "Already registerd",
                   "url":APP_URL+"register/"+sender_psid,
                   "webview_height_ratio": "full",
                  "messenger_extensions": true,  
@@ -948,7 +985,7 @@ const register = (sender_psid) => {
   callSend(sender_psid, response1).then(()=>{
     return callSend(sender_psid, response2);
   });
-}
+}*/
 
 
 
