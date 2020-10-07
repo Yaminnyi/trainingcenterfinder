@@ -419,8 +419,8 @@ function handleQuickReply(sender_psid, received_message) {
   }else{
 
       switch(received_message) {                
-        case "register":
-            showQuickReplyOn(sender_psid);
+        case "Training center":
+            register(sender_psid);
           break;
         case "off":
             showQuickReplyOff(sender_psid);
@@ -697,7 +697,7 @@ const choose = (sender_psid) => {
             },{
               "content_type":"text",
               "title":"Training center",
-              "payload":"department:Training center",             
+              "payload":"Training center",             
             },{
               "content_type":"text",
               "title":"Agent",
