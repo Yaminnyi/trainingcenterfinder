@@ -920,7 +920,7 @@ const register = (sender_psid) => {
     "text": "Please select one",
     "quick_replies":[
             {
-              "content_type":"text",
+              "content_type":"web_url",
               "title":"Register",
               "url":APP_URL+"register/"+sender_psid,
               "webview_height_ratio": "full",
