@@ -915,24 +915,35 @@ const STCW = (sender_psid) => {
 }
 
 const register = (sender_psid) => {
-   let response1 = {"text": "Welcome. Have a nice day."};
-   let response2 = {
-    "text": "Please select one",
-    "quick_replies":[
-            {
-              "content_type":"web_url",
-              "title":"Register",
-              "url":APP_URL+"register/"+sender_psid,
-              "webview_height_ratio": "full",
-              "messenger_extensions": true,               
-            },{
-              "content_type":"text",
-              "title":"Aleady registed",
-              "payload":"registed",             
-            },
+   let response1 = {"text": "Welcome. Have a nice day"};
+    let response2 = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [{
+            "title": "Rigister or Not register",                      
+            "buttons": [
+                {
+                  "type": "web_url",
+                  "title": "Register",
+                  "url":APP_URL+"register/"+sender_psid,
+                  "webview_height_ratio": "full",
+                 "messenger_extensions": true,  
+                },{
+                  "type": "postback",
+                  "title": "Already register",
+                  "url":APP_URL+"register/"+sender_psid,
+                  "webview_height_ratio": "full",
+                 "messenger_extensions": true,  
+                },                  
+              ],
+          }
+          ]
+        }
+      }
+    }
 
-    ]
-  };
 
   callSend(sender_psid, response1).then(()=>{
     return callSend(sender_psid, response2);
