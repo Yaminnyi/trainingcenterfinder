@@ -333,10 +333,10 @@ app.post('/register',upload.single('file'),function(req,res){
               name: name,
               email: email,
               image: img_url,
-              phone: phone
+              phone: phone,
               }).then(success => {   
                 console.log("DATA SAVED")
-                thankyouReply(sender, name, img_url);    
+                thankyouReply(sender, name, img_url,phone);    
               }).catch(error => {
                 console.log(error);
               }); 
