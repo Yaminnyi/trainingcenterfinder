@@ -503,15 +503,7 @@ const handleMessage = (sender_psid, received_message) => {
       case "text":
         textReply(sender_psid);
         break;
-      case "quick":
-        quickReply(sender_psid);
-        break;
-      case "button":                  
-        buttonReply(sender_psid);
-        break;
-      case "webview":
-        webviewTest(sender_psid);
-        break;       
+         
       case "show images":
         showImages(sender_psid)
         break;               
