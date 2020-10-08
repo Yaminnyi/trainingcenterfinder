@@ -318,7 +318,6 @@ app.post('/register',upload.single('file'),function(req,res){
        
       let name  = req.body.name;
       let email = req.body.email;
-      let img_url = "";
       let phone = req.body.phone;
       let sender = req.body.sender;  
 
@@ -328,15 +327,14 @@ app.post('/register',upload.single('file'),function(req,res){
 
       let file = req.file;
       if (file) {
-        uploadImageToStorage(file).then((img_url) => {
+         {
             db.collection('register').add({
               name: name,
               email: email,
-              image: img_url,
               phone: phone,
               }).then(success => {   
                 console.log("DATA SAVED")
-                thankyouReply(sender, name, img_url);    
+                thankyouReply;    
               }).catch(error => {
                 console.log(error);
               }); 
