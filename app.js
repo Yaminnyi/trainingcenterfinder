@@ -314,43 +314,26 @@ app.get('/register/:sender_id',function(req,res){
 });
 
 
-app.post('/register',upload.single('file'),function(req,res){
+app.post('/register',function(req,res){
        
       let name  = req.body.name;
       let email = req.body.email;
       let phone = req.body.phone;
       let sender = req.body.sender;  
 
-      console.log("REQ FILE:",req.file);
-
-
-
-      let file = req.file;
-      if (file) {
-         {
-            db.collection('register').add({
-              name: name,
-              email: email,
-              phone: phone,
-              }).then(success => {   
-                console.log("DATA SAVED")
-                thankyouReply;    
-              }).catch(error => {
-                console.log(error);
-              }); 
-        }).catch((error) => {
-          console.error(error);
-        });
-      }
-
-
-
+      console.log("AA");
+      db.collection('register').add({
+      name: name,
+      email: email,
+      phone: phone
+    }).then(success => {   
+          console.log("DATA SAVED")
+      }).catch(error => {
+          console.log(error);
+      }); 
      
-      
-      
            
 });
-
 
 
 
