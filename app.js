@@ -146,7 +146,7 @@ app.post('/test',function(req,res){
     callSend(sender_psid, response);
 });
 
-app.get('/admin/register', async function(req,res){
+/*app.get('/admin/register', async function(req,res){
  
   const registerRef = db.collection('register');
   const snapshot = await registerRef.get();
@@ -336,7 +336,7 @@ app.post('/register',upload.single('file'),function(req,res){
               phone: phone,
               }).then(success => {   
                 console.log("DATA SAVED")
-                thankyouReply(sender, name, img_url,phone);    
+                thankyouReply(sender, name, img_url);    
               }).catch(error => {
                 console.log(error);
               }); 
