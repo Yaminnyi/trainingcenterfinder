@@ -336,7 +336,7 @@ app.post('/register',function(req,res){
     let text = "Thank you for your register";
     
     let response = {"text": text};
-    callSend(sender_psid, response);
+    
       }).catch(error => {
           console.log(error);
       }); 
