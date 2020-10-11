@@ -323,21 +323,24 @@ app.post('/register',function(req,res){
       let email = req.body.email;
       let phone = req.body.phone;
       let sender = req.body.sender;  
-
+      data.ref =generateRandom(6);
       console.log("AA");
       db.collection('register').add({
       name: name,
       email: email,
       phone: phone
     }).then(success => {   
-          console.log("DATA SAVED")
+          console.log("DATA SAVED");
+    let text = "Thank you for your register"+ "\u000A";
+    text += "Your register reference number is:" + data.ref;
+    let response = {"text": text};
+    callSend(sender_psid, response);
       }).catch(error => {
           console.log(error);
       }); 
      
            
 });
-
 
 
 app.get('/webview/:sender_id',function(req,res){
