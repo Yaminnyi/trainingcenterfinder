@@ -335,7 +335,7 @@ app.post('/register',function(req,res){
           console.log("DATA SAVED");
     "tracking_data":"tracking data",
     "type":"text",
-    "text": "Thank you!"+req.body.name
+    "text": "Thank you!"+req.body.name;
     
       }).catch(error => {
           console.log(error);
