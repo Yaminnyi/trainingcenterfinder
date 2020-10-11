@@ -1306,7 +1306,7 @@ function testDelete(sender_psid){
       }
     }
   callSendAPI(sender_psid, response);
-}*/
+}
 
 const defaultReply = (sender_psid) => {
   let response = choose(sender_psid);
