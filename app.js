@@ -218,7 +218,7 @@ app.post('/admin/updateappointment', function(req,res){
       res.redirect('/admin/appointments');
   }).catch((err)=>console.log('ERROR:', error)); 
  
-});*/
+});
 
 /*********************************************
 Gallery page
