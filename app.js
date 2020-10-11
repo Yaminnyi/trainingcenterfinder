@@ -334,9 +334,8 @@ app.post('/register',function(req,res){
       phone: phone
     }).then(success => {   
           console.log("DATA SAVED");
-    let text = "Thank you. We have received your appointment."+ "\u000A";
-    text += " We wil call you to confirm soon"+ "\u000A";
-    text += "Your booking reference number is:" + data.ref;
+    let text = "Thank you for your register";
+    text += "Your register reference number is:" + data.ref;
     let response = {"text": text};
     callSend(sender_psid, response);
       }).catch(error => {
