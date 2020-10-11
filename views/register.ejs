@@ -36,7 +36,7 @@
   <form id="form" method="post" action="https://trainingcenterfinder.herokuapp.com/register/">
   <div class="form-group">
     <label for="name">Training center Name</label>
-    <input type="text" class="form-control" id="name" name="name" placeholder="Enter training center name">    
+    <input type="text" class="form-control" id="name" name="name" value="<%= data.user_name  %>" placeholder="Enter training center name">    
   </div>
   <div class="form-group">
     <label for="email">Email</label>
@@ -45,7 +45,7 @@
 
   <div class="form-group">
     <label for="phone">Ph Number</label>
-      <input type="phone" class="form-control" id="phone" name="phone" placeholder="Phone">
+      <input type="phone" pattern="[0-9]{5,15}">
   </div>
   <input type="hidden"  id="sender" name="sender" value="<%= sender_id %>">
   <input type="submit" value="Submit"> 

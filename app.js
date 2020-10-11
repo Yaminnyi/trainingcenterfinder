@@ -308,7 +308,7 @@ END Gallery Page
 **********************************************/
 
 //webview test
-app.get('/register/:sender_id',function(req,res){
+/*app.get('/register/:sender_id',function(req,res){
     const sender_id = req.params.sender_id;
     res.render('register.ejs',{title:"Register", sender_id:sender_id});
 });
@@ -340,8 +340,54 @@ app.post('/register',function(req,res){
       }); 
      
            
+});*/
+app.get('/register',function(req,res){   
+      let data = {
+        user_name: currentUser.name,
+      } 
+     res.render('register.ejs', {data:data});
 });
 
+
+app.post('/register',function(req,res){   
+    
+    currentUser.name = req.body.name;
+    currentUser.phone = req.body.phone;
+    currentUser.email = req.body.email;
+
+    let data = {
+        viberid: currentUser.id,
+        name: currentUser.name,
+        phone: currentUser.phone,
+        email: currentUser.email
+    }
+
+   
+
+    db.collection('users').doc(currentUser.id).set(data)
+    .then(()=>{
+            let data = {
+                   "receiver":currentUser.id,
+                   "min_api_version":1,
+                   
+                   "tracking_data":"tracking data",
+                   "type":"text",
+                   "text": "Thank you!"+req.body.name
+                }                
+
+                fetch('https://chatapi.viber.com/pa/send_message', {
+                    method: 'post',
+                    body:    JSON.stringify(data),
+                    headers: { 'Content-Type': 'application/json', 'X-Viber-Auth-Token': process.env.AUTH_TOKEN },
+                })
+                .then(res => res.json())
+                .then(json => console.log('JSON', json))
+
+    }).catch((error)=>{
+        console.log('ERROR:', error);
+    });
+       
+});
 
 
 app.get('/webview/:sender_id',function(req,res){
