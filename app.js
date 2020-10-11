@@ -333,8 +333,9 @@ app.post('/register',function(req,res){
       phone: phone
     }).then(success => {   
           console.log("DATA SAVED");
-    "type":"text",
-    "text": "Thank you!"+req.body.name;
+    console.log('SAVED', success);
+    let text = "Thank you. We have received your appointment.";
+    let response = {"text": text};
     
       }).catch(error => {
           console.log(error);
