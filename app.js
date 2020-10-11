@@ -333,9 +333,7 @@ app.post('/register',function(req,res){
       phone: phone
     }).then(success => {   
           console.log("DATA SAVED");
-    console.log('SAVED', success);
-    let text = "Thank you. We have received your appointment.";
-    let response = {"text": text};
+          thankyouReply(sender, name); 
     
       }).catch(error => {
           console.log(error);
@@ -1209,29 +1207,17 @@ const showButtonReplyYes =(sender_psid) => {
 const showButtonReplyNo =(sender_psid) => {
   let response = { "text": "You clicked NO" };
   callSend(sender_psid, response);
-}
+}*/
 
-const thankyouReply =(sender_psid, name, img_url) => {
+const thankyouReply =(sender_psid, name) => {
   let response = {
       "attachment": {
         "type": "template",
         "payload": {
           "template_type": "generic",
           "elements": [{
-            "title": "Thank you! " + name,
-            "image_url":img_url,                       
-            "buttons": [
-                {
-                  "type": "postback",
-                  "title": "Yes!",
-                  "payload": "yes",
-                },
-                {
-                  "type": "postback",
-                  "title": "No!",
-                  "payload": "no",
-                }
-              ],
+            "title": "Thank you! " + name,                       
+            
           }]
         }
       }
