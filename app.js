@@ -326,8 +326,7 @@ app.post('/register',function(req,res){
       ref:req.body.ref, 
 
       console.log("AA");
-      data.ref = generateRandom(6);
-      data.status = "pending";
+      
       db.collection('register').add({
       name: name,
       email: email,
@@ -335,7 +334,7 @@ app.post('/register',function(req,res){
     }).then(success => {   
           console.log("DATA SAVED");
     let text = "Thank you for your register";
-    text += "Your register reference number is:" + data.ref;
+    
     let response = {"text": text};
     callSend(sender_psid, response);
       }).catch(error => {
