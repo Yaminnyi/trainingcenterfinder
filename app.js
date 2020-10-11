@@ -333,9 +333,9 @@ app.post('/register',function(req,res){
       phone: phone
     }).then(success => {   
           console.log("DATA SAVED");
-    let text = "Thank you for your register";
-    
-    let response = {"text": text};
+    "tracking_data":"tracking data",
+    "type":"text",
+    "text": "Thank you!"+req.body.name
     
       }).catch(error => {
           console.log(error);
