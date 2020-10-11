@@ -333,7 +333,7 @@ app.post('/register',function(req,res){
       phone: phone
     }).then(success => {   
           console.log("DATA SAVED");
-          thankyouReply(sender, name); 
+    thankyouReply(sender, name); 
     
       }).catch(error => {
           console.log(error);
@@ -1209,7 +1209,7 @@ const showButtonReplyNo =(sender_psid) => {
   callSend(sender_psid, response);
 }*/
 
-const thankyouReply =(sender_psid, name) => {
+const thankyouReply =(sender_psid, name, img_url) => {
   let response = {
       "attachment": {
         "type": "template",
@@ -1217,7 +1217,18 @@ const thankyouReply =(sender_psid, name) => {
           "template_type": "generic",
           "elements": [{
             "title": "Thank you! " + name,                       
-            
+            "buttons": [
+                {
+                  "type": "postback",
+                  "title": "Yes!",
+                  "payload": "yes",
+                },
+                {
+                  "type": "postback",
+                  "title": "No!",
+                  "payload": "no",
+                }
+              ],
           }]
         }
       }
@@ -1249,7 +1260,7 @@ function testDelete(sender_psid){
       }
     }
   callSendAPI(sender_psid, response);
-}
+}*/
 
 const defaultReply = (sender_psid) => {
   let response = choose(sender_psid);
