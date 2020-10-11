@@ -326,6 +326,8 @@ app.post('/register',function(req,res){
       ref:req.body.ref, 
 
       console.log("AA");
+      data.ref = generateRandom(6);
+      data.status = "pending";
       db.collection('register').add({
       name: name,
       email: email,
