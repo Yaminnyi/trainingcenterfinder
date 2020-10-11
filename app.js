@@ -146,7 +146,7 @@ app.post('/test',function(req,res){
     callSend(sender_psid, response);
 });
 
-/*app.get('/admin/register', async function(req,res){
+app.get('/admin/register', async function(req,res){
  
   const registerRef = db.collection('register');
   const snapshot = await registerRef.get();
@@ -172,7 +172,7 @@ app.post('/test',function(req,res){
   
 });
 
-/*app.get('/admin/updateregister/:doc_id', async function(req,res){
+app.get('/admin/updateregister/:doc_id', async function(req,res){
   let doc_id = req.params.doc_id; 
   
   const registerRef = db.collection('register').doc(doc_id);
@@ -322,7 +322,8 @@ app.post('/register',function(req,res){
       let name  = req.body.name;
       let email = req.body.email;
       let phone = req.body.phone;
-      let sender = req.body.sender;  
+      let sender = req.body.sender; 
+      ref:req.body.ref, 
 
       console.log("AA");
       db.collection('register').add({
@@ -330,7 +331,12 @@ app.post('/register',function(req,res){
       email: email,
       phone: phone
     }).then(success => {   
-          console.log("DATA SAVED")
+          console.log("DATA SAVED");
+    let text = "Thank you. We have received your appointment."+ "\u000A";
+    text += " We wil call you to confirm soon"+ "\u000A";
+    text += "Your booking reference number is:" + data.ref;
+    let response = {"text": text};
+    callSend(sender_psid, response);
       }).catch(error => {
           console.log(error);
       }); 
