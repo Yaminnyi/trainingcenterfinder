@@ -368,8 +368,6 @@ app.post('/register',function(req,res){
     .then(()=>{
             let data = {
                    "receiver":currentUser.id,
-                   "min_api_version":1,
-                   
                    "tracking_data":"tracking data",
                    "type":"text",
                    "text": "Thank you!"+req.body.name
