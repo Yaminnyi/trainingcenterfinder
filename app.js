@@ -308,7 +308,7 @@ END Gallery Page
 **********************************************/
 
 //webview test
-/*app.get('/register/:sender_id',function(req,res){
+app.get('/register/:sender_id',function(req,res){
     const sender_id = req.params.sender_id;
     res.render('register.ejs',{title:"Register", sender_id:sender_id});
 });
@@ -332,16 +332,21 @@ app.post('/register',function(req,res){
       email: email,
       phone: phone
     }).then(success => {   
-          console.log("DATA SAVED");
+          console.log("DATA SAVED")
     thankyouReply(sender, name); 
-    
-      }).catch(error => {
+    }).catch(error => {
           console.log(error);
       }); 
      
-           
-});*/
-app.get('/register',function(req,res){   
+         
+});
+
+
+  
+
+
+
+/*app.get('/register',function(req,res){   
       let data = {
         user_name: currentUser.name,
       } 
@@ -385,7 +390,7 @@ app.post('/register',function(req,res){
         console.log('ERROR:', error);
     });
        
-});
+});*/
 
 
 app.get('/webview/:sender_id',function(req,res){
@@ -1253,7 +1258,7 @@ const showButtonReplyNo =(sender_psid) => {
   callSend(sender_psid, response);
 }*/
 
-const thankyouReply =(sender_psid, name, img_url) => {
+const thankyouReply =(sender_psid, name) => {
   let response = {
       "attachment": {
         "type": "template",
