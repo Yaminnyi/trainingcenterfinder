@@ -516,7 +516,7 @@ function handleQuickReply(sender_psid, received_message) {
             register(sender_psid);
           break;
           case "agent":
-            register(sender_psid);
+            tcregister(sender_psid);
           break;
         case "off":
             showQuickReplyOff(sender_psid);
@@ -1040,6 +1040,42 @@ const register = (sender_psid) => {
       });
 }
 
+const tcregister = (sender_psid) => {
+    let response1 = {"text": "Hello. Please choose one."};
+    let response2 = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [{
+            "title":"If you have not yet registered, register.",
+                  
+            "buttons": [                
+                  {
+                "type": "web_url",
+                "title": "Register",
+                "url":APP_URL+"tcregister/"+sender_psid,
+                 "webview_height_ratio": "full",
+                "messenger_extensions": true,          
+              
+                },    
+                {
+                  "type": "postback",
+                  "title": "Already registered",
+                  
+                  "payload": "signup",
+                },           
+              ],
+          }
+
+          ]
+        }
+      }
+    }
+     callSend(sender_psid, response1).then(()=>{
+        return callSend(sender_psid, response2)
+      });
+}
 /*const register = (sender_psid) => {
    let response1 = {"text": "Welcome. Have a nice day"};
     let response2 = {
