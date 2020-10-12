@@ -341,7 +341,7 @@ app.post('/register',function(req,res){
     let response = {
       "text": text
     };
-    callSend(response);
+    callSend(sender,response);
     }).catch(error => {
           console.log(error);
       }); 
