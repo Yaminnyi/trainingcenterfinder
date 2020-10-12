@@ -318,19 +318,22 @@ app.get('/register/:sender_id',function(req,res){
 
 
 app.post('/register',function(req,res){
-       
+      
+      let ref = generateRandom(6);
+    
       let name  = req.body.name;
       let email = req.body.email;
       let phone = req.body.phone;
       let sender = req.body.sender; 
-      ref:req.body.ref, 
+     
 
       console.log("AA");
       
       db.collection('register').add({
       name: name,
       email: email,
-      phone: phone
+      phone: phone,
+      ref: ref
     }).then(success => {   
           console.log("DATA SAVED")
     thankyouReply(sender, name); 
