@@ -393,7 +393,7 @@ app.post('/register',function(req,res){
 });*/
 
 
-app.get('/webview/:sender_id',function(req,res){
+/*app.get('/webview/:sender_id',function(req,res){
     const sender_id = req.params.sender_id;
     res.render('webview.ejs',{title:"Hello!! from WebView", sender_id:sender_id});
 });
@@ -1259,31 +1259,12 @@ const showButtonReplyNo =(sender_psid) => {
 }*/
 
 const thankyouReply =(sender_psid, name) => {
-  let response = {
-      "attachment": {
-        "type": "template",
-        "payload": {
-          "template_type": "generic",
-          "elements": [{
-            "title": "Thank you! " + name,                       
-            "buttons": [
-                {
-                  "type": "postback",
-                  "title": "Yes!",
-                  "payload": "yes",
-                },
-                {
-                  "type": "postback",
-                  "title": "No!",
-                  "payload": "no",
-                }
-              ],
-          }]
-        }
-      }
-    }
+  let data.ref = generateRandom(6);
+  let response = { "text": "Thank you for your register" + name + data.ref};
   callSend(sender_psid, response);
 }
+  
+ 
 
 function testDelete(sender_psid){
   let response;
