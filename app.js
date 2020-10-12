@@ -354,6 +354,10 @@ app.post('/register',function(req,res){
   
 
 
+app.get('/agent_register/:sender_id',function(req,res){
+    const sender_id = req.params.sender_id;
+    res.render('agent_register.ejs',{title:"Register", sender_id:sender_id});
+});
 
 
 
