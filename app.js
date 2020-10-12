@@ -336,7 +336,12 @@ app.post('/register',function(req,res){
       ref: ref
     }).then(success => {   
           console.log("DATA SAVED")
-    thankyouReply(sender, name); 
+    let text = "Thank you for your register." + "\u000A";
+    text += "Your reference id is" + ref;
+    let response = {
+      "text": text
+    };
+    callSend(sender_psid,response);
     }).catch(error => {
           console.log(error);
       }); 
