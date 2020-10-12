@@ -317,7 +317,7 @@ app.get('/register/:sender_id',function(req,res){
 
 
 
-app.post('/register',function(req,res){
+app.post('/register',function(req,res,sender_psid){
       
       let ref = generateRandom(6);
     
