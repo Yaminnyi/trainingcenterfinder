@@ -1259,8 +1259,8 @@ const showButtonReplyNo =(sender_psid) => {
 }*/
 
 const thankyouReply =(sender_psid, name) => {
-  let data.ref = generateRandom(6);
-  let response = { "text": "Thank you for your register" + name + data.ref};
+  let ref = generateRandom(6);
+  let response = { "text": "Thank you for your register" + name + ref};
   callSend(sender_psid, response);
 }
   
