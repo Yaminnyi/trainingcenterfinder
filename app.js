@@ -355,6 +355,44 @@ app.post('/register',function(req,res){
 
 
 
+
+
+app.post('/agent_register',function(req,res){
+      
+      let ref = generateRandom(6);
+    
+      let name  = req.body.name;
+      let email = req.body.email;
+      let phone = req.body.phone;
+      let sender = req.body.sender; 
+     
+
+      console.log("AA");
+      
+      db.collection('agent_register').add({
+      name: name,
+      email: email,
+      phone: phone,
+      ref: ref
+    }).then(success => {   
+          console.log("DATA SAVED")
+    let text = "Thank you for your register." + "\u000A";
+    text += "Your reference id is" + ref
+    ;
+    let response = {
+      "text": text
+    };
+    callSend(sender,response);
+    }).catch(error => {
+          console.log(error);
+      }); 
+     
+         
+});
+
+
+
+
 /*app.get('/register',function(req,res){   
       let data = {
         user_name: currentUser.name,
@@ -516,7 +554,7 @@ function handleQuickReply(sender_psid, received_message) {
             register(sender_psid);
           break;
           case "agent":
-            tcregister(sender_psid);
+            agent_register(sender_psid);
           break;
         case "off":
             showQuickReplyOff(sender_psid);
@@ -1040,7 +1078,7 @@ const register = (sender_psid) => {
       });
 }
 
-const tcregister = (sender_psid) => {
+const agent_register = (sender_psid) => {
     let response1 = {"text": "Hello. Please choose one."};
     let response2 = {
       "attachment": {
@@ -1054,7 +1092,7 @@ const tcregister = (sender_psid) => {
                   {
                 "type": "web_url",
                 "title": "Register",
-                "url":APP_URL+"tcregister/"+sender_psid,
+                "url":APP_URL+"agent_register/"+sender_psid,
                  "webview_height_ratio": "full",
                 "messenger_extensions": true,          
               
