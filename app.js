@@ -317,7 +317,7 @@ app.get('/register/:sender_id',function(req,res){
 
 
 
-app.post('/register',function(req,res,sender_psid){
+app.post('/register',function(req,res){
       
       let ref = generateRandom(6);
     
@@ -341,7 +341,7 @@ app.post('/register',function(req,res,sender_psid){
     let response = {
       "text": text
     };
-    callSend(sender_psid,response);
+    callSend(response);
     }).catch(error => {
           console.log(error);
       }); 
