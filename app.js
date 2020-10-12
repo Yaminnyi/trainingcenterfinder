@@ -371,7 +371,7 @@ app.post('/agent_register',function(req,res){
       let sender = req.body.sender; 
      
 
-      console.log("BB");
+      console.log("AA");
       
       db.collection('agent_register').add({
       name: name,
