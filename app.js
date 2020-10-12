@@ -337,7 +337,8 @@ app.post('/register',function(req,res){
     }).then(success => {   
           console.log("DATA SAVED")
     let text = "Thank you for your register." + "\u000A";
-    text += "Your reference id is" + ref;
+    text += "Your reference id is" + ref
+    ;
     let response = {
       "text": text
     };
