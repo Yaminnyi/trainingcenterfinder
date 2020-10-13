@@ -564,7 +564,7 @@ function handleQuickReply(sender_psid, received_message) {
           case "agent":
             agent_register(sender_psid);
           break;
-          case "check-id":
+          case "alreadyreg":
             current_question = "q8";
           botQuestions(current_question, sender_psid);
           break;
@@ -633,11 +633,11 @@ const handleMessage = (sender_psid, received_message) => {
      
      confirmAppointment(sender_psid);
   }else if(current_question == 'q8'){
-     let order_ref = received_message.text; 
+     let ref = received_message.text; 
 
-     console.log('order_ref: ', order_ref);    
+     console.log('ref: ', ref);    
      current_question = '';     
-     showOrder(sender_psid, order_ref);
+     showOrder(sender_psid, ref);
   }
   else {
       
@@ -837,6 +837,25 @@ function webviewTest(sender_psid){
 /**************
 start hospital
 **************/
+
+const botQuestions = (current_question, sender_psid) => {
+  if(current_question == 'q1'){
+    let response = {"text": bot_questions.q1};
+    callSend(sender_psid, response);
+  }else if(current_question == 'q2'){
+    let response = {"text": bot_questions.q2};
+    callSend(sender_psid, response);
+  }else if(current_question == 'q3'){
+    let response = {"text": bot_questions.q3};
+    callSend(sender_psid, response);
+  }
+  else if(current_question == 'q8'){
+    let response = {"text": bot_questions.q8};
+    callSend(sender_psid, response);
+  }
+}
+
+
 const choose = (sender_psid) => {
    let response1 = {"text": "Welcome. Have a nice day."};
    let response2 = {
@@ -1119,7 +1138,7 @@ const agent_register = (sender_psid) => {
                   "type": "postback",
                   "title": "Already registered",
                   
-                  "payload": "signup",
+                  "payload": "alreadyreg",
                 },           
               ],
           }
@@ -1134,19 +1153,23 @@ const agent_register = (sender_psid) => {
 }
 
 
-const showid = async(sender_psid) => {
-  let title = "";
-  const userRef = db.collection('users').doc(sender_psid);
-    const user = await userRef.get();
+const alreadyreg = async(sender_psid) => {
+  let current_question = "";
+  const ref = db.collection('register').doc(sender_psid);
+    const user = await ref.get();
     if (!user.exists) {
       title = "Register";  
-      first_reg = true;      
+      register = true;      
     } else {
-      title = "Update Profile";  
-      first_reg = false;      
+      
+         register.data.ref
+         name: name,
+        email: email,
+        phone: phone,
+        ref: ref
     } 
 
-onst showid = async(sender_psid, ref) => {
+/*const showid = async(sender_psid, ref) => {
  let cust_points = 0;
 
     const ref = db.collection('register').where("ref", "==", ref).limit(1);
@@ -1207,7 +1230,7 @@ onst showid = async(sender_psid, ref) => {
     ]
   };
   callSend(sender_psid, response);
-}
+}/*
 
 
 /*const register = (sender_psid) => {
