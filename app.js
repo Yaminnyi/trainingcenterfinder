@@ -564,7 +564,7 @@ function handleQuickReply(sender_psid, received_message) {
           case "agent":
             agent_register(sender_psid);
           break;
-          case "alreadyreg":
+          case "check-id":
             current_question = "q8";
           botQuestions(current_question, sender_psid);
           break;
@@ -633,11 +633,11 @@ const handleMessage = (sender_psid, received_message) => {
      
      confirmAppointment(sender_psid);
   }else if(current_question == 'q8'){
-     let ref = received_message.text; 
+     let order_ref = received_message.text; 
 
-     console.log('ref: ', ref);    
+     console.log('order_ref: ', order_ref);    
      current_question = '';     
-     showOrder(sender_psid, ref);
+     showOrder(sender_psid, order_ref);
   }
   else {
       
@@ -837,25 +837,6 @@ function webviewTest(sender_psid){
 /**************
 start hospital
 **************/
-
-const botQuestions = (current_question, sender_psid) => {
-  if(current_question == 'q1'){
-    let response = {"text": bot_questions.q1};
-    callSend(sender_psid, response);
-  }else if(current_question == 'q2'){
-    let response = {"text": bot_questions.q2};
-    callSend(sender_psid, response);
-  }else if(current_question == 'q3'){
-    let response = {"text": bot_questions.q3};
-    callSend(sender_psid, response);
-  }
-  else if(current_question == 'q8'){
-    let response = {"text": bot_questions.q8};
-    callSend(sender_psid, response);
-  }
-}
-
-
 const choose = (sender_psid) => {
    let response1 = {"text": "Welcome. Have a nice day."};
    let response2 = {
@@ -1138,7 +1119,7 @@ const agent_register = (sender_psid) => {
                   "type": "postback",
                   "title": "Already registered",
                   
-                  "payload": "alreadyreg",
+                  "payload": "signup",
                 },           
               ],
           }
@@ -1153,30 +1134,32 @@ const agent_register = (sender_psid) => {
 }
 
 
-const alreadyreg = async(sender_psid) => {
-  let current_question = "";
-  const ref = db.collection('register').doc(sender_psid);
-    const user = await ref.get();
-    if (!user.exists) {
-      title = "Register";  
-      register = true;      
-    } else {
-      
-         register.data.ref
-         name: name,
-        email: email,
-        phone: phone,
-        ref: ref
-    } 
+const aleadyreg = async(sender_psid) => {
 
-/*const showid = async(sender_psid, ref) => {
- let cust_points = 0;
+
+  let response = {
+    "text": "Select your reply",
+    "quick_replies":[
+            
+            {
+              "content_type":"text",
+              "title":"My id",
+              "payload":"check-id",             
+            }
+
+    ]
+  };
+  callSend(sender_psid, response);
+}
+
+
+const showOrder = async(sender_psid, ref) => {
+
+    let cust_points = 0;
 
     const ref = db.collection('register').where("ref", "==", ref).limit(1);
     const snapshot = await ref.get();
 
-    const ref = db.collection('register').doc(user_id);
-    const user = await ref.get();
     if (!user.exists) {
       cust_points = 0;           
     } else {                
@@ -1193,25 +1176,28 @@ const alreadyreg = async(sender_psid) => {
           let register = {}
 
           snapshot.forEach(doc => {      
-             
-              name = doc.data().status;
-              email = doc.data().comment; 
-              phone = doc.data().comment; 
-               ref = doc.data().ref; 
+              ref = doc.data().ref;
+              order.status = doc.data().status;
+              order.comment = doc.data().comment;  
           });
 
 
-          let response1 = { "text": `Your order ${ref} is ${ref}.` };
-         
-            callSend(sender_psid, response1).then(()=>
-              );
-          
+          let response1 = { "text": `Your order ${ref} is ${order.status}.` };
+          let response2 = { "text": `Seller message: ${order.comment}.` };
+          let response3 = { "text": `You have remaining ${cust_points} point(s)` };
+            callSend(sender_psid, response1).then(()=>{
+              return callSend(sender_psid, response2).then(()=>{
+                return callSend(sender_psid, response3)
+              });
+          });
 
     }
 
     
 
 }
+
+
 
   let response = {
     "text": "Select your reply",
@@ -1230,7 +1216,7 @@ const alreadyreg = async(sender_psid) => {
     ]
   };
   callSend(sender_psid, response);
-}/*
+}
 
 
 /*const register = (sender_psid) => {
