@@ -30,7 +30,9 @@ const bot_questions = {
   "q4": "please enter gender",
   "q5": "please enter phone number",
   "q6": "please enter email",
-  "q7": "please leave a message"
+  "q7": "please leave a message",
+  "q8": "please enter your reference id"
+
 }
 
 let current_question = '';
@@ -397,6 +399,8 @@ app.post('/agent_register',function(req,res){
 
 
 
+
+
 /*app.get('/register',function(req,res){   
       let data = {
         user_name: currentUser.name,
@@ -560,6 +564,10 @@ function handleQuickReply(sender_psid, received_message) {
           case "agent":
             agent_register(sender_psid);
           break;
+          case "check-id":
+            current_question = "q8";
+          botQuestions(current_question, sender_psid);
+          break;
         case "off":
             showQuickReplyOff(sender_psid);
           break; 
@@ -624,6 +632,12 @@ const handleMessage = (sender_psid, received_message) => {
      current_question = '';
      
      confirmAppointment(sender_psid);
+  }else if(current_question == 'q8'){
+     let order_ref = received_message.text; 
+
+     console.log('order_ref: ', order_ref);    
+     current_question = '';     
+     showOrder(sender_psid, order_ref);
   }
   else {
       
@@ -1118,6 +1132,84 @@ const agent_register = (sender_psid) => {
         return callSend(sender_psid, response2)
       });
 }
+
+
+const showid = async(sender_psid) => {
+  let title = "";
+  const userRef = db.collection('users').doc(sender_psid);
+    const user = await userRef.get();
+    if (!user.exists) {
+      title = "Register";  
+      first_reg = true;      
+    } else {
+      title = "Update Profile";  
+      first_reg = false;      
+    } 
+
+onst showid = async(sender_psid, ref) => {
+ let cust_points = 0;
+
+    const ref = db.collection('register').where("ref", "==", ref).limit(1);
+    const snapshot = await ref.get();
+
+    const ref = db.collection('register').doc(user_id);
+    const user = await ref.get();
+    if (!user.exists) {
+      cust_points = 0;           
+    } else {                
+        cust_points  = user.data().points;          
+    } 
+
+
+    if (snapshot.empty) {
+      let response = { "text": "Incorrect order number" };
+      callSend(sender_psid, response).then(()=>{
+        return choose(sender_psid);
+      });
+    }else{
+          let register = {}
+
+          snapshot.forEach(doc => {      
+             
+              name = doc.data().status;
+              email = doc.data().comment; 
+              phone = doc.data().comment; 
+               ref = doc.data().ref; 
+          });
+
+
+          let response1 = { "text": `Your order ${ref} is ${ref}.` };
+         
+            callSend(sender_psid, response1).then(()=>
+              );
+          
+
+    }
+
+    
+
+}
+
+  let response = {
+    "text": "Select your reply",
+    "quick_replies":[
+            {
+              "content_type":"text",
+              "title":"My profile"
+              "payload":"check-id",              
+            },{
+              "content_type":"text",
+              "title":"Cancel",
+              "payload":"cancel",             
+            },
+            
+
+    ]
+  };
+  callSend(sender_psid, response);
+}
+
+
 /*const register = (sender_psid) => {
    let response1 = {"text": "Welcome. Have a nice day"};
     let response2 = {
