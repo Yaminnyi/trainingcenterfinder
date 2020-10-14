@@ -1134,7 +1134,7 @@ const agent_register = (sender_psid) => {
 }
 
 
-const aleadyreg = async(sender_psid) => {
+/*const aleadyreg = async(sender_psid) => {
 
 
   let response = {
@@ -1195,7 +1195,7 @@ const showOrder = async(sender_psid, ref) => {
 
     
 
-}
+}*/
 
 
 
