@@ -553,9 +553,6 @@ function handleQuickReply(sender_psid, received_message) {
   }else{
 
       switch(received_message) {  
-        case "already":
-            already(sender_psid);
-          break;     
       case "seaman":
             showtype(sender_psid);
           break;              
@@ -639,6 +636,9 @@ const handleMessage = (sender_psid, received_message) => {
       switch(user_message) { 
       case "Get start":
           hiReply(sender_psid);
+        break;
+         case "already":
+          already(sender_psid);
         break;
       case "choose":
         choose(sender_psid);
