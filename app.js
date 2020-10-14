@@ -363,7 +363,7 @@ app.post('/add',function(req,res){
       
       
     
-      let name  = req.body.name;
+      let courses  = req.body.courses;
       let date = req.body.date;
       let end = req.body.end;
       let detail = req.body.detail;
@@ -375,7 +375,7 @@ app.post('/add',function(req,res){
       console.log("EE");
       
       db.collection('add').add({
-      name: name,
+      courses: courses,
       date: date,
       end: end,
       detail: detail,
@@ -406,7 +406,7 @@ app.post('/add1',function(req,res){
       
       
     
-      let name  = req.body.name;
+      let courses  = req.body.courses;
       let date = req.body.date;
       let end = req.body.end;
       let detail = req.body.detail;
@@ -418,7 +418,7 @@ app.post('/add1',function(req,res){
       console.log("DD");
       
       db.collection('add1').add({
-      name: name,
+      courses: courses,
       date: date,
       end: end,
       detail: detail,
