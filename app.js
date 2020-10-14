@@ -354,10 +354,94 @@ app.post('/register',function(req,res){
   
 
 
-app.get('/agent_register/:sender_id',function(req,res){
+app.get('/add/:sender_id',function(req,res){
     const sender_id = req.params.sender_id;
-    res.render('agent_register.ejs',{title:"Register", sender_id:sender_id});
+    res.render('add.ejs',{title:"Add courses", sender_id:sender_id});
 });
+
+app.post('/add',function(req,res){
+      
+      
+    
+      let name  = req.body.name;
+      let date = req.body.date;
+      let end = req.body.end;
+      let detail = req.body.detail;
+      let price = req.body.price;
+      let address = req.body.address;
+      let sender = req.body.sender; 
+     
+
+      console.log("AA");
+      
+      db.collection('add').add({
+      name: name,
+      date: date,
+      end: end,
+      detail: detail,
+      price: price,
+      address: address
+         
+    }).then(success => {   
+          console.log("DATA SAVED")
+    let text = "Thank you for your register." + "\u000A";
+   
+    let response = {
+      "text": text
+    };
+    callSend(sender,response);
+    }).catch(error => {
+          console.log(error);
+      }); 
+     
+         
+});
+
+app.get('/add1/:sender_id',function(req,res){
+    const sender_id = req.params.sender_id;
+    res.render('add1.ejs',{title:"Add courses", sender_id:sender_id});
+});
+
+app.post('/add1',function(req,res){
+      
+      
+    
+      let name  = req.body.name;
+      let date = req.body.date;
+      let end = req.body.end;
+      let detail = req.body.detail;
+      let price = req.body.price;
+      let address = req.body.address;
+      let sender = req.body.sender; 
+     
+
+      console.log("AA");
+      
+      db.collection('add1').add({
+      name: name,
+      date: date,
+      end: end,
+      detail: detail,
+      price: price,
+      address: address
+         
+    }).then(success => {   
+          console.log("DATA SAVED")
+    let text = "Thank you for your register." + "\u000A";
+   
+    let response = {
+      "text": text
+    };
+    callSend(sender,response);
+    }).catch(error => {
+          console.log(error);
+      }); 
+     
+         
+});
+
+
+
 
 
 
@@ -1087,33 +1171,47 @@ const register = (sender_psid) => {
       });
 }
 
+
+
+ 
+
 const already = (sender_psid) => {
-   let response1 = {"text": "Please select one"};
-   let response2 = {
-    
-    "quick_replies":[
-            {
-              "content_type":"text",
-              "title":"Add courses",
-              "payload":"seaman",              
-            },{
-              "content_type":"text",
-              "title":"View my courses",
-              "payload":"training center",             
-            },{
-              "content_type":"text",
-              "title":"View student registered",
-              "payload":"agent",
-            }
+    let response1 = {"text": "Hello. Please choose one."};
+    let response2 = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [{
+            "title":"You can add courses, view your courses and view students",
+                  
+            "buttons": [                
+                  {
+                "type": "web_url",
+                "title": "Add courses(STCW)",
+                "url":APP_URL+"add/"+sender_psid,
+                 "webview_height_ratio": "full",
+                "messenger_extensions": true,          
+              
+                },    
+                {
+                  "type": "web_url",
+                "title": "Add courses(Offshore)",
+                "url":APP_URL+"add1/"+sender_psid,
+                 "webview_height_ratio": "full",
+                "messenger_extensions": true,  
+                },           
+              ],
+          }
 
-    ]
-  };
-
-  callSend(sender_psid, response1).then(()=>{
-    return callSend(sender_psid, response2);
-  });
+          ]
+        }
+      }
+    }
+     callSend(sender_psid, response1).then(()=>{
+        return callSend(sender_psid, response2)
+      });
 }
-
 
 
 const agent_register = (sender_psid) => {
