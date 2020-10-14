@@ -372,7 +372,7 @@ app.post('/add',function(req,res){
       let sender = req.body.sender; 
      
 
-      console.log("AA");
+      console.log("EE");
       
       db.collection('add').add({
       name: name,
@@ -415,7 +415,7 @@ app.post('/add1',function(req,res){
       let sender = req.body.sender; 
      
 
-      console.log("AA");
+      console.log("DD");
       
       db.collection('add1').add({
       name: name,
