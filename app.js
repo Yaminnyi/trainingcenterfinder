@@ -308,49 +308,6 @@ END Gallery Page
 **********************************************/
 
 //webview test
-
-app.get('/add',function(req,res){
-    
-    res.render('add.ejs');
-});
-
-app.post('/add',function(req,res){
-      
-      
-    
-      let courses  = req.body.courses;
-      let date = req.body.date;
-      let end = req.body.end;
-      let detail = req.body.detail;
-      let price = req.body.price;
-      let address = req.body.address;
-      let sender = req.body.sender; 
-     
-
-      console.log("EE");
-      
-      db.collection('add').add({
-      courses: courses,
-      date: date,
-      end: end,
-      detail: detail,
-      price: price,
-      address: address
-         
-    }).then(success => {   
-          console.log("DATA SAVED")
-    let text = "Thank you for your register." + "\u000A";
-   
-    let response = {
-      "text": text
-    };
-    callSend(sender,response);
-    }).catch(error => {
-          console.log(error);
-      }); 
-     
-         
-});
 app.get('/register/:sender_id',function(req,res){
     const sender_id = req.params.sender_id;
     res.render('register.ejs',{title:"Register", sender_id:sender_id});
@@ -397,7 +354,48 @@ app.post('/register',function(req,res){
   
 
 
+app.get('/add/:sender_id',function(req,res){
+    const sender_id = req.params.sender_id;
+    res.render('add.ejs',{title:"Add courses", sender_id:sender_id});
+});
 
+app.post('/add',function(req,res){
+      
+      
+    
+      let courses  = req.body.courses;
+      let date = req.body.date;
+      let end = req.body.end;
+      let detail = req.body.detail;
+      let price = req.body.price;
+      let address = req.body.address;
+      let sender = req.body.sender; 
+     
+
+      console.log("EE");
+      
+      db.collection('add').add({
+      courses: courses,
+      date: date,
+      end: end,
+      detail: detail,
+      price: price,
+      address: address
+         
+    }).then(success => {   
+          console.log("DATA SAVED")
+    let text = "Thank you for your register." + "\u000A";
+   
+    let response = {
+      "text": text
+    };
+    callSend(sender,response);
+    }).catch(error => {
+          console.log(error);
+      }); 
+     
+         
+});
 
 app.get('/add1/:sender_id',function(req,res){
     const sender_id = req.params.sender_id;
@@ -1191,7 +1189,7 @@ const already = (sender_psid) => {
                   {
                 "type": "web_url",
                 "title": "Add courses(STCW)",
-                "url":APP_URL+"add/",
+                "url":APP_URL+"add/"+sender_psid,
                  "webview_height_ratio": "full",
                 "messenger_extensions": true,          
               
@@ -1199,7 +1197,7 @@ const already = (sender_psid) => {
                 {
                   "type": "web_url",
                 "title": "Add courses(Offshore)",
-                "url":APP_URL+"add1/",
+                "url":APP_URL+"add1/"+sender_psid,
                  "webview_height_ratio": "full",
                 "messenger_extensions": true,  
                 },           
