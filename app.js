@@ -553,6 +553,9 @@ function handleQuickReply(sender_psid, received_message) {
   }else{
 
       switch(received_message) {  
+        case "already":
+            already(sender_psid);
+          break;     
       case "seaman":
             showtype(sender_psid);
           break;              
@@ -1083,6 +1086,35 @@ const register = (sender_psid) => {
         return callSend(sender_psid, response2)
       });
 }
+
+const already = (sender_psid) => {
+   let response1 = {"text": "Please select one"};
+   let response2 = {
+    
+    "quick_replies":[
+            {
+              "content_type":"text",
+              "title":"Add courses",
+              "payload":"seaman",              
+            },{
+              "content_type":"text",
+              "title":"View my courses",
+              "payload":"training center",             
+            },{
+              "content_type":"text",
+              "title":"View student registered",
+              "payload":"agent",
+            }
+
+    ]
+  };
+
+  callSend(sender_psid, response1).then(()=>{
+    return callSend(sender_psid, response2);
+  });
+}
+
+
 
 const agent_register = (sender_psid) => {
     let response1 = {"text": "Hello. Please choose one."};
