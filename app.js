@@ -309,9 +309,9 @@ END Gallery Page
 
 //webview test
 
-app.get('/add/:sender_id',function(req,res){
-    const sender_id = req.params.sender_id;
-    res.render('add.ejs',{title:"Add courses", sender_id:sender_id});
+app.get('/add',function(req,res){
+    
+    res.render('add.ejs');
 });
 
 app.post('/add',function(req,res){
@@ -1191,7 +1191,7 @@ const already = (sender_psid) => {
                   {
                 "type": "web_url",
                 "title": "Add courses(STCW)",
-                "url":APP_URL+"add/"+sender_psid,
+                "url":APP_URL+"add/",
                  "webview_height_ratio": "full",
                 "messenger_extensions": true,          
               
@@ -1199,7 +1199,7 @@ const already = (sender_psid) => {
                 {
                   "type": "web_url",
                 "title": "Add courses(Offshore)",
-                "url":APP_URL+"add1/"+sender_psid,
+                "url":APP_URL+"add1/",
                  "webview_height_ratio": "full",
                 "messenger_extensions": true,  
                 },           
