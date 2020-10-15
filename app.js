@@ -391,20 +391,12 @@ app.post('/register',function(req,res){
 
   */
 
-
-
-
-
-
-
-
-
-app.get('/add/:sender_id',function(req,res){
+app.get('/course1/:sender_id',function(req,res){
     const sender_id = req.params.sender_id;
-    res.render('add.ejs',{title:"Add courses", sender_id:sender_id});
+    res.render('course1.ejs',{title:"Add courses", sender_id:sender_id});
 });
 
-app.post('/add',function(req,res){
+app.post('/course1',function(req,res){
       
       
     
@@ -417,9 +409,9 @@ app.post('/add',function(req,res){
       let sender = req.body.sender; 
      
 
-      console.log("EE");
+      console.log("DD");
       
-      db.collection('add').add({
+      db.collection('course1').add({
       courses: courses,
       date: date,
       end: end,
@@ -441,6 +433,17 @@ app.post('/add',function(req,res){
      
          
 });
+
+
+
+
+
+
+
+
+
+
+
 
 app.get('/add1/:sender_id',function(req,res){
     const sender_id = req.params.sender_id;
@@ -1234,7 +1237,7 @@ const already = (sender_psid) => {
                   {
                 "type": "web_url",
                 "title": "Add courses(STCW)",
-                "url":APP_URL+"add/"+sender_psid,
+                "url":APP_URL+"course1/"+sender_psid,
                  "webview_height_ratio": "full",
                 "messenger_extensions": true,          
               
