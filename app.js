@@ -792,7 +792,7 @@ const handleMessage = (sender_psid, received_message) => {
         choose(sender_psid);
         break;                
       case "cancel":
-        cancel(sender_psid);
+        choose(sender_psid);
         break;
                    
       default:
