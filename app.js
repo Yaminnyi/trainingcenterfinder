@@ -344,6 +344,7 @@ app.post('/register',function(req,res){
       "text": text
     };
     callSend(sender,response);
+     return already(sender_psid);
     }).catch(error => {
           console.log(error);
       }); 
@@ -1253,7 +1254,7 @@ const showOrder = async(sender_psid, order_ref) => {
     }else{
         let response = { "text": "You are correct." };
         callSend(sender_psid, response).then(()=>{
-          return already(sender_psid);
+         
 
           });
     }   
