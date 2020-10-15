@@ -359,7 +359,7 @@ app.get('/show', async function(req,res){
 
 
 
-  const courseRef = db.collection('add').orderBy('created_on', 'desc');
+  const courseRef = db.collection('courses').orderBy('created_on', 'desc');
   const snapshot = await courseRef.get();
 
   if (snapshot.empty) {
@@ -1234,7 +1234,7 @@ const already = (sender_psid) => {
                   {
                 "type": "web_url",
                 "title": "Add courses(STCW)",
-                "url":APP_URL+"add/"+sender_psid,
+                "url":APP_URL+"course/"+sender_psid,
                  "webview_height_ratio": "full",
                 "messenger_extensions": true,          
               
