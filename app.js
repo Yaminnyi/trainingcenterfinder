@@ -404,6 +404,7 @@ app.post('/course1',function(req,res){
       let date = req.body.date;
       let end = req.body.end;
       let detail = req.body.detail;
+      let duration = req.body.duration;
       let price = req.body.price;
       let address = req.body.address;
       let sender = req.body.sender; 
@@ -458,6 +459,7 @@ app.post('/add1',function(req,res){
       let date = req.body.date;
       let end = req.body.end;
       let detail = req.body.detail;
+      let duration = req.body.duration;
       let price = req.body.price;
       let address = req.body.address;
       let sender = req.body.sender; 
