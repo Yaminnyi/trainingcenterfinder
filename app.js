@@ -399,16 +399,16 @@ app.get('/show', async function(req,res){
 
 
 
-app.get('/add/:sender_id',function(req,res){
+app.get('/course/:sender_id',function(req,res){
     const sender_id = req.params.sender_id;
-    res.render('add.ejs',{title:"Add courses", sender_id:sender_id});
+    res.render('course.ejs',{title:"Add courses", sender_id:sender_id});
 });
 
-app.post('/add',function(req,res){
+app.post('/course',function(req,res){
       
       
     
-      let courses  = req.body.courses;
+      let course  = req.body.course;
       let date = req.body.date;
       let end = req.body.end;
       let detail = req.body.detail;
@@ -419,8 +419,8 @@ app.post('/add',function(req,res){
 
       console.log("EE");
       
-      db.collection('add').add({
-      courses: courses,
+      db.collection('courses').add({
+      course: course,
       date: date,
       end: end,
       detail: detail,
