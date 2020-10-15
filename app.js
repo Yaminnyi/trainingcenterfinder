@@ -355,11 +355,11 @@ app.post('/register',function(req,res){
 
 //route url
 
-app.get('/show', async function(req,res){
+app.get('/course', async function(req,res){
 
 
 
-  const courseRef = db.collection('courses').orderBy('created_on', 'desc');
+  const courseRef = db.collection('add').orderBy('created_on', 'desc');
   const snapshot = await courseRef.get();
 
   if (snapshot.empty) {
@@ -399,17 +399,16 @@ app.get('/show', async function(req,res){
 
 
 
-app.get('/course/:sender_id',function(req,res){
+app.get('/add/:sender_id',function(req,res){
     const sender_id = req.params.sender_id;
-    res.render('course.ejs',{title:"Add courses", sender_id:sender_id});
+    res.render('add.ejs',{title:"Add courses", sender_id:sender_id});
 });
 
-
-app.post('/course',function(req,res){
+app.post('/add',function(req,res){
       
       
     
-      let course  = req.body.course;
+      let courses  = req.body.courses;
       let date = req.body.date;
       let end = req.body.end;
       let detail = req.body.detail;
@@ -420,8 +419,8 @@ app.post('/course',function(req,res){
 
       console.log("EE");
       
-      db.collection('courses').add({
-      course: course,
+      db.collection('add').add({
+      courses: courses,
       date: date,
       end: end,
       detail: detail,
@@ -1235,7 +1234,7 @@ const already = (sender_psid) => {
                   {
                 "type": "web_url",
                 "title": "Add courses(STCW)",
-                "url":APP_URL+"course/"+sender_psid,
+                "url":APP_URL+"add/"+sender_psid,
                  "webview_height_ratio": "full",
                 "messenger_extensions": true,          
               
@@ -1272,7 +1271,7 @@ const shopMenu =(sender_psid) => {
               {
                 "type": "web_url",
                 "title": "Shop Now",
-                "url":APP_URL+"show/",
+                "url":APP_URL+"course/",
                  "webview_height_ratio": "full",
                 "messenger_extensions": true,          
               },
