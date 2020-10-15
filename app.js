@@ -39,8 +39,6 @@ let sess;
 let current_question = '';
 let user_id = ''; 
 let userInputs = [];
-let first_reg = false;
-let customer = [];
 
 
 /*
@@ -1242,14 +1240,10 @@ const register = (sender_psid) => {
 }
 
 
-const showOrder = async(sender_psid, order_ref) => {
-
-    Let user_id ='';
+const showOrder = async(sender_psid, order_ref) => {    
 
     const ordersRef = db.collection('register').where("ref", "==", order_ref).limit(1);
     const snapshot = await ordersRef.get();
-
-   
 
     if (snapshot.empty) {
       let response = { "text": "Incorrect order number" };
@@ -1257,13 +1251,19 @@ const showOrder = async(sender_psid, order_ref) => {
         return register(sender_psid);
       });
     }else{
-      snapshot.forEach (doc => {
-        user_id =doc.id;
-      });
-    }
-          
- 
+        let response = { "text": "You are correct." };
+        callSend(sender_psid, response).then(()=>{
+          return already(sender_psid);
+
+          });
+    }   
+
 }
+
+
+
+
+
 const already = (sender_psid) => {
     let response1 = {"text": "Hello. Please choose one."};
     let response2 = {
@@ -1444,6 +1444,9 @@ const botQuestions = (current_question, sender_psid) => {
     callSend(sender_psid, response);
   }else if(current_question == 'q7'){
     let response = {"text": bot_questions.q7};
+    callSend(sender_psid, response);
+  }else if(current_question == 'q8'){
+    let response = {"text": bot_questions.q8};
     callSend(sender_psid, response);
   }
 }
