@@ -34,10 +34,10 @@ const bot_questions = {
   "q8": "please enter your order reference number" 
 }
 
-let sess;
-
 let current_question = '';
+
 let user_id = ''; 
+
 let userInputs = [];
 
 
@@ -320,7 +320,7 @@ app.get('/register/:sender_id',function(req,res){
 
 app.post('/register',function(req,res){
       
-      let ref = generateRandom(8);
+      let ref = generateRandom(6);
     
       let name  = req.body.name;
       let email = req.body.email;
@@ -330,11 +330,11 @@ app.post('/register',function(req,res){
 
       console.log("AA");
       
-      db.collection('register').doc(ref).set({
+      db.collection('register').add({
       name: name,
       email: email,
       phone: phone,
-      
+      ref: ref
     }).then(success => {   
           console.log("DATA SAVED")
     let text = "Thank you for your register.Please write already." + "\u000A";
@@ -401,7 +401,7 @@ app.get('/course1/:sender_id',function(req,res){
 app.post('/course1',function(req,res){
       
       
-       let center_id  = req.body.center_id;
+    
       let courses  = req.body.courses;
       let date = req.body.date;
       let end = req.body.end;
@@ -417,7 +417,6 @@ app.post('/course1',function(req,res){
       console.log("DD");
       
       db.collection('course1').add({
-      center_id: center_id,
       courses: courses,
       date: date,
       end: end,
@@ -890,11 +889,11 @@ const handlePostback = (sender_psid, received_postback) => {
         break; 
       case "Lists:STCW":
           shopMenu(sender_psid);
-        break; 
+        break;  
         case "check-order":         
           current_question = "q8";
           botQuestions(current_question, sender_psid);
-        break;                      
+        break;                     
       default:
           defaultReply(sender_psid);
     } 
@@ -1262,8 +1261,7 @@ const showOrder = async(sender_psid, order_ref) => {
 }
 
 
-
-
+ 
 
 const already = (sender_psid) => {
     let response1 = {"text": "Hello. Please choose one."};
@@ -1353,7 +1351,7 @@ const agent_register = (sender_psid) => {
                   "type": "postback",
                   "title": "Already registered",
                   
-                  "payload": "check-order",
+                  "payload": "signup",
                 },           
               ],
           }
