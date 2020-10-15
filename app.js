@@ -1271,7 +1271,7 @@ const shopMenu =(sender_psid) => {
               {
                 "type": "web_url",
                 "title": "Shop Now",
-                "url":APP_URL+"courses/",
+                "url":APP_URL+"course/",
                  "webview_height_ratio": "full",
                 "messenger_extensions": true,          
               },
