@@ -411,6 +411,8 @@ app.post('/course1',function(req,res){
       let address = req.body.address;
       let sender = req.body.sender; 
      
+      let today = new Date();
+      let created_on = today;
 
       console.log("DD");
       
@@ -421,7 +423,8 @@ app.post('/course1',function(req,res){
       detail: detail,
        duration: duration,
       price: price,
-      address: address
+      address: address,
+      created_on: created_on
          
     }).then(success => {   
           console.log("DATA SAVED")
