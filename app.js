@@ -336,7 +336,7 @@ app.post('/register',function(req,res){
       ref: ref
     }).then(success => {   
           console.log("DATA SAVED")
-    let text = "Thank you for your register." + "\u000A";
+    let text = "Thank you for your register.Please write already." + "\u000A";
     text += "Your reference id is" + ref
     ;
     let response = {
@@ -351,7 +351,52 @@ app.post('/register',function(req,res){
 });
 
 
+
+
+//route url
+
+app.get('/course', async function(req,res){
+
+
+
+  const courseRef = db.collection('course').orderBy('created_on', 'desc');
+  const snapshot = await courseRef.get();
+
+  if (snapshot.empty) {
+    res.send('no data');
+  } 
+
+  let data = []; 
+
+  snapshot.forEach(doc => { 
+    
+    let course = {}; 
+
+    course = doc.data();
+    
+    course.id = doc.id; 
+    
+    let d = new Date(doc.data().created_on._seconds);
+    d = d.toString();
+    course.created_on = d;   
+
+    data.push(course);
+    
+  });  
+
+  //console.log('DATA:', data); 
+  res.render('show.ejs', {data:data});
+
+});
+
   
+
+
+
+
+
+
+
 
 
 app.get('/add/:sender_id',function(req,res){
@@ -384,7 +429,7 @@ app.post('/add',function(req,res){
          
     }).then(success => {   
           console.log("DATA SAVED")
-    let text = "Thank you for your register." + "\u000A";
+    let text = "Thank you for your add course. Your data has been saved." + "\u000A";
    
     let response = {
       "text": text
@@ -427,7 +472,7 @@ app.post('/add1',function(req,res){
          
     }).then(success => {   
           console.log("DATA SAVED")
-    let text = "Thank you for your register." + "\u000A";
+    let text = "Thank you for your add course. Your data has been saved." + "\u000A";
    
     let response = {
       "text": text
@@ -824,7 +869,7 @@ const handlePostback = (sender_psid, received_postback) => {
           courses(sender_psid);
         break; 
       case "Lists:STCW":
-          STCW(sender_psid);
+          shopMenu(sender_psid);
         break;                      
       default:
           defaultReply(sender_psid);
@@ -1211,6 +1256,32 @@ const already = (sender_psid) => {
      callSend(sender_psid, response1).then(()=>{
         return callSend(sender_psid, response2)
       });
+}
+
+
+const shopMenu =(sender_psid) => {
+  let response = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [{
+            "title": "Nay Shop",                    
+            "buttons": [              
+              {
+                "type": "web_url",
+                "title": "Shop Now",
+                "url":APP_URL+"courses/",
+                 "webview_height_ratio": "full",
+                "messenger_extensions": true,          
+              },
+              
+            ],
+          }]
+        }
+      }
+    }  
+  callSend(sender_psid, response);
 }
 
 

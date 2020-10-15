@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>STCW courses</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+    	.product{
+    		width:200px;   
+    		border:1px solid black; 		
+    	}
+    	.product img{
+    		width:100%;
+    		max-width: 200px;
+    	}
+    </style>
+ </head>
+
+  <body>
+  <h1>STCW courses</h1>
+  <p><a href="../cart">View cart</a> | <a href="../emptycart">Empty cart</a></p>
+
+
+  <% data.forEach(function(course){ %>
+
+  	<div class="course">
+	  	<img src="<%= product.image %>" />
+	  	<h3><%= product.name %></h3>
+	  	<p><%= product.description %><p>
+	    <p>price: <%= product.price %></p>
+
+
+	    
+  	</div>
+
+     
+  <% }); %>
+  
+  
+
+  
+
+ </body>
+
+</html>
