@@ -417,6 +417,7 @@ app.post('/course1',function(req,res){
       date: date,
       end: end,
       detail: detail,
+       duration: duration,
       price: price,
       address: address
          
@@ -472,6 +473,7 @@ app.post('/add1',function(req,res){
       date: date,
       end: end,
       detail: detail,
+       duration: duration,
       price: price,
       address: address
          
