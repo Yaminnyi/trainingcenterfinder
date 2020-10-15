@@ -428,7 +428,7 @@ app.post('/course1',function(req,res){
          
     }).then(success => {   
           console.log("DATA SAVED")
-    let text = "Thank you for your add course. Your data has been saved." + "\u000A";
+    let text = "Thank you for your add course. Your data has been saved.If you leave your message,you write cancel" + "\u000A";
    
     let response = {
       "text": text
@@ -791,21 +791,10 @@ const handleMessage = (sender_psid, received_message) => {
       case "choose":
         choose(sender_psid);
         break;                
-      case "text":
-        textReply(sender_psid);
+      case "cancel":
+        cancel(sender_psid);
         break;
-      case "quick":
-        quickReply(sender_psid);
-        break;
-      case "button":                  
-        buttonReply(sender_psid);
-        break;
-      case "webview":
-        webviewTest(sender_psid);
-        break;       
-      case "show images":
-        showImages(sender_psid)
-        break;               
+                   
       default:
           defaultReply(sender_psid);
       }       
