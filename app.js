@@ -344,7 +344,6 @@ app.post('/register',function(req,res){
       "text": text
     };
     callSend(sender,response);
-     return already(sender_psid);
     }).catch(error => {
           console.log(error);
       }); 
