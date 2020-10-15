@@ -399,9 +399,9 @@ app.get('/show', async function(req,res){
 
 
 
-app.get('/course/:sender_id',function(req,res){
-    const sender_id = req.params.sender_id;
-    res.render('course.ejs',{title:"Add courses", sender_id:sender_id});
+app.get('/course',function(req,res){
+   
+    res.render('course.ejs');
 });
 
 app.post('/course',function(req,res){
