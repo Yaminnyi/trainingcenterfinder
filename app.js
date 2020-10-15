@@ -34,11 +34,13 @@ const bot_questions = {
   "q8": "please enter your order reference number" 
 }
 
+let sess;
+
 let current_question = '';
-
 let user_id = ''; 
-
 let userInputs = [];
+let first_reg = false;
+let customer = [];
 
 
 /*
@@ -772,6 +774,12 @@ const handleMessage = (sender_psid, received_message) => {
      current_question = '';
      
      confirmAppointment(sender_psid);
+  }else if(current_question == 'q8'){
+     let order_ref = received_message.text; 
+
+     console.log('order_ref: ', order_ref);    
+     current_question = '';     
+     showOrder(sender_psid, order_ref);
   }
   else {
       
@@ -1234,9 +1242,28 @@ const register = (sender_psid) => {
 }
 
 
+const showOrder = async(sender_psid, order_ref) => {
 
+    Let user_id ='';
+
+    const ordersRef = db.collection('register').where("ref", "==", order_ref).limit(1);
+    const snapshot = await ordersRef.get();
+
+   
+
+    if (snapshot.empty) {
+      let response = { "text": "Incorrect order number" };
+      callSend(sender_psid, response).then(()=>{
+        return register(sender_psid);
+      });
+    }else{
+      snapshot.forEach (doc => {
+        user_id =doc.id;
+      });
+    }
+          
  
-
+}
 const already = (sender_psid) => {
     let response1 = {"text": "Hello. Please choose one."};
     let response2 = {
@@ -1325,7 +1352,7 @@ const agent_register = (sender_psid) => {
                   "type": "postback",
                   "title": "Already registered",
                   
-                  "payload": "signup",
+                  "payload": "check-order",
                 },           
               ],
           }
