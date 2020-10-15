@@ -704,10 +704,7 @@ function handleQuickReply(sender_psid, received_message) {
           case "agent":
             agent_register(sender_psid);
           break;
-          case "check-order":         
-          current_question = "q8";
-          botQuestions(current_question, sender_psid);
-        break; 
+          
         case "off":
             showQuickReplyOff(sender_psid);
           break; 
@@ -893,6 +890,10 @@ const handlePostback = (sender_psid, received_postback) => {
         break; 
       case "Lists:STCW":
           shopMenu(sender_psid);
+        break; 
+        case "check-order":         
+          current_question = "q8";
+          botQuestions(current_question, sender_psid);
         break;                      
       default:
           defaultReply(sender_psid);
