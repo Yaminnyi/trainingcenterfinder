@@ -320,7 +320,7 @@ app.get('/register/:sender_id',function(req,res){
 
 app.post('/register',function(req,res){
       
-      let ref = generateRandom(6);
+      let ref = generateRandom(8);
     
       let name  = req.body.name;
       let email = req.body.email;
@@ -330,11 +330,11 @@ app.post('/register',function(req,res){
 
       console.log("AA");
       
-      db.collection('register').add({
+      db.collection('register').doc(ref).set({
       name: name,
       email: email,
       phone: phone,
-      ref: ref
+      
     }).then(success => {   
           console.log("DATA SAVED")
     let text = "Thank you for your register.Please write already." + "\u000A";
