@@ -337,7 +337,7 @@ app.post('/register',function(req,res){
       ref: ref
     }).then(success => {   
           console.log("DATA SAVED")
-    let text = "Thank you for your register.Please click the already registerd button." + "\u000A";
+    let text = "Thank you for your register.Please write already." + "\u000A";
     text += "Your reference id is" + ref
     ;
     let response = {
@@ -1253,7 +1253,7 @@ const showOrder = async(sender_psid, order_ref) => {
     }else{
         let response = { "text": "You are correct." };
         callSend(sender_psid, response).then(()=>{
-         
+          return already(sender_psid);
 
           });
     }   
