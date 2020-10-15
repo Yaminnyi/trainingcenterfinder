@@ -355,7 +355,7 @@ app.post('/register',function(req,res){
 
 //route url
 
-app.get('/course', async function(req,res){
+/*app.get('/course', async function(req,res){
 
 
 
@@ -389,7 +389,7 @@ app.get('/course', async function(req,res){
 
 });
 
-  
+  */
 
 
 
