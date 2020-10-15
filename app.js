@@ -30,7 +30,8 @@ const bot_questions = {
   "q4": "please enter gender",
   "q5": "please enter phone number",
   "q6": "please enter email",
-  "q7": "please leave a message"
+  "q7": "please leave a message",
+  "q8": "please enter your order reference number" 
 }
 
 let current_question = '';
@@ -363,6 +364,7 @@ app.get('/show', async function(req,res){
   const snapshot = await courseRef.get();
 
   if (snapshot.empty) {
+    console.log('Yamin:');
     res.send('no data');
   } 
 
@@ -384,7 +386,7 @@ app.get('/show', async function(req,res){
     
   });  
 
-  //console.log('DATA:', data); 
+  console.log('DATA:', data); 
   res.render('show.ejs', {data:data});
 
 });
@@ -698,6 +700,10 @@ function handleQuickReply(sender_psid, received_message) {
           case "agent":
             agent_register(sender_psid);
           break;
+          case "check-order":         
+          current_question = "q8";
+          botQuestions(current_question, sender_psid);
+        break; 
         case "off":
             showQuickReplyOff(sender_psid);
           break; 
@@ -1209,7 +1215,7 @@ const register = (sender_psid) => {
                   "type": "postback",
                   "title": "Already registered",
                   
-                  "payload": "signup",
+                  "payload": "check-order",
                 },           
               ],
           }
