@@ -401,7 +401,7 @@ app.get('/course1/:sender_id',function(req,res){
 app.post('/course1',function(req,res){
       
       
-    
+       let center_id  = req.body.center_id;
       let courses  = req.body.courses;
       let date = req.body.date;
       let end = req.body.end;
@@ -417,6 +417,7 @@ app.post('/course1',function(req,res){
       console.log("DD");
       
       db.collection('course1').add({
+      center_id: center_id,
       courses: courses,
       date: date,
       end: end,
