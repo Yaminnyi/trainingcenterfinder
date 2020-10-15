@@ -355,11 +355,11 @@ app.post('/register',function(req,res){
 
 //route url
 
-app.get('/course', async function(req,res){
+app.get('/show', async function(req,res){
 
 
 
-  const courseRef = db.collection('course').orderBy('created_on', 'desc');
+  const courseRef = db.collection('add').orderBy('created_on', 'desc');
   const snapshot = await courseRef.get();
 
   if (snapshot.empty) {
@@ -1271,7 +1271,7 @@ const shopMenu =(sender_psid) => {
               {
                 "type": "web_url",
                 "title": "Shop Now",
-                "url":APP_URL+"course/",
+                "url":APP_URL+"show/",
                  "webview_height_ratio": "full",
                 "messenger_extensions": true,          
               },
