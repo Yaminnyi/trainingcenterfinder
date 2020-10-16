@@ -393,6 +393,42 @@ app.get('/show', async function(req,res){
 
   
 
+  app.get('/show1', async function(req,res){
+
+
+
+  const courseRef = db.collection('add1').orderBy('created_on', 'desc');
+  const snapshot = await courseRef.get();
+
+  if (snapshot.empty) {
+    console.log('Yamin:');
+    res.send('no data');
+  } 
+
+  let data = []; 
+
+  snapshot.forEach(doc => { 
+    
+    let course = {}; 
+
+    course = doc.data();
+    
+    course.id = doc.id; 
+    
+    let d = new Date(doc.data().created_on._seconds);
+    d = d.toString();
+    course.created_on = d;   
+
+    data.push(course);
+    
+  });  
+
+  console.log('DATA:', data); 
+  res.render('show1.ejs', {data:data});
+
+});
+
+
 app.get('/course1/:sender_id',function(req,res){
     const sender_id = req.params.sender_id;
     res.render('course1.ejs',{title:"Add courses", sender_id:sender_id});
@@ -462,6 +498,7 @@ app.post('/add1',function(req,res){
       
       
     
+      let name  = req.body.name;
       let courses  = req.body.courses;
       let date = req.body.date;
       let end = req.body.end;
@@ -471,21 +508,25 @@ app.post('/add1',function(req,res){
       let address = req.body.address;
       let sender = req.body.sender; 
      
+      let today = new Date();
+      let created_on = today;
 
       console.log("DD");
       
       db.collection('add1').add({
+      name: name,
       courses: courses,
       date: date,
       end: end,
       detail: detail,
        duration: duration,
       price: price,
-      address: address
+      address: address,
+      created_on: created_on
          
     }).then(success => {   
           console.log("DATA SAVED")
-    let text = "Thank you for your add course. Your data has been saved." + "\u000A";
+    let text = "Thank you for your add course. Your data has been saved.If you leave your message,you write cancel" + "\u000A";
    
     let response = {
       "text": text
@@ -497,7 +538,6 @@ app.post('/add1',function(req,res){
      
          
 });
-
 
 
 
