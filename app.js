@@ -320,7 +320,7 @@ app.get('/register/:sender_id',function(req,res){
 
 app.post('/register',function(req,res){
       
-      let ref = generateRandom(8);
+      let ref = generateRandom(6);
     
       let name  = req.body.name;
       let email = req.body.email;
@@ -334,8 +334,7 @@ app.post('/register',function(req,res){
       name: name,
       email: email,
       phone: phone,
-       ref: ref
-      
+      ref: ref
     }).then(success => {   
           console.log("DATA SAVED")
     let text = "Thank you for your register.Please click already registered." + "\u000A";
@@ -880,10 +879,7 @@ const handlePostback = (sender_psid, received_postback) => {
         break; 
       case "Lists:STCW":
           shopMenu(sender_psid);
-        break; 
-        case "register":
-          registerUser(sender_psid);
-        break; 
+        break;  
         case "check-order":         
           current_question = "q8";
           botQuestions(current_question, sender_psid);
@@ -940,67 +936,6 @@ const showImages = (sender_psid) => {
 }
 
 
-
-
-
-
-
-
-const registerUser = async (message, response) => {   
-
-    const userRef = db.collection('users');    
-    const snapshot = await userRef.where('ref', '==', currentUser.id).limit(1).get();
-
-    if (snapshot.empty) {
-      let response = { "text": "Incorrect order number" };
-      callSend(sender_psid, response).then(()=>{
-        return register(sender_psid);
-      });
-    }else{
-        
-          let actionKeyboard = {
-            "Type": "keyboard",
-            "Revision": 1,
-            "Buttons": [
-                {
-                    "Columns": 6,
-                    "Rows": 1,
-                    "BgColor": "#2db9b9",
-                    "BgMediaType": "gif",
-                    "BgMedia": "http://www.url.by/test.gif",
-                    "BgLoop": true,
-                    "ActionType": "reply",
-                    "ActionBody": "my-stock",               
-                    "Text": "My Stock",
-                    "TextVAlign": "middle",
-                    "TextHAlign": "center",
-                    "TextOpacity": 60,
-                    "TextSize": "regular"
-                },
-                {
-                    "Columns": 6,
-                    "Rows": 1,
-                    "BgColor": "#2db9b9",
-                    "BgMediaType": "gif",
-                    "BgMedia": "http://www.url.by/test.gif",
-                    "BgLoop": true,
-                    "ActionType": "reply",
-                    "ActionBody": "my-balance",               
-                    "Text": "My Balance",
-                    "TextVAlign": "middle",
-                    "TextHAlign": "center",
-                    "TextOpacity": 60,
-                    "TextSize": "regular"
-                },            
-            ]
-        };
-
-          let bot_message3 = new TextMessage(`You are already registered`, actionKeyboard);    
-          response.send(bot_message3);
-    }  
-  
-}
-
 /*********************************************
 END GALLERY SAMPLE
 **********************************************/
@@ -1032,29 +967,6 @@ function webviewTest(sender_psid){
   callSendAPI(sender_psid, response);
 }
 
-
-
-
-const registerUser = async (message, response) => {   
-
-    const ref = db.collection('register');    
-    const snapshot = await ref.where('ref', '==', currentUser.id).limit(1).get();
-
-     if (snapshot.empty) {
-      console.log('No such document!');
-      callSend(sender_psid, response).then(()=>{
-        return register(sender_psid);
-      });
-    }else{
-        let response = { "text": "You have already" };
-        callSend(sender_psid, response).then(()=>{
-          return already(sender_psid);
-
-          });
-    }   
-
-  
-}
 /**************
 start hospital
 **************/
@@ -1296,8 +1208,7 @@ const register = (sender_psid) => {
                 "title": "Register",
                 "url":APP_URL+"register/"+sender_psid,
                  "webview_height_ratio": "full",
-                "messenger_extensions": true,  
-                "payload": "register",        
+                "messenger_extensions": true,          
               
                 },    
                 {
