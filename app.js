@@ -880,7 +880,10 @@ const handlePostback = (sender_psid, received_postback) => {
         break; 
       case "Lists:STCW":
           shopMenu(sender_psid);
-        break;  
+        break; 
+        case "register":
+          registerUser(sender_psid);
+        break; 
         case "check-order":         
           current_question = "q8";
           botQuestions(current_question, sender_psid);
@@ -936,6 +939,67 @@ const showImages = (sender_psid) => {
   callSendAPI(sender_psid, response);
 }
 
+
+
+
+
+
+
+
+const registerUser = async (message, response) => {   
+
+    const userRef = db.collection('users');    
+    const snapshot = await userRef.where('ref', '==', currentUser.id).limit(1).get();
+
+    if (snapshot.empty) {
+      let response = { "text": "Incorrect order number" };
+      callSend(sender_psid, response).then(()=>{
+        return register(sender_psid);
+      });
+    }else{
+        
+          let actionKeyboard = {
+            "Type": "keyboard",
+            "Revision": 1,
+            "Buttons": [
+                {
+                    "Columns": 6,
+                    "Rows": 1,
+                    "BgColor": "#2db9b9",
+                    "BgMediaType": "gif",
+                    "BgMedia": "http://www.url.by/test.gif",
+                    "BgLoop": true,
+                    "ActionType": "reply",
+                    "ActionBody": "my-stock",               
+                    "Text": "My Stock",
+                    "TextVAlign": "middle",
+                    "TextHAlign": "center",
+                    "TextOpacity": 60,
+                    "TextSize": "regular"
+                },
+                {
+                    "Columns": 6,
+                    "Rows": 1,
+                    "BgColor": "#2db9b9",
+                    "BgMediaType": "gif",
+                    "BgMedia": "http://www.url.by/test.gif",
+                    "BgLoop": true,
+                    "ActionType": "reply",
+                    "ActionBody": "my-balance",               
+                    "Text": "My Balance",
+                    "TextVAlign": "middle",
+                    "TextHAlign": "center",
+                    "TextOpacity": 60,
+                    "TextSize": "regular"
+                },            
+            ]
+        };
+
+          let bot_message3 = new TextMessage(`You are already registered`, actionKeyboard);    
+          response.send(bot_message3);
+    }  
+  
+}
 
 /*********************************************
 END GALLERY SAMPLE
@@ -1232,7 +1296,8 @@ const register = (sender_psid) => {
                 "title": "Register",
                 "url":APP_URL+"register/"+sender_psid,
                  "webview_height_ratio": "full",
-                "messenger_extensions": true,          
+                "messenger_extensions": true,  
+                "payload": "register",        
               
                 },    
                 {
