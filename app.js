@@ -330,10 +330,11 @@ app.post('/register',function(req,res){
 
       console.log("AA");
       
-      db.collection('register').docset(data)({
+      db.collection('register').add({
       name: name,
       email: email,
       phone: phone,
+       ref: ref
       
     }).then(success => {   
           console.log("DATA SAVED")
