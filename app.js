@@ -436,7 +436,7 @@ app.get('/course1/:sender_id',function(req,res){
 
 app.post('/course1',function(req,res){
       
-      
+       let ref = generateRandom(6);
       let name  = req.body.name;
       let courses  = req.body.courses;
       let date = req.body.date;
