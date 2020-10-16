@@ -330,7 +330,7 @@ app.post('/register',function(req,res){
 
       console.log("AA");
       
-      db.collection('register').doc(sender_psid).set(data)({
+      db.collection('register').doc(ref).set(data)({
       name: name,
       email: email,
       phone: phone,
