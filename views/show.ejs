@@ -9,7 +9,7 @@
     	.course{
     		width:200px;   
     		border:1px solid black;
-        background-color: blue;
+        background-color: lightblue;
          		
     	}
     	
@@ -18,7 +18,7 @@
 
   <body>
   <h1>STCW courses</h1>
-  <p><a href="../cart">View cart</a> | <a href="../emptycart">Empty cart</a></p>
+  <p><a href="../cart">View register</a> | <a href="../emptycart">Empty </a></p>
 
 
   <% data.forEach(function(course){ %>
@@ -27,13 +27,25 @@
     <div class="course">
 
       <h3><%= course.name %></h3>
-      <p><%= course.course %><p>
+      <p><%= course.courses %><p>
       <p><%= course.date %><p>
+       <p><%= course.end %><p>
       <p><%= course.detail %><p>
-      <p><%= course.end %><p>
+     <p><%= course.duration %><p>
       <p><%= course.address %><p>
       <p>price: <%= course.price %></p>
 
+<form action="../cart" method="post">
+      <input type="hidden" name="item_id" value="<%= course.id %>"/>
+      <input type="hidden" name="item_name" value="<%= course.name %>"/>
+      <input type="hidden" name="item_courses" value="<%= course.courses %>"/>
+      <input type="hidden" name="item_date" value="<%= course.date %>"/>
+      <input type="hidden" name="item_end" value="<%= course.end %>"/>
+      <input type="hidden" name="item_detail" value="<%= course.detail %>"/>
+      <input type="hidden" name="item_duration" value="<%= course.duration %>"/>
+     <input type="hidden" name="item_address" value="<%= course.address %>"/>
+      <input type="submit" name="submit"/>
+      </form>   
 
 	    
   	</div>

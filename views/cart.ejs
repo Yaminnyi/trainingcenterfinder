@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cart</title>
+</head>
+<body>
+	<h1>Cart</h1>
+	<p><a href="../show">Back</a> | <a href="../emptycart">Empty </a></p>
+
+	<table cellspacing="1" cellpadding="5" border="1">
+	<tr>
+		
+		<th>Course Name</th>
+		<th>Training Center Name</th>
+		<th>Duration</th>   
+		<th>Price</th>
+		
+	</tr>
+
+	<% cart.forEach(function(item){ %>
+	<tr>
+		
+		<td><%= item.courses %></td>
+		<td><%= item.name %></td>
+		<td><%= item.duration %></td>
+		<td><%= item.price %></td>
+
+
+
+		
+	</tr>
+	<% }); %>
+	</table>
+	
+
+	<p><a href="../order">Confirm</a></p>
+
+
+	
+
+	
+
+</body>
+</html>
+
+

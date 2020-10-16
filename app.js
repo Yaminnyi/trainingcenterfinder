@@ -429,6 +429,50 @@ app.get('/show', async function(req,res){
 });
 
 
+
+app.post('/cart', function(req, res){
+    
+    if(!customer[user_id].cart){
+        customer[user_id].cart = [];
+    }
+    
+    let item = {};
+    item.id = req.body.item_id;
+    item.name = req.body.item_name;
+      item.date = req.body.item_date;
+      item.end = req.body.item_end;
+      item.detail = req.body.item_detail;
+      item.duration = req.body.address;
+      item.price = req.body.price;
+
+  
+
+
+   
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 app.get('/course1/:sender_id',function(req,res){
     const sender_id = req.params.sender_id;
     res.render('course1.ejs',{title:"Add courses", sender_id:sender_id});
