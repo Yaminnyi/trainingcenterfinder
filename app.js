@@ -320,7 +320,7 @@ app.get('/register/:sender_id',function(req,res){
 
 app.post('/register',function(req,res){
       
-      let ref = generateRandom(6);
+      let ref = generateRandom(8);
     
       let name  = req.body.name;
       let email = req.body.email;
@@ -330,14 +330,14 @@ app.post('/register',function(req,res){
 
       console.log("AA");
       
-      db.collection('register').add({
+      db.collection('register').doc(sender_psid).set(data).then((success)=>({
       name: name,
       email: email,
       phone: phone,
-      ref: ref
+      
     }).then(success => {   
           console.log("DATA SAVED")
-    let text = "Thank you for your register.Please write already." + "\u000A";
+    let text = "Thank you for your register.Please click already registered." + "\u000A";
     text += "Your reference id is" + ref
     ;
     let response = {
@@ -417,7 +417,7 @@ app.post('/course1',function(req,res){
       console.log("DD");
       
       db.collection('course1').add({
-        name: name,
+      name: name,
       courses: courses,
       date: date,
       end: end,
