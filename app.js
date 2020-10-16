@@ -330,7 +330,7 @@ app.post('/register',function(req,res){
 
       console.log("AA");
       
-      db.collection('register').doc(ref).set(data)({
+      db.collection('register').docset(data)({
       name: name,
       email: email,
       phone: phone,
@@ -967,6 +967,29 @@ function webviewTest(sender_psid){
   callSendAPI(sender_psid, response);
 }
 
+
+
+
+const registerUser = async (message, response) => {   
+
+    const ref = db.collection('register');    
+    const snapshot = await ref.where('ref', '==', currentUser.id).limit(1).get();
+
+     if (snapshot.empty) {
+      console.log('No such document!');
+      callSend(sender_psid, response).then(()=>{
+        return register(sender_psid);
+      });
+    }else{
+        let response = { "text": "You have already" };
+        callSend(sender_psid, response).then(()=>{
+          return already(sender_psid);
+
+          });
+    }   
+
+  
+}
 /**************
 start hospital
 **************/
