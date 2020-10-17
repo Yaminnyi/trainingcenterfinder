@@ -344,6 +344,7 @@ app.post('/register',function(req,res){
       "text": text
     };
     callSend(sender,response);
+    return register(sender_psid);
     }).catch(error => {
           console.log(error);
       }); 
@@ -427,37 +428,6 @@ app.get('/show', async function(req,res){
   res.render('show1.ejs', {data:data});
 
 });
-
-
-
-app.post('/cart', function(req, res){
-    
-    if(!customer[user_id].cart){
-        customer[user_id].cart = [];
-    }
-    
-    let item = {};
-    item.id = req.body.item_id;
-    item.name = req.body.item_name;
-      item.date = req.body.item_date;
-      item.end = req.body.item_end;
-      item.detail = req.body.item_detail;
-      item.duration = req.body.address;
-      item.price = req.body.price;
-
-  
-
-
-   
-});
-
-
-
-
-
-
-
-
 
 
 
