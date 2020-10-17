@@ -26,14 +26,20 @@
   
     <div class="course">
 
-      <h3><%= course.name %></h3>
-      <p><%= course.courses %><p>
-      <p><%= course.date %><p>
-       <p><%= course.end %><p>
-      <p><%= course.detail %><p>
-     <p><%= course.duration %><p>
-      <p><%= course.address %><p>
-      <p>price: <%= course.price %></p>
+      <h3>Course Name: <%= course.courses %></h3>
+      <p>Training Center Name: <%= course.name %><p>
+      <p>Start Date: <%= course.date %><p>
+       <p>End Date: <%= course.end %><p>
+      <p style="text-align: right;"> <textarea id="w3review" name="w3review" rows="4" cols="50">Course Detail<%= course.detail %>  </textarea><p>
+     <p>Duration:<%= course.duration %><p>
+      <p>Center Address<%= course.address %><p>
+      <p>Course fee: <%= course.price %></p>
+
+
+
+  A
+
+
 
 <form action="../cart" method="post">
       <input type="hidden" name="item_id" value="<%= course.id %>"/>
@@ -44,7 +50,8 @@
       <input type="hidden" name="item_detail" value="<%= course.detail %>"/>
       <input type="hidden" name="item_duration" value="<%= course.duration %>"/>
      <input type="hidden" name="item_address" value="<%= course.address %>"/>
-      <input type="submit" name="submit"/>
+      <input type="hidden" name="item_price" value="<%= course.price %>"/>
+      <input type="submit" name="submit" style="margin-left: 55px;  background-color: #008CBA; color: white; padding: 10px 24px;  text-align: center; text-decoration: none; display: inline-block; margin: 4px 2px; margin-left: 124px; width=10px;" />
       </form>   
 
 	    
