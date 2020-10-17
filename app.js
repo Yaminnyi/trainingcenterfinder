@@ -318,7 +318,7 @@ app.get('/register/:sender_id',function(req,res){
 
 
 
-app.post('/register',function(req,res){
+app.post('/register',function(req,res,sender_psid){
       
       let ref = generateRandom(6);
     
@@ -338,7 +338,7 @@ app.post('/register',function(req,res){
     }).then(success => {   
           console.log("DATA SAVED")
     let text = "Thank you for your register.Please click already registered." + "\u000A";
-    text += "Your reference id is" + ref
+    text += "Your reference id is " + ref
     ;
     let response = {
       "text": text
