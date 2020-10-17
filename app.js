@@ -39,6 +39,7 @@ let current_question = '';
 let user_id = ''; 
 
 let userInputs = [];
+let customer = [];
 
 
 /*
@@ -105,6 +106,7 @@ app.post('/webhook', (req, res) => {
 
       if(!userInputs[user_id]){
         userInputs[user_id] = {};
+        customer[user_id] = {};
       }    
 
 
@@ -318,7 +320,7 @@ app.get('/register/:sender_id',function(req,res){
 
 
 
-app.post('/register',function(req,res,sender_psid){
+app.post('/register',function(req,res){
       
       let ref = generateRandom(6);
     
@@ -358,6 +360,7 @@ app.post('/register',function(req,res,sender_psid){
 //route url
 
 app.get('/show', async function(req,res){
+
 
 
 
@@ -431,7 +434,41 @@ app.get('/show', async function(req,res){
 
 
 
+app.post('/cart', function(req, res){
+    
+    if(!customer[user_id].cart){
+        customer[user_id].cart = [];
+    }
+    
+    let item = {};
+    item.id = req.body.item_id;
+     item.courses = req.body.item_courses;
+    item.name = req.body.item_name;
+     item.duration = req.body.item_duration;
+      item.price = req.body.item_price;
+  
+    res.redirect('../cart');   
+});
 
+app.get('/cart', function(req, res){     
+    
+
+    if(!customer[user_id].cart){
+        customer[user_id].cart = [];
+    }
+    if(customer[user_id].cart.length < 1){
+        res.send('your cart is empty. back to shop <a href="../show">shop</a>');
+    }else{ 
+
+       // customer[user_id].cart.forEach((item) => sub_total += item.total);        
+
+       // cart_total = sub_total - cart_discount;       
+
+        //customer[user_id].use_point = false;
+
+        res.render('cart.ejs');    
+    }
+});
 
 
 

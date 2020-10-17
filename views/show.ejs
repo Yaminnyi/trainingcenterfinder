@@ -43,13 +43,10 @@
 
 <form action="../cart" method="post">
       <input type="hidden" name="item_id" value="<%= course.id %>"/>
+        <input type="hidden" name="item_courses" value="<%= course.courses %>"/>
       <input type="hidden" name="item_name" value="<%= course.name %>"/>
-      <input type="hidden" name="item_courses" value="<%= course.courses %>"/>
-      <input type="hidden" name="item_date" value="<%= course.date %>"/>
-      <input type="hidden" name="item_end" value="<%= course.end %>"/>
-      <input type="hidden" name="item_detail" value="<%= course.detail %>"/>
+    
       <input type="hidden" name="item_duration" value="<%= course.duration %>"/>
-     <input type="hidden" name="item_address" value="<%= course.address %>"/>
       <input type="hidden" name="item_price" value="<%= course.price %>"/>
       <input type="submit" name="submit" value="Register" style="margin-left: 105px;  background-color: #008CBA; color: white; padding: 10px 20px;  text-align: center; text-decoration: none; display: inline-block;   width=10px;" />
       </form>   
