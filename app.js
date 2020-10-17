@@ -446,6 +446,15 @@ app.post('/cart', function(req, res){
     item.name = req.body.item_name;
      item.duration = req.body.item_duration;
       item.price = req.body.item_price;
+
+    const itemInCart = (element) => element.id == item.id;
+    let item_index = customer[user_id].cart.findIndex(itemInCart); 
+
+    if(item_index < 0){
+        customer[user_id].cart.push(item);
+    }else{
+        console.log('Yamin');
+    }      
   
     res.redirect('../cart');   
 });
