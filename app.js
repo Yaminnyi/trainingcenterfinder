@@ -1383,11 +1383,12 @@ const shopMenu =(sender_psid) => {
         "payload": {
           "template_type": "generic",
           "elements": [{
-            "title": "All courses",                    
+            "title": "All courses",  
+            "image_url":"https://marineandoffshoreinsight.com/wp-content/uploads/2018/07/SEAFARERS-TRAINING.jpg",                  
             "buttons": [              
               {
                 "type": "web_url",
-                 "image_url":"https://marineandoffshoreinsight.com/wp-content/uploads/2018/07/SEAFARERS-TRAINING.jpg", 
+
                 "title": "View",
                 "url":APP_URL+"show/",
                  "webview_height_ratio": "full",
