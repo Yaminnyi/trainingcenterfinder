@@ -383,7 +383,7 @@ app.post('/course_registration',function(req,res){
       name: name,
       email:email,
       phone: phone,
-      dob: dob
+      dob: dob,
       created_on: created_on
          
     }).then(success => {   
