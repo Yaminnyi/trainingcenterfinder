@@ -32,7 +32,9 @@
 
 	<form id="form" action="../course_registration" method="post">	
 	    <input type="text" name="name"  required/>	<br/>
+        <input type="text" name="email"  required/> <br/>
 		<input type="text" name="phone"  required/>	<br/>
+      <input type="text" name="dob"  required/> <br/>
 
 		<input type="hidden" name="item_id" value="<%= id %>"/>
         <input type="hidden" name="item_courses" value="<%= courses %>"/>
@@ -45,7 +47,8 @@
 
 		
 		
-		<input type="submit" name="submit" value="Register"/>
+		 <input type="hidden"  id="sender" name="sender" value="<%= sender_id %>">
+  <input type="submit" value="Register" style="margin-left: 55px;  background-color: #008CBA; color: white; padding: 10px 24px;  text-align: center; text-decoration: none; display: inline-block; margin: 4px 2px; margin-left: 124px; width=10px; "> 
 	</form>
 	
 
