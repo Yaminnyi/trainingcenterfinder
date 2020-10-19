@@ -442,6 +442,7 @@ app.post('/show', function(req, res){
     course.id = req.body.item_id;
     course.courses = req.body.item_courses;
     course.name = req.body.item_name;
+    course.tc_id = req.body.item_tc_id;
     course.duration = req.body.item_duration;
     course.price = req.body.item_price;
 
