@@ -515,7 +515,7 @@ app.post('/course1',function(req,res){
       
       db.collection('course1').add({
       name: name,
-      tc_id:id,
+      tc_id:tc_id,
       courses: courses,
       date: date,
       end: end,
