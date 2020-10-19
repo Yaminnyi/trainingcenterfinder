@@ -31,8 +31,8 @@
 	<h1>Registration</h1>
 
 	<form id="form" action="../course_registration" method="post">	
-	    <input type="text" name="name" value="<%= user.name %>" required/>	<br/>
-		<input type="text" name="phone" value="<%= user.phone %>" required/>	<br/>
+	    <input type="text" name="name"  required/>	<br/>
+		<input type="text" name="phone"  required/>	<br/>
 
 		<input type="hidden" name="item_id" value="<%= course.id %>"/>
         <input type="hidden" name="item_courses" value="<%= course.courses %>"/>
@@ -43,7 +43,7 @@
 
 
 
-		<input type="radio" name="payment_type" value="cod" required/> Cash on Delivery <br/>
+		
 		
 		<input type="submit" name="submit" value="Register"/>
 	</form>
