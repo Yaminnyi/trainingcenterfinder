@@ -434,30 +434,25 @@ app.get('/show', async function(req,res){
 
 
 
-app.post('/cart', function(req, res){
+app.post('/show', function(req, res){
     
-    if(!customer[user_id].cart){
-        customer[user_id].cart = [];
-    }
+   
     
-    let item = {};
-    item.id = req.body.item_id;
-     item.courses = req.body.item_courses;
-    item.name = req.body.item_name;
-     item.duration = req.body.item_duration;
-      item.price = req.body.item_price;
+    let course = {};
+    course.id = req.body.item_id;
+    course.courses = req.body.item_courses;
+    course.name = req.body.item_name;
+    course.duration = req.body.item_duration;
+    course.price = req.body.item_price;
 
-    const itemInCart = (element) => element.id == item.id;
-    let item_index = customer[user_id].cart.findIndex(itemInCart); 
-
-    if(item_index < 0){
-        customer[user_id].cart.push(item);
-    }else{
-        console.log('Yamin');
-    }      
+      console.log('COURSE', course);
   
-    res.redirect('../cart');   
+    res.render('course_registration.ejs', course);   
 });
+
+
+
+
 
 app.get('/cart', function(req, res){     
     
