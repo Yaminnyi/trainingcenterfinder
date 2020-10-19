@@ -372,7 +372,7 @@ app.post('/course_registration',function(req,res){
       let email = req.body.email;
       let phone = req.body.phone;
        let dob = req.body.dob;
-      let sender = req.body.sender; 
+      
      
 
       console.log("AA");
