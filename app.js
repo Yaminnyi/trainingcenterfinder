@@ -451,7 +451,12 @@ app.post('/show', function(req, res){
 });
 
 
-
+app.post('/course_registration', function(req, res){
+    
+   res.json(req.body);
+    
+    
+});
 
 
 app.get('/cart', function(req, res){     
