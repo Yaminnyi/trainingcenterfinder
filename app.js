@@ -381,7 +381,7 @@ app.post('/course_registration',function(req,res){
       name: name,
       email: email,
       phone: phone,
-      dob:dob;
+      dob:dob
       
     }).then(success => {   
           console.log("DATA SAVED")
