@@ -498,6 +498,7 @@ app.post('/course1',function(req,res){
       
       
       let name  = req.body.name;
+      let id    = req.body.id;
       let courses  = req.body.courses;
       let date = req.body.date;
       let end = req.body.end;
@@ -514,6 +515,7 @@ app.post('/course1',function(req,res){
       
       db.collection('course1').add({
       name: name,
+      id:id,
       courses: courses,
       date: date,
       end: end,
