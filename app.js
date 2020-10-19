@@ -388,9 +388,7 @@ app.post('/course_registration',function(req,res){
     let text = "Thank you for your register.Your data has been saved." + "\u000A";
     text += "Your reference id is " + ref
     ;
-    let response = {
-      "text": text
-    };
+    
    
     }).catch(error => {
           console.log(error);
