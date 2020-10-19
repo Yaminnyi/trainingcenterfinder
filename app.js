@@ -392,7 +392,6 @@ app.post('/course_registration',function(req,res){
       "text": text
     };
     callSend(sender,response);
-    return register(sender_psid);
     }).catch(error => {
           console.log(error);
       }); 
