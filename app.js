@@ -355,48 +355,51 @@ app.post('/register',function(req,res){
 });
 
 
+
+
+
+
 app.get('/course_registration/:sender_id',function(req,res){
     const sender_id = req.params.sender_id;
-    res.render('course_registration.ejs',{title:"Register", sender_id:sender_id});
+    res.render('course_registration.ejs',{title:"Add courses", sender_id:sender_id});
 });
-
-
-
-
 
 app.post('/course_registration',function(req,res){
       
+      
       let ref = generateRandom(8);
-    
       let name  = req.body.name;
-      let email = req.body.email;
-      let phone = req.body.phone;
-       let dob = req.body.dob;
+      let email    = req.body.email;
+      let phone  = req.body.phone;
+      let dob = req.body.dob;
       
      
+      let today = new Date();
+      let created_on = today;
 
-      console.log("AA");
+      console.log("DD");
       
       db.collection('course_registration').doc(ref).set({
       name: name,
-      email: email,
+      email:email,
       phone: phone,
-      dob:dob
-      
+      dob: dob
+      created_on: created_on
+         
     }).then(success => {   
           console.log("DATA SAVED")
-    let text = "Thank you for your register.Your data has been saved." + "\u000A";
-    text += "Your reference id is " + ref
-    ;
-    
+    let text = "Thank you for your add course. Your data has been saved.If you leave your message,you write cancel" + "\u000A";
    
+    let response = {
+      "text": text
+    };
+    callSend(sender,response);
     }).catch(error => {
           console.log(error);
       }); 
      
          
 });
-
 
 
 //route url
