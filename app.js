@@ -335,7 +335,7 @@ app.post('/register',function(req,res){
       db.collection('register').doc(ref).set({
       name: name,
       email: email,
-      phone: phone,
+      phone: phone
       
     }).then(success => {   
           console.log("DATA SAVED")
@@ -498,7 +498,7 @@ app.post('/course1',function(req,res){
       
       
       let name  = req.body.name;
-      let id    = req.body.id;
+      let tc_id    = req.body.id;
       let courses  = req.body.courses;
       let date = req.body.date;
       let end = req.body.end;
@@ -515,7 +515,7 @@ app.post('/course1',function(req,res){
       
       db.collection('course1').add({
       name: name,
-      id:id,
+      tc_id:id,
       courses: courses,
       date: date,
       end: end,
