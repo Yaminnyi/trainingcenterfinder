@@ -377,12 +377,11 @@ app.post('/course_registration',function(req,res){
 
       console.log("AA");
       
-      db.collection('course_registration').add({
+      db.collection('course_registration').doc(ref).set({
       name: name,
       email: email,
       phone: phone,
-      dob:dob,
-      ref:ref
+      dob:dob
       
     }).then(success => {   
           console.log("DATA SAVED")
