@@ -1334,10 +1334,10 @@ const register = (sender_psid) => {
 
 const showOrder = async(sender_psid, order_ref) => {    
 
-    const ordersRef = db.collection('register').where("ref", "==", order_ref).limit(1);
-    const snapshot = await ordersRef.get();
+    const userref = db.collection('register').doc(order_ref);
+    const user = await userref.get();
 
-    if (snapshot.empty) {
+    if (user.empty) {
       let response = { "text": "Incorrect order number" };
       callSend(sender_psid, response).then(()=>{
         return register(sender_psid);
