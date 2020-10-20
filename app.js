@@ -359,9 +359,9 @@ app.post('/register',function(req,res){
 
 
 
-app.get('/course_registration/:user_id',function(req,res){
-    const user_id = req.params.user_id;
-    res.render('course_registration.ejs',{title:"Add courses", user_id:user_id});
+app.get('/course_registration/:sender_id',function(req,res){
+    const sender_id = req.params.sender_id;
+    res.render('course_registration.ejs',{title:"Add courses", sender_id:sender_id});
 });
 
 app.post('/course_registration',function(req,res){
@@ -379,22 +379,13 @@ app.post('/course_registration',function(req,res){
 
       console.log("DD");
       
-      db.collection('course_registration').doc(ref).set({
-      name: name,
-      email:email,
-      phone: phone,
-      dob: dob,
-      created_on: created_on
-         
-    }).then(success => {   
-          console.log("DATA SAVED")
-    let text = "Thank you for your register. Your data has been saved.If you leave your message,you write cancel" + "\u000A";
-        text += "Your reference id is" + ref;
-    let response = {
-      "text": text
-    };
-    callSend(user_id,response);
-    }).catch(error => {
+    db.collection('course_registration').doc(sender_id).set(data).then((success)=>{
+        console.log('SAVED', success);
+        //first_reg = false;
+        let text = "Thank you. You have been registered."+ "\u000A";      
+        let response = {"text": text};
+        callSend(sender_id, response);
+      }).catch(error => {
           console.log(error);
       }); 
      
