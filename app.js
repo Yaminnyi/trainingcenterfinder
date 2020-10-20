@@ -359,9 +359,9 @@ app.post('/register',function(req,res){
 
 
 
-app.get('/course_registration/:sender_id',function(req,res){
-    const sender_id = req.params.sender_id;
-    res.render('course_registration.ejs',{title:"Add courses", sender_id:sender_id});
+app.get('/course_registration/:user_id',function(req,res){
+    const user_id = req.params.user_id;
+    res.render('course_registration.ejs',{title:"Add courses", user_id:user_id});
 });
 
 app.post('/course_registration',function(req,res){
@@ -393,7 +393,7 @@ app.post('/course_registration',function(req,res){
     let response = {
       "text": text
     };
-    callSend(sender_id,response);
+    callSend(user_id,response);
     }).catch(error => {
           console.log(error);
       }); 
