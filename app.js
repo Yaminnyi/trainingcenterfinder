@@ -357,6 +357,11 @@ app.post('/register',function(req,res){
 
 
 
+app.get('/course_registration/:sender_id',function(req,res){
+    const sender_id = req.params.sender_id;
+    res.render('course_registration.ejs',{title:"Register", sender_id:sender_id});
+});
+
 
 
 app.post('/course_registration',function(req,res){
