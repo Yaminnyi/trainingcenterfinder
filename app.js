@@ -577,10 +577,10 @@ app.post('/showjob', function(req, res){
    
     
     let job = {};
-    job.name = req.body.item_id;
-    job.id = req.body.item_courses;
-    job.title = req.body.item_name;
-    job.require = req.body.item_tc_id;
+    job.name = req.body.item_name;
+    job.id = req.body.item_id;
+    job.title = req.body.item_title;
+    job.require = req.body.item_require;
     job.apply = req.body.item_apply;
     job.hot = req.body.item_hot;
      job.location = req.body.item_location;
