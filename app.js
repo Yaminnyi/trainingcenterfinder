@@ -31,7 +31,8 @@ const bot_questions = {
   "q5": "please enter phone number",
   "q6": "please enter email",
   "q7": "please leave a message",
-  "q8": "please enter your order reference number" 
+  "q8": "please enter your  reference number",
+  "q9": "please enter your  reference number"  
 }
 
 let current_question = '';
@@ -960,6 +961,12 @@ const handleMessage = (sender_psid, received_message) => {
      console.log('order_ref: ', order_ref);    
      current_question = '';     
      showOrder(sender_psid, order_ref);
+  }else if(current_question == 'q9'){
+     let agent_ref = received_message.text; 
+
+     console.log('agent_ref: ', agent_ref);    
+     current_question = '';     
+     showOrder1(sender_psid, agent_ref);
   }
   else {
       
@@ -1070,6 +1077,10 @@ const handlePostback = (sender_psid, received_postback) => {
         break;   
         case "check-order":         
           current_question = "q8";
+          botQuestions(current_question, sender_psid);
+        break;
+        case "check":         
+          current_question = "q9";
           botQuestions(current_question, sender_psid);
         break;                     
       default:
@@ -1442,7 +1453,7 @@ const agent_register = (sender_psid) => {
                   "type": "postback",
                   "title": "Already registered",
                   
-                  "payload": "check-order",
+                  "payload": "check",
                 },           
               ],
           }
@@ -1477,9 +1488,9 @@ const showOrder = async(sender_psid, order_ref) => {
 
 }
 
-const showOrder1 = async(sender_psid, order_ref) => {    
+const showOrder1 = async(sender_psid, agent_ref) => {    
 
-    const userref = db.collection('agent_register').doc(order_ref);
+    const userref = db.collection('agent_register').doc(agent_ref);
     const user = await userref.get();
 
     if (user.empty) {
@@ -1490,7 +1501,7 @@ const showOrder1 = async(sender_psid, order_ref) => {
     }else{
         let response = { "text": "You are correct." };
         callSend(sender_psid, response).then(()=>{
-          return already(sender_psid);
+          return agent_already(sender_psid);
 
           });
     }   
@@ -1537,7 +1548,43 @@ const already = (sender_psid) => {
       });
 }
 
+const agent_already = (sender_psid) => {
+    let response1 = {"text": "Hello. Please choose one."};
+    let response2 = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [{
+            "title":"You can add courses, view your courses and view students",
+                  
+            "buttons": [                
+                  {
+                "type": "web_url",
+                "title": "Add Jobs",
+                "url":APP_URL+"STCW/"+sender_psid,
+                 "webview_height_ratio": "full",
+                "messenger_extensions": true,          
+              
+                },    
+                {
+                  "type": "web_url",
+                "title": "View seaman registered",
+                "url":APP_URL+"offshore/"+sender_psid,
+                 "webview_height_ratio": "full",
+                "messenger_extensions": true,  
+                },           
+              ],
+          }
 
+          ]
+        }
+      }
+    }
+     callSend(sender_psid, response1).then(()=>{
+        return callSend(sender_psid, response2)
+      });
+}
 const shopMenu =(sender_psid) => {
   let response = {
       "attachment": {
@@ -1712,6 +1759,9 @@ const botQuestions = (current_question, sender_psid) => {
     callSend(sender_psid, response);
   }else if(current_question == 'q8'){
     let response = {"text": bot_questions.q8};
+    callSend(sender_psid, response);
+  }else if(current_question == 'q9'){
+    let response = {"text": bot_questions.q9};
     callSend(sender_psid, response);
   }
 }
