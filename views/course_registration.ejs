@@ -31,10 +31,10 @@
 	<h1>Registration</h1>
 
 	<form id="form" action="../course_registration" method="post">	
-	    <input type="text" name="name"  required/>	<br/>
-        <input type="text" name="email"  required/> <br/>
-		<input type="text" name="phone"  required/>	<br/>
-      <input type="date" name="dob"  required/> <br/>
+	    <input type="text" name="name"  id="name" required/>	<br/>
+        <input type="text" name="email" id="email" required/> <br/>
+		<input type="text" name="phone"  id="phone" required/>	<br/>
+      <input type="date" name="dob" id="dob" required/> <br/>
 
 		<input type="hidden" name="item_id" value="<%= id %>"/>
         <input type="hidden" name="item_courses" value="<%= courses %>"/>
