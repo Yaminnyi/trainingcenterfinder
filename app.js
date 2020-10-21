@@ -369,7 +369,7 @@ app.post('/course_registration',function(req,res){
       
       
       let ref = generateRandom(8);
-      let name  = req.body.name;
+      let seaman_name  = req.body.seaman_name;
       let email    = req.body.email;
       let phone  = req.body.phone;
       let dob = req.body.dob;
@@ -381,7 +381,7 @@ app.post('/course_registration',function(req,res){
       console.log("DD");
       
       db.collection('course_registration').doc(ref).set({
-      name: name,
+      seaman_name: seaman_name,
       email:email,
       phone: phone,
       dob: dob,
@@ -402,7 +402,49 @@ app.post('/course_registration',function(req,res){
          
 });
 
+app.get('/jobapply/:sender_id',function(req,res){
+    const sender_id = req.params.sender_id;
+    res.render('jobapply.ejs',{title:"Job apply", sender_id:sender_id});
+});
 
+app.post('/jobapply',function(req,res){
+      
+      
+      let ref = generateRandom(8);
+      let name  = req.body.name;
+      let email    = req.body.email;
+      let phone  = req.body.phone;
+      let dob = req.body.dob;
+      let certificates = req.body.certificates;
+      
+     
+      let today = new Date();
+      let created_on = today;
+
+      console.log("DD");
+      
+      db.collection('course_registration').doc(ref).set({
+      name: name,
+      email:email,
+      phone: phone,
+      dob: dob,
+      certificates:certificates,
+      created_on: created_on
+         
+    }).then(success => {   
+          console.log("DATA SAVED")
+    let text = "Thank you for your register. Your data has been saved.If you leave your message,you write cancel" + "\u000A";
+        text += "Your reference id is" + ref;
+    let response = {
+      "text": text
+    };
+    callSend(sender,response);
+    }).catch(error => {
+          console.log(error);
+      }); 
+     
+         
+});
 //route url
 
 app.get('/show', async function(req,res){
