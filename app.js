@@ -311,16 +311,16 @@ END Gallery Page
 **********************************************/
 
 //webview test
-app.get('/tcregister/:sender_id',function(req,res){
+app.get('/register/:sender_id',function(req,res){
     const sender_id = req.params.sender_id;
-    res.render('tcregister.ejs',{title:"tcregister", sender_id:sender_id});
+    res.render('register.ejs',{title:"Register", sender_id:sender_id});
 });
 
 
 
 
 
-app.post('/tcregister',function(req,res){
+app.post('/register',function(req,res){
       
       let ref = generateRandom(8);
     
@@ -346,7 +346,7 @@ app.post('/tcregister',function(req,res){
       "text": text
     };
     callSend(sender,response);
-    return tcregister(sender_psid);
+    return register(sender_psid);
     }).catch(error => {
           console.log(error);
       }); 
@@ -876,7 +876,7 @@ function handleQuickReply(sender_psid, received_message) {
             showtype(sender_psid);
           break;              
         case "training center":
-            tcregister(sender_psid);
+            register(sender_psid);
           break;
           case "agent":
             agent_register(sender_psid);
@@ -1372,7 +1372,7 @@ const STCW = (sender_psid) => {
   });
 }
 
-const tcregister = (sender_psid) => {
+const register = (sender_psid) => {
     let response1 = {"text": "Hello. Please choose one."};
     let response2 = {
       "attachment": {
@@ -1386,7 +1386,7 @@ const tcregister = (sender_psid) => {
                   {
                 "type": "web_url",
                 "title": "Register",
-                "url":APP_URL+"tcregister/"+sender_psid,
+                "url":APP_URL+"register/"+sender_psid,
                  "webview_height_ratio": "full",
                 "messenger_extensions": true,          
               
@@ -1412,13 +1412,13 @@ const tcregister = (sender_psid) => {
 
 const showOrder = async(sender_psid, order_ref) => {    
 
-    const userref = db.collection('tcregister').doc(order_ref);
+    const userref = db.collection('register').doc(order_ref);
     const user = await userref.get();
 
     if (user.empty) {
       let response = { "text": "Incorrect order number" };
       callSend(sender_psid, response).then(()=>{
-        return tcregister(sender_psid);
+        return register(sender_psid);
       });
     }else{
         let response = { "text": "You are correct." };
