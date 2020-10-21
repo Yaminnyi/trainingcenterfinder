@@ -18,7 +18,7 @@
 
   <body>
   <h1>STCW courses</h1>
-  <p><a href="../cart">View register</a> | <a href="../emptycart">Empty </a></p>
+  
 
 
   <% data.forEach(function(job){ %>
@@ -26,7 +26,7 @@
   
     <div class="job">
 
-      <h3>Company Name:  <%= job.name %></h3>
+      <h3><%= job.name %></h3>
       <p>Company ID: <%= job.id %><p>
       <p>Job Title: <%= job.title %><p>
       <p>Job Requirements: <textarea  name="w3review" rows="7" cols="44" style="background-color: lightblue; border-color:black;text-align: justify;"><%= job.require %>  </textarea><p>
