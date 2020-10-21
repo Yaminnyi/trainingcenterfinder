@@ -736,7 +736,7 @@ app.post('/addjob',function(req,res){
       let name  = req.body.name;
       let id    = req.body.id;
       let title  = req.body.title;
-      let req = req.body.req;
+      let require = req.body.require;
       let apply = req.body.apply;
       let hot = req.body.hot;
       let location = req.body.location;
@@ -751,7 +751,7 @@ app.post('/addjob',function(req,res){
       name: name,
       id:id,
       title: title,
-      req: req,
+      require: require,
       apply: apply,
       hot: hot,
       location: location,
