@@ -480,7 +480,41 @@ app.get('/show', async function(req,res){
 });
 
 
+app.get('/showjob', async function(req,res){
 
+
+
+
+  const jobRef = db.collection('addjob').orderBy('created_on', 'desc');
+  const snapshot = await jobRef.get();
+
+  if (snapshot.empty) {
+    console.log('Yamin:');
+    res.send('no data');
+  } 
+
+  let data = []; 
+
+  snapshot.forEach(doc => { 
+    
+    let job = {}; 
+
+    job = doc.data();
+    
+    job.id = doc.id; 
+    
+    let d = new Date(doc.data().created_on._seconds);
+    d = d.toString();
+    job.created_on = d;   
+
+    data.push(job);
+    
+  });  
+
+  console.log('DATA:', data); 
+  res.render('showjob.ejs', {data:data});
+
+});
 
 app.post('/show', function(req, res){
     
@@ -535,6 +569,34 @@ app.post('/offcourse_registration', function(req, res){
     
 });
 
+
+
+
+app.post('/showjob', function(req, res){
+    
+   
+    
+    let job = {};
+    job.name = req.body.item_id;
+    job.id = req.body.item_courses;
+    job.title = req.body.item_name;
+    job.require = req.body.item_tc_id;
+    job.apply = req.body.item_apply;
+    job.hot = req.body.item_hot;
+     job.location = req.body.item_location;
+
+      console.log('Job', job);
+  
+    res.render('jobapply.ejs', course);   
+});
+
+
+app.post('/jobapply', function(req, res){
+    
+   res.json(req.body);
+    
+    
+});
 app.get('/cart', function(req, res){     
     
 
