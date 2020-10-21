@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>View Seaman registered</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ </head>
+
+  <body>
+  <h1>View</h1>
+
+ 
+  
+  <table cellspacing="1" cellpadding="5" border="1">
+    <tr>
+    
+    <th>Name</th>
+    
+    <th>EMail</th>
+    <th>Phone</th>
+    <th>Date</th>
+    <th>Course_ID</th>
+    <th>Course Name</th>
+    <th>Training center Name</th>
+    <th>Training center id</th>
+
+    
+    <th>Action</th>
+  </tr>
+
+
+  <% data.forEach(function(viewseaman){ %>
+     <tr>
+      
+       <td><%= viewseaman.name %></td>
+      
+       <td><%= viewseaman.email %></td>
+      <td><%= viewseaman.phone %></td>
+       <td><%= viewseaman.dob %></td>
+       <td><%= viewseaman.id %></td>
+       <td><%= viewseaman.courses %></td>
+       <td><%= viewseaman.tc_id %></td>
+      
+       <td><a href="updateappointment/<%= appointment.doc_id %>">Edit</a> | Delete</td>
+     </tr>
+  <% }); %>
+
+	</table>
+
+ 
+ 
+
+  </body>
+
+</html>
