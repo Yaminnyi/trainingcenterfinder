@@ -369,7 +369,7 @@ app.post('/course_registration',function(req,res){
       
       
       let ref = generateRandom(8);
-      let seaman_name  = req.body.seaman_name;
+      let name  = req.body.name;
       let email    = req.body.email;
       let phone  = req.body.phone;
       let dob = req.body.dob;
@@ -381,7 +381,7 @@ app.post('/course_registration',function(req,res){
       console.log("DD");
       
       db.collection('course_registration').doc(ref).set({
-      seaman_name: seaman_name,
+      name: name,
       email:email,
       phone: phone,
       dob: dob,
