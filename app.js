@@ -680,9 +680,18 @@ app.post('/offshore',function(req,res){
 
 
 
+app.get('/agent_register/:sender_id',function(req,res){
+    const sender_id = req.params.sender_id;
+    res.render('agent_register.ejs',{title:"Register", sender_id:sender_id});
+});
+
+
+
+
+
 app.post('/agent_register',function(req,res){
       
-      let ref = generateRandom(6);
+      let ref = generateRandom(8);
     
       let name  = req.body.name;
       let email = req.body.email;
@@ -692,28 +701,27 @@ app.post('/agent_register',function(req,res){
 
       console.log("AA");
       
-      db.collection('agent_register').add({
+      db.collection('agent_register').doc(ref).set({
       name: name,
       email: email,
-      phone: phone,
-      ref: ref
+      phone: phone
+      
     }).then(success => {   
           console.log("DATA SAVED")
-    let text = "Thank you for your register." + "\u000A";
-    text += "Your reference id is" + ref
+    let text = "Thank you for your register.Please click already registered." + "\u000A";
+    text += "Your reference id is " + ref
     ;
     let response = {
       "text": text
     };
     callSend(sender,response);
+    return agent_register(sender_psid);
     }).catch(error => {
           console.log(error);
       }); 
      
          
 });
-
-
 
 
 
@@ -1410,6 +1418,45 @@ const register = (sender_psid) => {
 }
 
 
+
+const agent_register = (sender_psid) => {
+    let response1 = {"text": "Hello. Please choose one."};
+    let response2 = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [{
+            "title":"If you have not yet registered, register.",
+                  
+            "buttons": [                
+                  {
+                "type": "web_url",
+                "title": "Register",
+                "url":APP_URL+"agent_register/"+sender_psid,
+                 "webview_height_ratio": "full",
+                "messenger_extensions": true,          
+              
+                },    
+                {
+                  "type": "postback",
+                  "title": "Already registered",
+                  
+                  "payload": "check-order",
+                },           
+              ],
+          }
+
+          ]
+        }
+      }
+    }
+     callSend(sender_psid, response1).then(()=>{
+        return callSend(sender_psid, response2)
+      });
+}
+
+
 const showOrder = async(sender_psid, order_ref) => {    
 
     const userref = db.collection('register').doc(order_ref);
@@ -1430,6 +1477,25 @@ const showOrder = async(sender_psid, order_ref) => {
 
 }
 
+const showOrder1 = async(sender_psid, order_ref) => {    
+
+    const userref = db.collection('agent_register').doc(order_ref);
+    const user = await userref.get();
+
+    if (user.empty) {
+      let response = { "text": "Incorrect order number" };
+      callSend(sender_psid, response).then(()=>{
+        return agent_register(sender_psid);
+      });
+    }else{
+        let response = { "text": "You are correct." };
+        callSend(sender_psid, response).then(()=>{
+          return already(sender_psid);
+
+          });
+    }   
+
+}
 
  
 
