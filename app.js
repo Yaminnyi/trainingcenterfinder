@@ -379,13 +379,22 @@ app.post('/course_registration',function(req,res){
 
       console.log("DD");
       
-    db.collection('course_registration').doc(sender_id).set(data).then((success)=>{
-        console.log('SAVED', success);
-        //first_reg = false;
-        let text = "Thank you. You have been registered."+ "\u000A";      
-        let response = {"text": text};
-        callSend(sender_id, response);
-      }).catch(error => {
+      db.collection('course_registration').doc(ref).set({
+      name: name,
+      email:email,
+      phone: phone,
+      dob: dob,
+      created_on: created_on
+         
+    }).then(success => {   
+          console.log("DATA SAVED")
+    let text = "Thank you for your register. Your data has been saved.If you leave your message,you write cancel" + "\u000A";
+        text += "Your reference id is" + ref;
+    let response = {
+      "text": text
+    };
+    callSend(sender,response);
+    }).catch(error => {
           console.log(error);
       }); 
      
@@ -400,7 +409,7 @@ app.get('/show', async function(req,res){
 
 
 
-  const courseRef = db.collection('course1').orderBy('created_on', 'desc');
+  const courseRef = db.collection('STCW').orderBy('created_on', 'desc');
   const snapshot = await courseRef.get();
 
   if (snapshot.empty) {
@@ -526,12 +535,12 @@ app.get('/cart', function(req, res){
 
 
 
-app.get('/course1/:sender_id',function(req,res){
+app.get('/STCW/:sender_id',function(req,res){
     const sender_id = req.params.sender_id;
-    res.render('course1.ejs',{title:"Add courses", sender_id:sender_id});
+    res.render('STCW.ejs',{title:"Add courses", sender_id:sender_id});
 });
 
-app.post('/course1',function(req,res){
+app.post('/STCW',function(req,res){
       
       
       let name  = req.body.name;
@@ -550,7 +559,7 @@ app.post('/course1',function(req,res){
 
       console.log("DD");
       
-      db.collection('course1').add({
+      db.collection('STCW').add({
       name: name,
       tc_id:tc_id,
       courses: courses,
@@ -1406,7 +1415,7 @@ const already = (sender_psid) => {
                   {
                 "type": "web_url",
                 "title": "Add courses(STCW)",
-                "url":APP_URL+"course1/"+sender_psid,
+                "url":APP_URL+"STCW/"+sender_psid,
                  "webview_height_ratio": "full",
                 "messenger_extensions": true,          
               
