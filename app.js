@@ -725,6 +725,57 @@ app.post('/agent_register',function(req,res){
 });
 
 
+app.get('/addjob/:sender_id',function(req,res){
+    const sender_id = req.params.sender_id;
+    res.render('addjob.ejs',{title:"Add courses", sender_id:sender_id});
+});
+
+app.post('/addjob',function(req,res){
+      
+      
+      let name  = req.body.name;
+      let id    = req.body.id;
+      let title  = req.body.title;
+      let req = req.body.req;
+      let apply = req.body.apply;
+      let hot = req.body.hot;
+      let location = req.body.location;
+      let sender = req.body.sender; 
+     
+      let today = new Date();
+      let created_on = today;
+
+      console.log("DD");
+      
+      db.collection('addjob').add({
+      name: name,
+      id:id,
+      title: title,
+      req: req,
+      apply: apply,
+      hot: hot,
+      location: location,
+      created_on: created_on
+         
+    }).then(success => {   
+          console.log("DATA SAVED")
+    let text = "Thank you for your add job. Your data has been saved.If you leave your message,you write cancel" + "\u000A";
+   
+    let response = {
+      "text": text
+    };
+    callSend(sender,response);
+    }).catch(error => {
+          console.log(error);
+      }); 
+     
+         
+});
+
+
+
+
+
 
 
 /*app.get('/register',function(req,res){   
@@ -1290,106 +1341,6 @@ const courses = (sender_psid) => {
 }
 
 
-const STCW = (sender_psid) => {
-    let response1 = {"text": "The following are course lists."};
-    let response2 = {
-      "attachment": {
-        "type": "template",
-        "payload": {
-          "template_type": "generic",
-          "elements": [{
-            "title": "Basic Safety Training",
-            "image_url":"https://www.pinclipart.com/picdir/middle/137-1375478_machine-safety-training-health-and-safety-icons-free.png",                       
-            "buttons": [
-                {
-                  "type": "postback",
-                  "title": "Course details",
-                  "payload": "courses:BST",
-                },               
-              ],
-          },{
-            "title": "Survival Craft & Rescue Boat",
-             
-            "image_url":"https://image.shutterstock.com/image-vector/moving-rescue-boat-deep-sea-260nw-369697766.jpg",                       
-            "buttons": [
-                {
-                  "type": "postback",
-                  "title": "Course details",
-                 
-                  "payload": "courses:SCRB", 
-                },               
-              ],
-          },{
-            "title": "Advanced Fire Fighting",
-            "image_url":"https://www.pngkey.com/png/detail/200-2003225_fire-extinguisher-symbol-png-fire-extinguisher-point-sign.png",                       
-            "buttons": [
-                {
-                  "type": "postback",
-                  "title": "Course details",
-                 
-                  "payload": "courses:AFF", 
-                },               
-              ],
-          },{
-            "title": "Medical First Aid",
-             
-            "image_url":"https://st3.depositphotos.com/4326917/12569/v/950/depositphotos_125690588-stock-illustration-medical-first-aid-box-sign.jpg",                       
-            "buttons": [
-                {
-                  "type": "postback",
-                  "title": "Course details",
-                 
-                  "payload": "courses:MFA", 
-                },               
-              ],
-          },{
-            "title": "Ship Security Officer",
-             
-            "image_url":"https://png.pngtree.com/png-vector/20190306/ourlarge/pngtree-security-character-icon-png-image_780271.jpg",                       
-            "buttons": [
-                {
-                  "type": "postback",
-                  "title": "Course details",
-                 
-                  "payload": "courses:SSO", 
-                },               
-              ],
-          },{
-            "title": "Security Training (STCW 2010)",
-             
-            "image_url":"https://sqemarine.com/wp-content/uploads/2018/06/Ship-Safety-Officer.jpg",                       
-            "buttons": [
-                {
-                  "type": "postback",
-                  "title": "Course details",
-                 
-                  "payload": "courses:ST", 
-                },               
-              ],
-          },{
-            "title": "Security with Designated Duties",
-             
-            "image_url":"https://assets.iqpc.com/UploadedFiles/EventPage/28170.002/images/icon-3.png",                       
-            "buttons": [
-                {
-                  "type": "postback",
-                  "title": "Course details",
-                 
-                  "payload": "courses:SWDD", 
-                },               
-              ],
-          },
-
-
-          ]
-        }
-      }
-    }
-  
- callSend(sender_psid, response1).then(()=>{
-    return callSend(sender_psid, response2);
-  });
-}
 
 const register = (sender_psid) => {
     let response1 = {"text": "Hello. Please choose one."};
@@ -1562,7 +1513,7 @@ const agent_already = (sender_psid) => {
                   {
                 "type": "web_url",
                 "title": "Add Jobs",
-                "url":APP_URL+"STCW/"+sender_psid,
+                "url":APP_URL+"addjob/"+sender_psid,
                  "webview_height_ratio": "full",
                 "messenger_extensions": true,          
               

@@ -33,20 +33,38 @@
   
   <h1><%= title %></h1>
 
-  <form id="form" method="post" action="https://trainingcenterfinder.herokuapp.com/agent_register/" style="background-color: lightblue;"><br>
-  <div class="form-group">
-    <label for="name">Company Name</label>
-    <input type="text" class="form-control" id="name" name="name" placeholder="Enter company name" style="margin-left: 25px;">    
-  </div><br>
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input type="email" class="form-control" id="email" name="email" placeholder="Email" style="margin-left: 128px;">
-  </div> <br>
+  <form id="form" method="post" action="https://trainingcenterfinder.herokuapp.com/addjob/" style="background-color: lightblue;"><br>
 
   <div class="form-group">
-    <label for="phone">Ph Number</label>
-      <input type="phone" class="form-control" id="phone" name="phone" placeholder="Phone" style="margin-left: 93px;">
+    <label for="name">Company Name</label>
+    <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" style="margin-left: 25px;">    
   </div><br>
+
+   <div class="form-group">
+    <label for="id">Company ID</label>
+    <input type="text" class="form-control" id="id" name="id" placeholder="Enter your  id" style="margin-left: 25px;">    
+  </div><br>
+ 
+  <div class="form-group">
+    <label for="title">Job title</label>
+    <input type="text" class="form-control" id="title" name="title" placeholder="Enter your title" style="margin-left: 25px;">    
+  </div><br>
+  <div class="form-group">
+    <label for="req">Job Requirements</label>
+    <input type="text" class="form-control" id="req" name="req" placeholder="req" style="margin-left: 128px;">
+  </div> <br>
+<div class="form-group">
+    <label for="apply">How to apply</label>
+    <input type="text" class="form-control" id="apply" name="apply" placeholder="apply" style="margin-left: 128px;">
+  </div> <br>
+  <div class="form-group">
+    <label for="hot">Hotline</label>
+    <input type="text" class="form-control" id="hot" name="hot" placeholder="hot" style="margin-left: 128px;">
+  </div> <br>
+  <div class="form-group">
+    <label for="location">Job location</label>
+    <input type="text" class="form-control" id="location" name="location" placeholder="location" style="margin-left: 128px;">
+  </div> <br>
   <input type="hidden"  id="sender" name="sender" value="<%= sender_id %>">
   <input type="submit" value="Submit" style="margin-left: 55px;  background-color: #008CBA; color: white; padding: 10px 24px;  text-align: center; text-decoration: none; display: inline-block; margin: 4px 2px; margin-left: 124px; width=10px; "> 
   </form>
