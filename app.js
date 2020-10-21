@@ -446,7 +446,8 @@ app.get('/show', async function(req,res){
 
 
 
-  const courseRef = db.collection('add1').orderBy('created_on', 'desc');
+
+  const courseRef = db.collection('offshore').orderBy('created_on', 'desc');
   const snapshot = await courseRef.get();
 
   if (snapshot.empty) {
@@ -479,6 +480,7 @@ app.get('/show', async function(req,res){
 
 
 
+
 app.post('/show', function(req, res){
     
    
@@ -504,6 +506,33 @@ app.post('/course_registration', function(req, res){
     
 });
 
+
+
+
+app.post('/show1', function(req, res){
+    
+   
+    
+    let course = {};
+    course.id = req.body.item_id;
+    course.courses = req.body.item_courses;
+    course.name = req.body.item_name;
+    course.tc_id = req.body.item_tc_id;
+    course.duration = req.body.item_duration;
+    course.price = req.body.item_price;
+
+      console.log('COURSE', course);
+  
+    res.render('offcourse_registration.ejs', course);   
+});
+
+
+app.post('/offcourse_registration', function(req, res){
+    
+   res.json(req.body);
+    
+    
+});
 
 app.get('/cart', function(req, res){     
     
@@ -597,16 +626,16 @@ app.post('/STCW',function(req,res){
 
 
 
-app.get('/add1/:sender_id',function(req,res){
+app.get('/offshore/:sender_id',function(req,res){
     const sender_id = req.params.sender_id;
-    res.render('add1.ejs',{title:"Add courses", sender_id:sender_id});
+    res.render('offshore.ejs',{title:"Add courses", sender_id:sender_id});
 });
 
-app.post('/add1',function(req,res){
+app.post('/offshore',function(req,res){
       
       
-    
       let name  = req.body.name;
+      let tc_id    = req.body.id;
       let courses  = req.body.courses;
       let date = req.body.date;
       let end = req.body.end;
@@ -621,8 +650,9 @@ app.post('/add1',function(req,res){
 
       console.log("DD");
       
-      db.collection('add1').add({
+      db.collection('offshore').add({
       name: name,
+      tc_id:tc_id,
       courses: courses,
       date: date,
       end: end,
@@ -646,7 +676,6 @@ app.post('/add1',function(req,res){
      
          
 });
-
 
 
 
@@ -1027,7 +1056,10 @@ const handlePostback = (sender_psid, received_postback) => {
         break; 
       case "Lists:STCW":
           shopMenu(sender_psid);
-        break;  
+        break;
+         case "offshore":
+          viewoff(sender_psid);
+        break;   
         case "check-order":         
           current_question = "q8";
           botQuestions(current_question, sender_psid);
@@ -1223,7 +1255,7 @@ const courses = (sender_psid) => {
                   "type": "postback",
                   "title": "View Lists",
                  
-                  "payload": "Lists:Offshore", 
+                  "payload": "offshore", 
                 },               
               ],
           },
@@ -1423,7 +1455,7 @@ const already = (sender_psid) => {
                 {
                   "type": "web_url",
                 "title": "Add courses(Offshore)",
-                "url":APP_URL+"add1/"+sender_psid,
+                "url":APP_URL+"offshore/"+sender_psid,
                  "webview_height_ratio": "full",
                 "messenger_extensions": true,  
                 },           
@@ -1467,6 +1499,34 @@ const shopMenu =(sender_psid) => {
   callSend(sender_psid, response);
 }
 
+
+
+const viewoff =(sender_psid) => {
+  let response = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [{
+            "title": "All courses",  
+            "image_url":"https://sqemarine.com/wp-content/uploads/2018/06/Ship-Safety-Officer.jpg",                  
+            "buttons": [              
+              {
+                "type": "web_url",
+
+                "title": "View",
+                "url":APP_URL+"show1/",
+                 "webview_height_ratio": "full",
+                "messenger_extensions": true,          
+              },
+              
+            ],
+          }]
+        }
+      }
+    }  
+  callSend(sender_psid, response);
+}
 
 const agent_register = (sender_psid) => {
     let response1 = {"text": "Hello. Please choose one."};
