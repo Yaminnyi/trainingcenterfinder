@@ -558,6 +558,43 @@ app.get('/showjob', async function(req,res){
 
 });
 
+
+app.get('/viewseaman', async function(req,res){
+
+
+
+
+  const jobRef = db.collection('course_registration').orderBy('created_on', 'desc');
+  const snapshot = await jobRef.get();
+
+  if (snapshot.empty) {
+    console.log('Yamin:');
+    res.send('no data');
+  } 
+
+  let data = []; 
+
+  snapshot.forEach(doc => { 
+    
+    let viewseaman = {}; 
+
+    viewseaman = doc.data();
+    
+    viewseaman.id = doc.id; 
+    
+    let d = new Date(doc.data().created_on._seconds);
+    d = d.toString();
+    viewseaman.created_on = d;   
+
+    data.push(job);
+    
+  });  
+
+  console.log('DATA:', data); 
+  res.render('viewseaman.ejs', {data:data});
+
+});
+
 app.post('/show', function(req, res){
     
    
@@ -639,6 +676,26 @@ app.post('/jobapply', function(req, res){
     
     
 });
+
+
+app.post('/viewseaman', function(req, res){
+    
+   
+    
+    let viewseaman = {};
+    viewseaman.name = req.body.viewseaman.name;
+    viewseaman.email = req.body.viewseaman.email;
+    viewseaman.phone = req.body.viewseaman.phone;
+    viewseaman.id = req.body.viewseaman.id;
+    viewseaman.courses = req.body.viewseaman.courses;
+    viewseaman.tc_id = req.body.viewseaman_tc_id;
+    
+
+      console.log('COURSE', view);
+  
+    res.render('viewseaman.ejs', view);   
+});
+
 app.get('/cart', function(req, res){     
     
 
@@ -1593,7 +1650,14 @@ const already = (sender_psid) => {
                 "url":APP_URL+"offshore/"+sender_psid,
                  "webview_height_ratio": "full",
                 "messenger_extensions": true,  
-                },           
+                }, 
+                {
+                  "type": "web_url",
+                "title": "View Seaman registered",
+                "url":APP_URL+"viewseaman/"+sender_psid,
+                 "webview_height_ratio": "full",
+                "messenger_extensions": true,  
+                },          
               ],
           }
 
