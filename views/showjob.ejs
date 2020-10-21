@@ -27,7 +27,7 @@
     <div class="job">
 
       <h3><%= job.name %></h3>
-      <p>Company ID: <%= job.id %><p>
+      <p>Company ID: <%= job.agent_id %><p>
       <p>Job Title: <%= job.title %><p>
       <p>Job Requirements: <textarea  name="w3review" rows="7" cols="44" style="background-color: lightblue; border-color:black;text-align: justify;"><%= job.require %>  </textarea><p>
      <p>How to Apply: <%= job.apply %><p>
@@ -43,7 +43,7 @@
 
 <form action="../show" method="post">
       <input type="hidden" name="item_name" value="<%= job.name %>"/>
-      <input type="hidden" name="item_id" value="<%= job.id %>"/>
+      <input type="hidden" name="item_agent_id" value="<%= job.agent_id %>"/>
       <input type="hidden" name="item_title" value="<%= job.title %>"/>
       <input type="hidden" name="item_require" value="<%= job.require %>"/>
       <input type="hidden" name="item_apply" value="<%= job.apply %>"/>

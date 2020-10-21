@@ -578,7 +578,7 @@ app.post('/showjob', function(req, res){
     
     let job = {};
     job.name = req.body.item_name;
-    job.id = req.body.item_id;
+    job.agent_id = req.body.item_agent_id;
     job.title = req.body.item_title;
     job.require = req.body.item_require;
     job.apply = req.body.item_apply;
@@ -796,7 +796,7 @@ app.post('/addjob',function(req,res){
       
       
       let name  = req.body.name;
-      let id    = req.body.id;
+      let agent_id    = req.body.agent_id;
       let title  = req.body.title;
       let require = req.body.require;
       let apply = req.body.apply;
@@ -811,7 +811,7 @@ app.post('/addjob',function(req,res){
       
       db.collection('addjob').add({
       name: name,
-      id:id,
+      agent_id:agent_id,
       title: title,
       require: require,
       apply: apply,
