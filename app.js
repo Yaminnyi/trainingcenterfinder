@@ -1185,6 +1185,9 @@ const handlePostback = (sender_psid, received_postback) => {
       case "Lists:STCW":
           shopMenu(sender_psid);
         break;
+        case "jobs":
+          viewjob(sender_psid);
+        break; 
          case "offshore":
           viewoff(sender_psid);
         break;   
@@ -1334,7 +1337,7 @@ const showtype = (sender_psid) => {
                 {
                   "type": "postback",
                   "title": "Find jobs",
-                  "payload": "Type:Find jobs", 
+                  "payload": "jobs", 
                 },               
               ],
           },{
@@ -1625,6 +1628,32 @@ const shopMenu =(sender_psid) => {
   callSend(sender_psid, response);
 }
 
+const viewjob =(sender_psid) => {
+  let response = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [{
+            "title": "All Jobs",  
+            "image_url":"https://seamanloan.com.ph/wp-content/uploads/2018/09/Seaman-Loan.png",                  
+            "buttons": [              
+              {
+                "type": "web_url",
+
+                "title": "View",
+                "url":APP_URL+"showjob/",
+                 "webview_height_ratio": "full",
+                "messenger_extensions": true,          
+              },
+              
+            ],
+          }]
+        }
+      }
+    }  
+  callSend(sender_psid, response);
+}
 
 
 const viewoff =(sender_psid) => {
