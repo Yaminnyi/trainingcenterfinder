@@ -395,7 +395,8 @@ app.post('/course_registration',function(req,res){
     let response = {
       "text": text
     };
-    console.log("USER_ID",user_id)
+    console.log("USER_ID",user_id);
+     console.log("USERID", userInputs);
     callSend(user_id,response);
     }).catch(error => {
           console.log(error);
