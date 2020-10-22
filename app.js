@@ -41,6 +41,7 @@ let user_id = '';
 
 let userInputs = [];
 let customer = [];
+let training_center_id ='';
 
 
 /*
@@ -576,17 +577,17 @@ app.get('/showjob', async function(req,res){
 
 
 
-app.get('/viewseaman', async function(req,res){
-
-  const seamanref = db.collection('course_registration').orderBy('created_on', 'desc');
+app.get('/viewseaman/:training_center_id', async function(req,res){
+ let training_center_id = req.params.training_center_id;
+  const seamanref = db.collection('course_registration').doc('where','==',training_center_id).orderBy('created_on', 'desc');
   const snapshot = await seamanref.get();
 
   if (snapshot.empty) {
     console.log('Yamin:');
     res.send('no data');
   } 
-
-  let data = []; 
+else{
+let data = []; 
 
   snapshot.forEach(doc => { 
     
@@ -604,8 +605,11 @@ app.get('/viewseaman', async function(req,res){
     
   });  
 
-  console.log('DATA:', data); 
+  console.log('Training Center students:', data); 
   res.render('viewseaman.ejs', {data:data});
+
+}
+  
 
 });
 
@@ -1595,6 +1599,7 @@ const showOrder = async(sender_psid, order_ref) => {
         return register(sender_psid);
       });
     }else{
+       training_center_id = order_ref;
         let response = { "text": "You are correct." };
         callSend(sender_psid, response).then(()=>{
           return already(sender_psid);
@@ -1655,7 +1660,7 @@ const already = (sender_psid) => {
                 {
                   "type": "web_url",
                 "title": "View Seaman registered",
-                "url":APP_URL+"viewseaman/"+sender_psid,
+                "url":APP_URL+"viewseaman/"+training_center_id,
                  "webview_height_ratio": "full",
                 "messenger_extensions": true,  
                 },          
