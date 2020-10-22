@@ -1098,7 +1098,7 @@ function handleQuickReply(sender_psid, received_message) {
               saveAppointment(userInputs[user_id], sender_psid);
           break;              
         default:
-            defaultReply(sender_psid);
+            botDefaultReply(sender_psid);
     } 
 
   }
@@ -1189,7 +1189,7 @@ const handleMessage = (sender_psid, received_message) => {
         break;
                    
       default:
-          defaultReply(sender_psid);
+          botDefaultReply(sender_psid);
       }       
           
       
@@ -1287,7 +1287,7 @@ const handlePostback = (sender_psid, received_postback) => {
           botQuestions(current_question, sender_psid);
         break;                     
       default:
-          defaultReply(sender_psid);
+          botDefaultReply(sender_psid);
     } 
 
   }
@@ -1596,7 +1596,7 @@ const showOrder1 = async(sender_psid, agent_ref) => {
     const userref = db.collection('agent_register').doc(agent_ref);
     const user = await userref.get();
 
-    if (user.empty) {
+    if (!user.exists) {
       let response = { "text": "Incorrect order number" };
       callSend(sender_psid, response).then(()=>{
         return agent_register(sender_psid);
@@ -2046,7 +2046,7 @@ function testDelete(sender_psid){
   callSendAPI(sender_psid, response);
 }
 
-const defaultReply = (sender_psid) => {
+const botDefaultReply = (sender_psid) => {
   let response = choose(sender_psid);
  callSend(sender_psid, response)
 }
