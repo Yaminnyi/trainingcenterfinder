@@ -31,8 +31,8 @@ const bot_questions = {
   "q5": "please enter phone number",
   "q6": "please enter email",
   "q7": "please leave a message",
-  "q8": "please enter your  reference number",
-  "q9": "please enter your  reference number"  
+  "q8": "please enter your Training center reference number",
+  "q9": "please enter your Agent reference number"  
 }
 
 let current_question = '';
@@ -1859,6 +1859,7 @@ const botQuestions = (current_question, sender_psid) => {
     let response = {"text": bot_questions.q7};
     callSend(sender_psid, response);
   }else if(current_question == 'q8'){
+    console.log('Q8',bot_questions.q8);
     let response = {"text": bot_questions.q8};
     callSend(sender_psid, response);
   }else if(current_question == 'q9'){
