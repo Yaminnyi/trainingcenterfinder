@@ -29,24 +29,23 @@
   </tr>
 
 
-  <% data.forEach(function(viewseaman){ %>
+  <% data.forEach(function(item){ %>
      <tr>
       
-       <td><%= viewseaman.name %></td>
+       <td><%= item.name %></td>
       
-       <td><%= viewseaman.email %></td>
-      <td><%= viewseaman.phone %></td>
-       <td><%= viewseaman.dob %></td>
-       <td><%= viewseaman.id %></td>
-       <td><%= viewseaman.courses %></td>
-       <td><%= viewseaman.tc_id %></td>
+       <td><%= item.email %></td>
+      <td><%= item.phone %></td>
+       <td><%= item.dob %></td>
+       <td><%= item.id %></td>
+       <td><%= item.courses %></td>
+       <td><%= item.tc_id %></td>
       
-       <td><a href="updateappointment/<%= appointment.doc_id %>">Edit</a> | Delete</td>
+       
      </tr>
   <% }); %>
 
 	</table>
-
  
  
 

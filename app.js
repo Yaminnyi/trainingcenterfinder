@@ -423,7 +423,7 @@ app.post('/jobapply',function(req,res){
 
       console.log("DD");
       
-      db.collection('course_registration').doc(ref).set({
+      db.collection('jobapply').doc(ref).set({
       name: name,
       email:email,
       phone: phone,
@@ -576,15 +576,15 @@ app.get('/viewseaman', async function(req,res){
 
   snapshot.forEach(doc => { 
     
-    let viewseaman = {}; 
+    let item = {}; 
 
-    viewseaman = doc.data();
+    item = doc.data();
     
-    viewseaman.id = doc.id; 
+    item.id = doc.id; 
     
     let d = new Date(doc.data().created_on._seconds);
     d = d.toString();
-    viewseaman.created_on = d;   
+    item.created_on = d;   
 
     data.push(job);
     
@@ -594,6 +594,10 @@ app.get('/viewseaman', async function(req,res){
   res.render('viewseaman.ejs', {data:data});
 
 });
+
+
+
+
 
 app.post('/show', function(req, res){
     
@@ -678,23 +682,6 @@ app.post('/jobapply', function(req, res){
 });
 
 
-app.post('/viewseaman', function(req, res){
-    
-   
-    
-    let viewseaman = {};
-    viewseaman.name = req.body.viewseaman.name;
-    viewseaman.email = req.body.viewseaman.email;
-    viewseaman.phone = req.body.viewseaman.phone;
-    viewseaman.id = req.body.viewseaman.id;
-    viewseaman.courses = req.body.viewseaman.courses;
-    viewseaman.tc_id = req.body.viewseaman_tc_id;
-    
-
-      console.log('COURSE', view);
-  
-    res.render('viewseaman.ejs', view);   
-});
 
 app.get('/cart', function(req, res){     
     
