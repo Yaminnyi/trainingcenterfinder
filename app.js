@@ -579,7 +579,7 @@ app.get('/showjob', async function(req,res){
 
 app.get('/viewseaman/:training_center_id', async function(req,res){
  let training_center_id = req.params.training_center_id;
-  const seamanref = db.collection('course_registration').where('item_tc_id','==',training_center_id).orderBy('created_on', 'desc');
+  const seamanref = db.collection('course_registration').where('item_tc_id','==',training_center_id);
   const snapshot = await seamanref.get();
 
   if (snapshot.empty) {
