@@ -1576,7 +1576,7 @@ const showOrder = async(sender_psid, order_ref) => {
     const userref = db.collection('register').doc(order_ref);
     const user = await userref.get();
    console.log('SHOW_ORDER',order_ref);
-    if (user.empty) {
+    if (!user.exists) {
       let response = { "text": "Incorrect order number" };
       callSend(sender_psid, response).then(()=>{
         return register(sender_psid);
