@@ -559,13 +559,11 @@ app.get('/showjob', async function(req,res){
 });
 
 
+
 app.get('/viewseaman', async function(req,res){
 
-
-
-
-  const jobRef = db.collection('course_registration').orderBy('created_on', 'desc');
-  const snapshot = await jobRef.get();
+  const seamanref = db.collection('course_registration').orderBy('created_on', 'desc');
+  const snapshot = await seamanref.get();
 
   if (snapshot.empty) {
     console.log('Yamin:');
@@ -580,13 +578,13 @@ app.get('/viewseaman', async function(req,res){
 
     item = doc.data();
     
-    item.id = doc.id; 
+    item.seaman_id = doc.id; 
     
     let d = new Date(doc.data().created_on._seconds);
     d = d.toString();
     item.created_on = d;   
 
-    data.push(job);
+    data.push(item);
     
   });  
 
