@@ -379,7 +379,7 @@ app.post('/course_registration',function(req,res){
       let today = new Date();
       let created_on = today;
 
-      console.log("DD");
+    
       
       db.collection('course_registration').doc(ref).set({
       name: name,
@@ -395,6 +395,7 @@ app.post('/course_registration',function(req,res){
     let response = {
       "text": text
     };
+    console.log("USER_ID",user_id)
     callSend(user_id,response);
     }).catch(error => {
           console.log(error);
