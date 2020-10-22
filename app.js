@@ -452,7 +452,7 @@ app.post('/jobapply',function(req,res){
 
     
       
-      db.collection('course_registration').doc(ref).set({
+      db.collection('jobapply').doc(ref).set({
       name: name,
       email:email,
       phone: phone,
