@@ -373,6 +373,13 @@ app.post('/course_registration',function(req,res){
       let email    = req.body.email;
       let phone  = req.body.phone;
       let dob = req.body.dob;
+      let item_id = req.body.item_id;
+      let item_courses = req.body.item_courses;
+      let item_name = req.body.item_name;
+      let item_tc_id = req.body.item_tc_id;
+      let item_duration = req.body.item_duration;
+      let item_price = req.body.item_price;
+
       
       
      
@@ -386,6 +393,12 @@ app.post('/course_registration',function(req,res){
       email:email,
       phone: phone,
       dob: dob,
+      item_id:item_id,
+      item_courses:item_courses,
+      item_name:item_name,
+      item_tc_id:item_tc_id,
+      item_duration:item_duration,
+      item_price:item_price,
       created_on: created_on
          
     }).then(success => {   
