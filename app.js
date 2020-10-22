@@ -43,7 +43,7 @@ let userInputs = [];
 let customer = [];
 let training_center_id ='';
 
-
+let agent_id ='';
 /*
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -419,9 +419,12 @@ app.post('/course_registration',function(req,res){
          
 });
 
+
+
+
 app.get('/jobapply/:sender_id',function(req,res){
     const sender_id = req.params.sender_id;
-    res.render('jobapply.ejs',{title:"Job apply", sender_id:sender_id});
+    res.render('jobapply.ejs',{title:"Add Jobs", sender_id:sender_id});
 });
 
 app.post('/jobapply',function(req,res){
@@ -432,20 +435,36 @@ app.post('/jobapply',function(req,res){
       let email    = req.body.email;
       let phone  = req.body.phone;
       let dob = req.body.dob;
-      let certificates = req.body.certificates;
+      let certificate = req.body.certificate;
+      let item_name = req.body.item_name;
+      let item_agent_id = req.body.item_agent_id;
+      let item_title = req.body.item_title;
+      let item_require = req.body.item_require;
+      let item_apply = req.body.item_apply;
+      let item_hot = req.body.item_hot;
+       let item_location = req.body.item_location;
+
+      
       
      
       let today = new Date();
       let created_on = today;
 
-      console.log("DD");
+    
       
-      db.collection('jobapply').doc(ref).set({
+      db.collection('course_registration').doc(ref).set({
       name: name,
       email:email,
       phone: phone,
       dob: dob,
-      certificates:certificates,
+      certificate:certificate,
+      item_name:item_name,
+      item_agent_id:item_agent_id,
+      item_title:item_title,
+      item_require:item_require,
+      item_apply:item_apply,
+      item_hot:item_hot,
+      item_location:item_location,
       created_on: created_on
          
     }).then(success => {   
@@ -455,13 +474,16 @@ app.post('/jobapply',function(req,res){
     let response = {
       "text": text
     };
-    callSend(sender,response);
+    console.log("USER_ID",user_id);
+     console.log("USERID", userInputs);
+    callSend(user_id,response);
     }).catch(error => {
           console.log(error);
       }); 
      
          
 });
+
 //route url
 
 app.get('/show', async function(req,res){
@@ -614,6 +636,41 @@ let data = [];
 });
 
 
+app.get('/viewjob/:agent_id', async function(req,res){
+ let agent_id = req.params.agent_id;
+  const seamanref = db.collection('jobapply').where('item_agent_id','==',agent_id);
+  const snapshot = await seamanref.get();
+
+  if (snapshot.empty) {
+    console.log('Yamin:');
+    res.send('no data');
+  } 
+else{
+let data = []; 
+
+  snapshot.forEach(doc => { 
+    
+    let view = {}; 
+
+    view = doc.data();
+    
+    view.doc_id = doc.id; 
+    
+    let d = new Date(doc.data().created_on._seconds);
+    d = d.toString();
+    view.created_on = d;   
+
+    data.push(view);
+    
+  });  
+
+  console.log('Agents seaman:', data); 
+  res.render('viewjob.ejs', {data:data});
+
+}
+  
+
+});
 
 
 
@@ -1613,13 +1670,14 @@ const showOrder1 = async(sender_psid, agent_ref) => {
 
     const userref = db.collection('agent_register').doc(agent_ref);
     const user = await userref.get();
-
+    console.log('SHOW_ORDER',agent_ref);
     if (!user.exists) {
       let response = { "text": "Incorrect order number" };
       callSend(sender_psid, response).then(()=>{
         return agent_register(sender_psid);
       });
     }else{
+      agent_id = agent_ref;
         let response = { "text": "You are correct." };
         callSend(sender_psid, response).then(()=>{
           return agent_already(sender_psid);
@@ -1698,7 +1756,7 @@ const agent_already = (sender_psid) => {
                 {
                   "type": "web_url",
                 "title": "View seaman registered",
-                "url":APP_URL+"offshore/"+sender_psid,
+                "url":APP_URL+"viewjob/"+agent_id,
                  "webview_height_ratio": "full",
                 "messenger_extensions": true,  
                 },           

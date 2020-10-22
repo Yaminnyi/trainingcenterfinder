@@ -30,23 +30,22 @@
 
 	<h1>Job Apply</h1>
 
-	<form id="form" action="../jobapply" method="post">	
-	    Name<input type="text" name="name"  required/>	<br/>
-      Email<input type="text" name="email"  required/> <br/>
-		  Phone<input type="text" name="phone"  required/>	<br/>
-      DOB<input type="text" name="dob"  required/> <br/>
-      Certificates<input type="text" name="certificates"  required/> <br/>
+	<form id="form" action="../jobapply" method="post"> 
+     Name: <input type="text" name="name"  required/> <br/>
+       Email <input type="text" name="email"  required/> <br/>
+    Phone:<input type="text" name="phone"  required/> <br/>
+     Date of birth: <input type="date" name="dob"  required/> <br/>
+     Certificates: <input type="certificate" name="certificate"  required/> <br/>
 
-		<input type="hidden" name="item_name" value="<%= name %>"/>
+
+
+		   <input type="hidden" name="item_name" value="<%= name %>"/>
       <input type="hidden" name="item_agent_id" value="<%= agent_id %>"/>
       <input type="hidden" name="item_title" value="<%= title %>"/>
       <input type="hidden" name="item_require" value="<%= require %>"/>
       <input type="hidden" name="item_apply" value="<%= apply %>"/>
       <input type="hidden" name="item_hot" value="<%= hot %>"/>
       <input type="hidden" name="item_location" value="<%= location %>"/>
-
-
-		 
 		
 		<input type="submit" name="submit" value="Apply"/>
 	</form>

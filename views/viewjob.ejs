@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>View Seaman registered</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ </head>
+
+  <body>
+  <h1>View</h1>
+
+ 
+  
+  <table cellspacing="1" cellpadding="5" border="1">
+    <tr>
+    
+  
+    <th>Name</th>
+    
+    <th>EMail</th>
+    <th>Phone</th>
+    <th>Date</th>
+    <th>Certificate</th>
+    <th>Agent Name</th>
+    <th>Agent Id</th>
+    <th>Job title</th>
+    <th>Requirements</th>
+    <th>How to Apply</th>
+    <th>Hotline</th>
+    <th>Location</th>
+
+    
+    
+  </tr>
+
+
+  <% data.forEach(function(view){ %>
+     <tr>
+     
+       <td><%= view.name %></td>
+      
+       <td><%= view.email %></td>
+      <td><%= view.phone %></td>
+       <td><%= view.dob %></td>
+       <td><%= view.certificate %></td>
+       <td><%= item.item_name %></td>
+       <td><%= item.item_agent_id %></td>
+       <td><%= item.item_title %></td>
+       <td><%= item.item_require %></td>
+      <td><%= item.item_apply %></td>
+       <td><%= item.item_hot %></td>
+       <td><%= item.item_location %></td>
+     </tr>
+  <% }); %>
+
+	</table>
+ 
+ 
+
+  </body>
+
+</html>
