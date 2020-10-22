@@ -745,7 +745,7 @@ app.post('/showjob', function(req, res){
 
       console.log('Job', job);
   
-    res.render('jobapply.ejs', course);   
+    res.render('jobapply.ejs', job);   
 });
 
 
