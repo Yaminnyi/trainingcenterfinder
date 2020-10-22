@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Seaman Jobs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+    	.job{
+    		width:370px;   
+    		border:1px solid black;
+        background-color: lightblue;
+         		
+    	}
+    	
+    </style>
+ </head>
+
+  <body>
+  <h1>STCW courses</h1>
+  
+
+
+  <% data.forEach(function(job){ %>
+
+  
+    <div class="job">
+
+      <h3><%= job.name %></h3>
+      <p>Company ID: <%= job.agent_id %><p>
+      <p>Job Title: <%= job.title %><p>
+      <p>Job Requirements: <textarea  name="w3review" rows="7" cols="44" style="background-color: lightblue; border-color:black;text-align: justify;"><%= job.require %>  </textarea><p>
+     <p>How to Apply: <%= job.apply %><p>
+     <p>Hotline:<%= job.hot %><p>
+      <p>Job location<%= job.location %><p>
+      
+
+
+
+  
+
+
+
+<form action="../show" method="post">
+      <input type="hidden" name="item_name" value="<%= job.name %>"/>
+      <input type="hidden" name="item_agent_id" value="<%= job.agent_id %>"/>
+      <input type="hidden" name="item_title" value="<%= job.title %>"/>
+      <input type="hidden" name="item_require" value="<%= job.require %>"/>
+      <input type="hidden" name="item_apply" value="<%= job.apply %>"/>
+      <input type="hidden" name="item_hot" value="<%= job.hot %>"/>
+      <input type="hidden" name="item_location" value="<%= job.location %>"/>
+      <input type="submit" name="submit" value="Apply" style="margin-left: 105px;  background-color: #008CBA; color: white; padding: 10px 20px;  text-align: center; text-decoration: none; display: inline-block;   width=10px;" />
+      </form>   
+
+	    
+  	</div>
+
+     
+  <% }); %>
+  
+  
+
+  
+
+ </body>
+
+</html>

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>ddmo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ </head>
+
+  <body>
+  <script>
+      (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/messenger.Extensions.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'Messenger'));
+
+    const APP_ID = 674174620149314;    
+    var senderID = "";
+    
+    window.extAsyncInit = function() {
+        MessengerExtensions.getContext(APP_ID, 
+          function success(thread_context){
+           senderID = thread_context.psid;
+          },
+          function error(err){
+            console.log(err);
+          }
+        );        
+    };
+  </script>
+  
+  <h1><%= title %></h1>
+
+  <form id="form" method="post" action="https://trainingcenterfinder.herokuapp.com/STCW/" style="background-color: lightblue;"><br>
+
+  <div class="form-group">
+    <label for="name">Training center Name</label>
+    <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" style="margin-left: 25px;">    
+  </div><br>
+
+   <div class="form-group">
+    <label for="id">Training center ID</label>
+    <input type="text" class="form-control" id="id" name="id" placeholder="Enter your training center id" style="margin-left: 25px;">    
+  </div><br>
+ 
+  <div class="form-group">
+    <label for="courses">Courses Name</label>
+    <input type="text" class="form-control" id="courses" name="courses" placeholder="Enter your courses" style="margin-left: 25px;">    
+  </div><br>
+  <div class="form-group">
+    <label for="date">Open date</label>
+    <input type="date" class="form-control" id="date" name="date" placeholder="date" style="margin-left: 128px;">
+  </div> <br>
+
+  <div class="form-group">
+    <label for="end">End date</label>
+      <input type="date" class="form-control" id="end" name="end" placeholder="end" style="margin-left: 93px;">
+  </div><br>
+  <div class="form-group">
+    <label for="detail">Course Detail</label>
+      <input type="text" class="form-control" id="detail" name="detail" placeholder="detail" style="margin-left: 93px;">
+  </div><br>
+   <div class="form-group">
+    <label for="duration">Duration</label>
+      <input type="text" class="form-control" id="duration" name="duration" placeholder="duration" style="margin-left: 93px;">
+  </div><br>
+  <div class="form-group">
+    <label for="price">Course Price</label>
+      <input type="text" class="form-control" id="price" name="price" placeholder="price" style="margin-left: 93px;">
+  </div><br>
+    <div class="form-group">
+    <label for="address">Training Center Address</label>
+      <input type="text" class="form-control" id="address" name="address" placeholder="address" style="margin-left: 93px;">
+  </div><br>
+  <input type="hidden"  id="sender" name="sender" value="<%= sender_id %>">
+  <input type="submit" value="Submit" style="margin-left: 55px;  background-color: #008CBA; color: white; padding: 10px 24px;  text-align: center; text-decoration: none; display: inline-block; margin: 4px 2px; margin-left: 124px; width=10px; "> 
+  </form>
+
+
+  
+  <script>
+      
+   
+      const windowShut = () => {
+   
+          MessengerExtensions.requestCloseBrowser(function success() {
+          console.log("success");          
+        }, function error(err) {
+          console.log(err);
+        });
+        }
+      
+      document.getElementById("form").addEventListener("submit", windowShut);       
+
+      /*
+      const postFormData = (data) => {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "https://fbstarterbot.herokuapp.com/webview/", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify(data)); 
+      } */
+
+     
+
+  </script>
+
+  </body>
+
+</html>

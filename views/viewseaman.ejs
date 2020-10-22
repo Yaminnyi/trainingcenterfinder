@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>View Seaman registered</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ </head>
+
+  <body>
+  <h1>View</h1>
+
+ 
+  
+  <table cellspacing="1" cellpadding="5" border="1">
+    <tr>
+    
+    <th>Seman ID</th>
+    <th>Name</th>
+    
+    <th>EMail</th>
+    <th>Phone</th>
+    <th>Date</th>
+    <th>Course_ID</th>
+    <th>Course Name</th>
+    <th>Training center Name</th>
+    <th>Training center id</th>
+
+    
+    <th>Action</th>
+  </tr>
+
+
+  <% data.forEach(function(item){ %>
+     <tr>
+      <td><%= item.seaman_id %></td>
+       <td><%= item.name %></td>
+      
+       <td><%= item.email %></td>
+      <td><%= item.phone %></td>
+       <td><%= item.dob %></td>
+       <td><%= item.id %></td>
+       <td><%= item.courses %></td>
+       <td><%= item.tc_id %></td>
+      
+       
+     </tr>
+  <% }); %>
+
+	</table>
+ 
+ 
+
+  </body>
+
+</html>
