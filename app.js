@@ -1801,7 +1801,7 @@ const showOrder2 = async(sender_psid, seaman_ref) => {
         return showtype(sender_psid);
       });
     }else{
-      seaman_id = seaman_ref;
+     
         let response = { "text": "You are correct." };
         callSend(sender_psid, response).then(()=>{
           return for_review(sender_psid);
@@ -1834,7 +1834,7 @@ const for_review = (sender_psid) => {
                  {
                 "type": "web_url",
                 "title": "View review",
-                "url":APP_URL+"view_review/"+seaman_id,
+                "url":APP_URL+"view_review/"+sender_psid,
                  "webview_height_ratio": "full",
                 "messenger_extensions": true,          
               
