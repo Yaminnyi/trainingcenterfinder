@@ -387,8 +387,7 @@ app.post('/give_review',function(req,res){
       id:id,
       tc: tc,
       course: course,
-      review: review,
-      created_on: created_on
+      review: review
          
     }).then(success => {   
           console.log("DATA SAVED")
