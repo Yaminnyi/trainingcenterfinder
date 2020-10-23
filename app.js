@@ -32,7 +32,8 @@ const bot_questions = {
   "q6": "please enter email",
   "q7": "please leave a message",
   "q8": "please enter your Training center reference number",
-  "q9": "please enter your Agent reference number"  
+  "q9": "please enter your Agent reference number",
+  "q10": "please enter your reference id"  
 }
 
 let current_question = '';
@@ -405,7 +406,7 @@ app.post('/course_registration',function(req,res){
     }).then(success => {   
           console.log("DATA SAVED")
     let text = "Thank you for your register. Your data has been saved.If you leave your message,you write cancel" + "\u000A";
-        text += "Your reference id is" + ref;
+        text += "Your reference id is " + ref;
     let response = {
       "text": text
     };
@@ -470,7 +471,7 @@ app.post('/jobapply',function(req,res){
     }).then(success => {   
           console.log("DATA SAVED")
     let text = "Thank you for your register. Your data has been saved.If you leave your message,you write cancel" + "\u000A";
-        text += "Your reference id is" + ref;
+        text += "Your reference id is " + ref;
     let response = {
       "text": text
     };
@@ -1241,6 +1242,12 @@ const handleMessage = (sender_psid, received_message) => {
      console.log('agent_ref: ', agent_ref);    
      current_question = '';     
      showOrder1(sender_psid, agent_ref);
+  }else if(current_question == 'q10'){
+     let seaman_ref = received_message.text; 
+
+     console.log('seaman_ref: ', seaman_ref);    
+     current_question = '';     
+     showOrder2(sender_psid, seaman_ref);
   }
   else {
       
@@ -1358,6 +1365,10 @@ const handlePostback = (sender_psid, received_postback) => {
         break;
         case "check":         
           current_question = "q9";
+          botQuestions(current_question, sender_psid);
+        break; 
+        case "review":         
+          current_question = "q10";
           botQuestions(current_question, sender_psid);
         break;                     
       default:
@@ -1508,7 +1519,7 @@ const showtype = (sender_psid) => {
                 {
                   "type": "postback",
                   "title": "Give review and rate",
-                  "payload": "Type:review",
+                  "payload": "review",
                 },               
               ],
           }
@@ -1651,7 +1662,7 @@ const showOrder = async(sender_psid, order_ref) => {
     const user = await userref.get();
    console.log('SHOW_ORDER',order_ref);
     if (!user.exists) {
-      let response = { "text": "Incorrect order number" };
+      let response = { "text": "Incorrect reference id" };
       callSend(sender_psid, response).then(()=>{
         return register(sender_psid);
       });
@@ -1672,7 +1683,7 @@ const showOrder1 = async(sender_psid, agent_ref) => {
     const user = await userref.get();
     console.log('SHOW_ORDER',agent_ref);
     if (!user.exists) {
-      let response = { "text": "Incorrect order number" };
+      let response = { "text": "Incorrect reference id" };
       callSend(sender_psid, response).then(()=>{
         return agent_register(sender_psid);
       });
@@ -1687,6 +1698,29 @@ const showOrder1 = async(sender_psid, agent_ref) => {
 
 }
 
+
+
+
+const showOrder2 = async(sender_psid, seaman_ref) => {    
+
+    const userref = db.collection('course_registration').doc(seaman_ref);
+    const user = await userref.get();
+    console.log('SHOW_ORDER',seaman_ref);
+    if (!user.exists) {
+      let response = { "text": "Incorrect reference id" };
+      callSend(sender_psid, response).then(()=>{
+        return review(sender_psid);
+      });
+    }else{
+      
+        let response = { "text": "You are correct." };
+        callSend(sender_psid, response).then(()=>{
+          return agent_already(sender_psid);
+
+          });
+    }   
+
+}
  
 
 const already = (sender_psid) => {
