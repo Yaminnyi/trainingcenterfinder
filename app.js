@@ -1709,7 +1709,7 @@ const showOrder2 = async(sender_psid, seaman_ref) => {
     if (!user.exists) {
       let response = { "text": "Incorrect reference id" };
       callSend(sender_psid, response).then(()=>{
-        return review(sender_psid);
+        return showtype(sender_psid);
       });
     }else{
       
