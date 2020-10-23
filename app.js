@@ -1975,6 +1975,9 @@ const botQuestions = (current_question, sender_psid) => {
   }else if(current_question == 'q9'){
     let response = {"text": bot_questions.q9};
     callSend(sender_psid, response);
+  }else if(current_question == 'q10'){
+    let response = {"text": bot_questions.q10};
+    callSend(sender_psid, response);
   }
 }
 
