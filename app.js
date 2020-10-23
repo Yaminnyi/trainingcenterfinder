@@ -45,6 +45,7 @@ let customer = [];
 let training_center_id ='';
 
 let agent_id ='';
+let seaman_id ='';
 /*
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -568,11 +569,12 @@ app.get('/show', async function(req,res){
 
 });
 
-  
+ 
+
+
+
 
   app.get('/show1', async function(req,res){
-
-
 
 
   const courseRef = db.collection('offshore').orderBy('created_on', 'desc');
@@ -717,6 +719,46 @@ let data = [];
   
 
 });
+
+
+app.get('/view_review/:seaman_id', async function(req,res){
+ let seaman_id = req.params.seaman_id;
+  const seamanref = db.collection('give_review').where('item_tc_id','==',seaman_id);
+  const snapshot = await seamanref.get();
+
+  if (snapshot.empty) {
+    console.log('Yamin:');
+    res.send('no data');
+  } 
+else{
+let data = []; 
+
+  snapshot.forEach(doc => { 
+    
+    let item1 = {}; 
+
+    item1 = doc.data();
+    
+    item1.doc_id = doc.id; 
+    
+    let d = new Date(doc.data().created_on._seconds);
+    d = d.toString();
+    item1.created_on = d;   
+
+    data.push(item1);
+    
+  });  
+
+  console.log('Review:', data); 
+  res.render('view_review.ejs', {data:data});
+
+}
+  
+
+});
+
+
+
 
 
 
@@ -1757,7 +1799,7 @@ const showOrder2 = async(sender_psid, seaman_ref) => {
         return showtype(sender_psid);
       });
     }else{
-      
+      seaman_id = seaman_ref;
         let response = { "text": "You are correct." };
         callSend(sender_psid, response).then(()=>{
           return for_review(sender_psid);
@@ -1790,7 +1832,7 @@ const for_review = (sender_psid) => {
                  {
                 "type": "web_url",
                 "title": "View review",
-                "url":APP_URL+"view_review/"+sender_psid,
+                "url":APP_URL+"view_review/"+seaman_id,
                  "webview_height_ratio": "full",
                 "messenger_extensions": true,          
               
