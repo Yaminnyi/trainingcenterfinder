@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <title>View Seaman registered</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      .item{
+        width:370px;   
+        border:1px solid black;
+        background-color: lightblue;
+            
+      }
+      
+    </style>
  </head>
 
   <body>
@@ -11,46 +20,23 @@
 
  
   
-  <table cellspacing="1" cellpadding="5" border="1">
-    <tr>
-    
-  
-    <th>Name</th>
-    
-    <th>EMail</th>
-    <th>Phone</th>
-    <th>Date</th>
-    
-    <th>Course Name</th>
-    <th>Training center Name</th>
-    <th>Training center id</th>
+ 
+ 
+ <div class="item">
 
-    
-    
-  </tr>
-
-
-  <% data.forEach(function(item){ %>
-     <tr>
+      <h3> User_Name:  <%=  item.name %></h3>
+      <p>EMail: <%= item.email  %><p>
+      <p>Phone: <%= item.phone %><p>
+       <p> Date: <%= item.dob %><p>
      
-       <td><%= item.name %></td>
+     <p>Course Name:<%= item.item_courses %><p>
+      <p>Training center Name:<%= item.item_name %><p>
+      <p>Training center id: <%= item.item_tc_id %></p>
       
-       <td><%= item.email %></td>
-      <td><%= item.phone %></td>
-       <td><%= item.dob %></td>
-       
-       <td><%= item.item_courses %></td>
-       <td><%= item.item_name %></td>
-       <td><%= item.item_tc_id %></td>
-       
-      
-       
-     </tr>
-  <% }); %>
+    </div>
 
-	</table>
- 
- 
+     
+  <% }); %>
 
   </body>
 
