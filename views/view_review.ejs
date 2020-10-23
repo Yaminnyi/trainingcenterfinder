@@ -20,11 +20,11 @@
   <h1>Review</h1>
   
 
-  <% data.forEach(function(review){ %>
+  
 
   
     <div class="course">
-
+<% data.forEach(function(review){ %>
       <h3>User Name:  <%= review.name %></h3>
       <p>Training Center Name: <%= review.tc %><p>
       <p>  Review: <textarea  name="w3review" rows="7" cols="44" style="background-color: lightblue; border-color:black;text-align: justify;"><%= review.review %>  </textarea><p>
@@ -33,7 +33,8 @@
 
   
 
-
+ <% }); %>
+  
 
   
 
@@ -41,8 +42,7 @@
   	</div>
 
      
-  <% }); %>
-  
+ 
   
 
   

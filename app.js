@@ -721,41 +721,43 @@ let data = [];
 });
 
 
-app.get('/view_review/:seaman_id', async function(req,res){
- let seaman_id = req.params.seaman_id;
-  const seamanref = db.collection('give_review').where('item_seaman_id','==',seaman_id);
+app.get('/view_review', async function(req,res){
+
+
+
+
+  const seamanref = db.collection('give_review').orderBy('created_on', 'desc');
   const snapshot = await seamanref.get();
 
   if (snapshot.empty) {
     console.log('Yamin:');
     res.send('no data');
   } 
-else{
-let data = []; 
+
+  let data = []; 
 
   snapshot.forEach(doc => { 
     
-    let item1 = {}; 
+    let review = {}; 
 
-    item1 = doc.data();
+    review = doc.data();
     
-    item1.doc_id = doc.id; 
+    review.id = doc.id; 
     
     let d = new Date(doc.data().created_on._seconds);
     d = d.toString();
-    item1.created_on = d;   
+    review.created_on = d;   
 
-    data.push(item1);
+    data.push(review);
     
   });  
 
-  console.log('Review:', data); 
+  console.log('DATA:', data); 
   res.render('view_review.ejs', {data:data});
 
-}
-  
-
 });
+
+
 
 
 
