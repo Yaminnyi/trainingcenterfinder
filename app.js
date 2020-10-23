@@ -723,7 +723,7 @@ let data = [];
 
 app.get('/view_review/:seaman_id', async function(req,res){
  let seaman_id = req.params.seaman_id;
-  const seamanref = db.collection('give_review').where('item_tc_id','==',seaman_id);
+  const seamanref = db.collection('give_review').where('item_seaman_id','==',seaman_id);
   const snapshot = await seamanref.get();
 
   if (snapshot.empty) {
