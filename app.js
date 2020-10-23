@@ -358,6 +358,52 @@ app.post('/register',function(req,res){
 });
 
 
+app.get('/give_review/:sender_id',function(req,res){
+    const sender_id = req.params.sender_id;
+    res.render('give_review.ejs',{title:"Review", sender_id:sender_id});
+});
+
+
+
+
+
+app.post('/give_review',function(req,res){
+      
+      let ref = generateRandom(8);
+    
+      let name  = req.body.name;
+      let id = req.body.id;
+      let tc = req.body.tc;
+      let course = req.body.course;
+      let review = req.body.review;
+      let sender = req.body.sender; 
+     
+
+      console.log("AA");
+      
+      db.collection('give_review').add({
+      
+      name: name,
+      id:id,
+      tc: tc,
+      course: course,
+      review: review,
+      created_on: created_on
+         
+    }).then(success => {   
+          console.log("DATA SAVED")
+    let text = "Thank you for your review. Your data has been saved.If you leave your message,you write cancel" + "\u000A";
+   
+    let response = {
+      "text": text
+    };
+    callSend(sender,response);
+    }).catch(error => {
+          console.log(error);
+      }); 
+     
+         
+});
 
 
 
@@ -1715,13 +1761,58 @@ const showOrder2 = async(sender_psid, seaman_ref) => {
       
         let response = { "text": "You are correct." };
         callSend(sender_psid, response).then(()=>{
-          return agent_already(sender_psid);
+          return for_review(sender_psid);
 
           });
     }   
 
 }
  
+
+const for_review = (sender_psid) => {
+    let response1 = {"text": "Hello. Please choose one."};
+    let response2 = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [{
+            "title":"Click if you want to review courses.",
+                  
+            "buttons": [                
+                  {
+                "type": "web_url",
+                "title": "Give review",
+                "url":APP_URL+"give_review/"+sender_psid,
+                 "webview_height_ratio": "full",
+                "messenger_extensions": true,          
+              
+                },    
+                 {
+                "type": "web_url",
+                "title": "View review",
+                "url":APP_URL+"view_review/"+sender_psid,
+                 "webview_height_ratio": "full",
+                "messenger_extensions": true,          
+              
+                },           
+              ],
+          }
+
+          ]
+        }
+      }
+    }
+     callSend(sender_psid, response1).then(()=>{
+        return callSend(sender_psid, response2)
+      });
+}
+
+
+
+
+
+
 
 const already = (sender_psid) => {
     let response1 = {"text": "Hello. Please choose one."};
