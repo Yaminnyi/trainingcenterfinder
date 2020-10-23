@@ -24,7 +24,7 @@
  
  <div class="item">
 
-      <h3> User_Name:  <%=  item.name %></h3>
+      <h3> User_Name:  <%= item.name %></h3>
       <p>EMail: <%= item.email  %><p>
       <p>Phone: <%= item.phone %><p>
        <p> Date: <%= item.dob %><p>
@@ -32,11 +32,12 @@
      <p>Course Name:<%= item.item_courses %><p>
       <p>Training center Name:<%= item.item_name %><p>
       <p>Training center id: <%= item.item_tc_id %></p>
+        <% }); %>
       
     </div>
 
      
-  <% }); %>
+ 
 
   </body>
 
