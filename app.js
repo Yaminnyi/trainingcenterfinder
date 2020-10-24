@@ -723,10 +723,10 @@ let data = [];
 
 app.get('/view_review/:seaman_id', async function(req,res){
 
+ let seaman_id = req.params.seaman_id;
 
 
-
-  const seamanref = db.collection('give_review').orderBy('created_on', 'desc');
+  const seamanref = db.collection('give_review').where('id','==',seaman_id);
   const snapshot = await seamanref.get();
 
   if (snapshot.empty) {
