@@ -1947,7 +1947,7 @@ const shopMenu =(sender_psid) => {
           "template_type": "generic",
           "elements": [{
             "title": "All courses",  
-            "image_url":"https://marineandoffshoreinsight.com/wp-content/uploads/2018/07/SEAFARERS-TRAINING.jpg",                  
+            "image_url":"https://marlins.co.uk/wp-content/uploads/sites/8/2017/02/diversity-670x321.jpg",                  
             "buttons": [              
               {
                 "type": "web_url",
