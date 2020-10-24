@@ -8,7 +8,7 @@
     <style>
     	.course{
     		width:370px;   
-    		border:1px solid black;
+    		border:1px solid white;
      
          		
     	}
@@ -23,13 +23,13 @@
   <% data.forEach(function(course){ %>
 
   
-    <div class="course" style="background-color:#1084cf">
+    <div class="course" style="background-color:#129bce">
     <h1>STCW courses</h1>
       <h3>Course Name:  <%= course.courses %></h3>
       <p>Training Center Name: <%= course.name %><p>
       <p>Start Date: <%= course.date %><p>
        <p>End Date: <%= course.end %><p>
-     <p>  Course Detail: <textarea  name="w3review" rows="7" cols="44" style="background-color: #1084cf; border-color:black;text-align: justify;"><%= course.detail %>  </textarea><p>
+     <p>  Course Detail: <textarea  name="w3review" rows="7" cols="44" style="background-color: #129bce; border-color:black;text-align: justify;"><%= course.detail %>  </textarea><p>
      <p>Duration:<%= course.duration %><p>
       <p>Center Address<%= course.address %><p>
       <p>Course fee: <%= course.price %></p>
