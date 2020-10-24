@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <title>TC registration</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
  </head>
 
   <body>
@@ -36,28 +36,28 @@
   </script>
   
  
-  <div class="bg-primary text-white">
-  <form id="form" method="post" action="https://trainingcenterfinder.herokuapp.com/register/"  ><br>
-  <h1 style="color:white; text-align:center; font-size:26px; font-weight: bold;">Register</h1><br>
-  <div class="form-group">
+ 
+<form id="form" method="post" class="bg-primary text-white" action="https://trainingcenterfinder.herokuapp.com/register/"  ><br>
+    <h1 style="color:white; text-align:center; font-size:26px; font-weight: bold;">Register</h1><br>
+
+<div class="form-group">
     <label for="name" style="font-weight: bold; color:white; text-align:center;">Training center Name:</label>
     <input type="text" class="form-control" id="name" name="name" placeholder="Enter company name" style="width:390px;margin-left:7px;">    
-  </div>
-  <div class="form-group">
+</div>
+
+<div class="form-group">
     <label for="email" style="font-weight: bold; color:white; text-align:center;">Email:</label>
     <input type="email" class="form-control" id="email" name="email" placeholder="Enter your Email" style="width:390px;margin-left:7px;">
-  </div> 
+</div> 
 
-  <div class="form-group">
+<div class="form-group">
     <label for="phone" style="font-weight: bold; color:white; text-align:center;">Ph Number:</label>
-      <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter your Phone" style="width:390px;margin-left:7px;">
-  </div><br>
+    <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter your Phone" style="width:390px;margin-left:7px;">
+</div><br>
+
   <input type="hidden"  id="sender" name="sender" value="<%= sender_id %>">
   <input type="submit" value="Register" type="button" class="btn btn-light" style="margin-left: 55px;   padding: 10px 24px;  text-align: center; text-decoration: none; display: inline-block; margin: 4px 2px; margin-left: 149px;"> <br><br>
   </form>
-
-</div>
-  
   <script>
       
    
