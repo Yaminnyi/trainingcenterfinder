@@ -721,7 +721,7 @@ let data = [];
 });
 
 
-app.get('/view_review', async function(req,res){
+app.get('/view_review/:seaman_id', async function(req,res){
 
 
 
@@ -1834,7 +1834,7 @@ const for_review = (sender_psid) => {
                  {
                 "type": "web_url",
                 "title": "View review",
-                "url":APP_URL+"view_review/",
+                "url":APP_URL+"view_review/"+seaman_id,
                  "webview_height_ratio": "full",
                 "messenger_extensions": true,          
               
