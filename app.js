@@ -742,7 +742,7 @@ app.get('/view_review/:seaman_id', async function(req,res){
 
     review = doc.data();
     
-    review.id = doc.id; 
+    review.doc_id = doc.id; 
     
     let d = new Date(doc.data().created_on._seconds);
     d = d.toString();
