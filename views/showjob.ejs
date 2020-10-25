@@ -39,7 +39,7 @@
       <p> <%= job.title %></p> 
 
       <label for="require" style="font-weight: bold; color:white; text-align:center;">Job Requirements:</label>
-      <p> <textarea  name="w3review" rows="7" cols="34" class="container p-3 my-3 bg-primary text-white"  style=" border-color:white;text-align: justify;"><%= job.require %>  </textarea><p>
+      <p> <textarea  name="w3review" rows="4" cols="28" class="container p-3 my-3 bg-primary text-white"  style=" border-color:white;text-align: justify;"><%= job.require %>  </textarea><p>
   
       <label for="apply" style="font-weight: bold; color:white; text-align:center;">How to Apply:</label>
       <p> <%= job.apply %><p>
@@ -50,7 +50,7 @@
 
       <label for="location" style="font-weight: bold; color:white; text-align:center;">Job location:</label>
       <p><%= job.location %><p>
-      
+      <br>
 
 
 
@@ -66,7 +66,7 @@
       <input type="hidden" name="item_apply" value="<%= job.apply %>"/>
       <input type="hidden" name="item_hot" value="<%= job.hot %>"/>
       <input type="hidden" name="item_location" value="<%= job.location %>"/>
-      <input type="submit" name="submit" value="Apply" type="button" class="btn btn-light" style="margin-left: 55px;   padding: 10px 24px;  text-align: center; text-decoration: none; display: inline-block; margin: 4px 2px; margin-left: 120px;"> <br>
+      <input type="submit" name="submit" value="Apply" type="button" class="btn btn-light" style="margin-left: 55px;   padding: 10px 24px;  text-align: center; text-decoration: none; display: inline-block; margin: 4px 2px; margin-left: 120px;width:120px;"> <br>
        
       </form>   
 
