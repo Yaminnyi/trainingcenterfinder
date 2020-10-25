@@ -4,35 +4,73 @@
     <meta charset="UTF-8">
     <title>Offshore courses</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <style>
       .course{
-        width:370px;   
-        border:1px solid black;
-        background-color: lightblue;
-            
+        width:350px;   
+      
+       
       }
       
     </style>
  </head>
 
   <body>
-  <h1>STCW courses</h1>
-  
-
+   <div class="container p-3 my-3 bg-primary text-white">
+  <h1 style="color:white;font-weight: bold; text-align:center;font-size:19px;">STCW courses</h1>
+   </div>
   <% data.forEach(function(course){ %>
 
-  
-    <div class="course">
+   <div class="container p-3 my-3 bg-primary text-white">
 
-      <h3>Course Name:  <%= course.courses %></h3>
-      <p>Training Center Name: <%= course.name %><p>
-      <p>Start Date: <%= course.date %><p>
-       <p>End Date: <%= course.end %><p>
-     <p>  Course Detail: <textarea  name="w3review" rows="7" cols="44" style="background-color: lightblue; border-color:black;text-align: justify;"><%= course.detail %>  </textarea><p>
-     <p>Duration:<%= course.duration %><p>
-      <p>Center Address<%= course.address %><p>
-      <p>Course fee: <%= course.price %></p>
+  
+    <div class="courses">
+ 
+    <label for="courses" style="font-weight: bold; color:white; text-align:center;">Course Name:</label>
+   
+      <p> <%= course.courses %></p> 
+    
+
+   
+    <label for="course" style="font-weight: bold; color:white; text-align:center;">Training Center Name:</label>
+   
+      <p> <%= course.name %></p> 
+
+       
+    <label for="date" style="font-weight: bold; color:white; text-align:center;">Start Date:</label>
+   
+      <p> <%= course.date %></p> 
+
+
+    <label for="end" style="font-weight: bold; color:white; text-align:center;">End Date:</label>
+   
+      <p> <%= course.end %></p> 
+
+
+
+      
+    <label for="detail" style="font-weight: bold; color:white; text-align:center;">Course Detail:</label>
+   
+      <textarea  name="w3review" rows="7" cols="44" class="container p-3 my-3 bg-primary text-white" style="border-color:white;text-align: justify;"><%= course.detail %>  </textarea><p> 
+      
+
+      <label for="duration" style="font-weight: bold; color:white; text-align:center;">Duration:</label>
+   
+      <p> <%= course.duration %></p> 
+   
+       
+    <label for="address" style="font-weight: bold; color:white; text-align:center;">Center Address</label>
+   
+      <p> <%= course.address %></p> 
+     
+       
+    <label for="price" style="font-weight: bold; color:white; text-align:center;">Course fee:</label>
+   
+      <p> <%= course.price %></p>
 
 
 
@@ -47,11 +85,12 @@
       <input type="hidden" name="item_tc_id" value="<%= course.tc_id %>"/>
       <input type="hidden" name="item_duration" value="<%= course.duration %>"/>
       <input type="hidden" name="item_price" value="<%= course.price %>"/>
-      <input type="submit" name="submit" value="Register" type="button" class="btn btn-light" style="margin-left: 55px;   padding: 10px 24px;  text-align: center; text-decoration: none; display: inline-block; margin: 4px 2px; margin-left: 149px;"> <br>
+      <input type="submit" name="submit" value="Register" type="button" class="btn btn-light" style="margin-left: 55px;   padding: 10px 24px;  text-align: center; text-decoration: none; display: inline-block; margin: 4px 2px; margin-left: 120px;"> <br>
       </form>   
 
       
-
+    </div>
+</div>
      
   <% }); %>
   
