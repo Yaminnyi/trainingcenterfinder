@@ -25,55 +25,44 @@
 
   <div class="container p-3 my-3 bg-primary text-white">
   <h1 style="color:white;font-weight: bold; text-align:center;font-size:19px;">STCW courses</h1>
-   </div>
+  </div>
   <% data.forEach(function(course){ %>
 
    <div class="container p-3 my-3 bg-primary text-white">
 
-  
     <div class="courses">
  
-    <label for="courses" style="font-weight: bold; color:white; text-align:center;">Course Name:</label>
-   
+      <label for="courses" style="font-weight: bold; color:white; text-align:center;">Course Name:</label>
       <p> <%= course.courses %></p> 
     
 
    
-    <label for="course" style="font-weight: bold; color:white; text-align:center;">Training Center Name:</label>
-   
+      <label for="course" style="font-weight: bold; color:white; text-align:center;">Training Center Name:</label>
       <p> <%= course.name %></p> 
 
        
-    <label for="date" style="font-weight: bold; color:white; text-align:center;">Start Date:</label>
-   
+      <label for="date" style="font-weight: bold; color:white; text-align:center;">Start Date:</label>
       <p> <%= course.date %></p> 
 
 
-    <label for="end" style="font-weight: bold; color:white; text-align:center;">End Date:</label>
-   
+      <label for="end" style="font-weight: bold; color:white; text-align:center;">End Date:</label>
       <p> <%= course.end %></p> 
 
 
-
-      
-    <label for="detail" style="font-weight: bold; color:white; text-align:center;">Course Detail:</label>
-   
+      <label for="detail" style="font-weight: bold; color:white; text-align:center;">Course Detail:</label>
       <textarea  name="w3review" rows="7" cols="44" class="container p-3 my-3 bg-primary text-white" style="border-color:white;text-align: justify;"><%= course.detail %>  </textarea><p> 
       
 
-      <label for="duration" style="font-weight: bold; color:white; text-align:center;">Duration:</label>
-   
-      <p> <%= course.duration %></p> 
+     <label for="duration" style="font-weight: bold; color:white; text-align:center;">Duration:</label>
+     <p> <%= course.duration %></p> 
    
        
-    <label for="address" style="font-weight: bold; color:white; text-align:center;">Center Address</label>
-   
-      <p> <%= course.address %></p> 
+     <label for="address" style="font-weight: bold; color:white; text-align:center;">Center Address</label>
+     <p> <%= course.address %></p> 
      
        
-    <label for="price" style="font-weight: bold; color:white; text-align:center;">Course fee:</label>
-   
-      <p> <%= course.price %></p>
+     <label for="price" style="font-weight: bold; color:white; text-align:center;">Course fee:</label>
+     <p> <%= course.price %></p>
 
 
 

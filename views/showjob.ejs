@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <title>Seaman Jobs</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <style>
     	.job{
@@ -17,22 +21,36 @@
  </head>
 
   <body>
-  <h1>STCW courses</h1>
-  
-
-
+<div class="container p-3 my-3 bg-primary text-white">
+   <h1 style="color:white;font-weight: bold; text-align:center;font-size:19px;">All Jobs</h1>
+   </div>
   <% data.forEach(function(job){ %>
 
-  
-    <div class="job">
+    <div class="container p-3 my-3 bg-primary text-white">
 
-      <h3><%= job.name %></h3>
-      <p>Company ID: <%= job.agent_id %><p>
-      <p>Job Title: <%= job.title %><p>
-      <p>Job Requirements: <textarea  name="w3review" rows="7" cols="44" style="background-color: lightblue; border-color:black;text-align: justify;"><%= job.require %>  </textarea><p>
-     <p>How to Apply: <%= job.apply %><p>
-     <p>Hotline:<%= job.hot %><p>
-      <p>Job location<%= job.location %><p>
+    <div class="job">
+ 
+      <label for="name" style="font-weight: bold; color:white; text-align:center;">Job Type:</label>
+      <p> <%= job.name %></p> 
+    
+      <label for="agent_id" style="font-weight: bold; color:white; text-align:center;">Company ID:</label>
+      <p> <%= job.agent_id %></p> 
+
+      <label for="title" style="font-weight: bold; color:white; text-align:center;">Job Title:</label>
+      <p> <%= job.title %></p> 
+
+      <label for="require" style="font-weight: bold; color:white; text-align:center;">Job Requirements:</label>
+      <p> <textarea  name="w3review" rows="7" cols="44" style="background-color: lightblue; border-color:black;text-align: justify;"><%= job.require %>  </textarea><p>
+  
+      <label for="apply" style="font-weight: bold; color:white; text-align:center;">How to Apply:</label>
+      <p> <%= job.apply %><p>
+
+      <label for="hot" style="font-weight: bold; color:white; text-align:center;">Hotline:</label>
+      <p><%= job.hot %><p>
+
+
+      <label for="location" style="font-weight: bold; color:white; text-align:center;">Job location:</label>
+      <p><%= job.location %><p>
       
 
 
@@ -49,12 +67,13 @@
       <input type="hidden" name="item_apply" value="<%= job.apply %>"/>
       <input type="hidden" name="item_hot" value="<%= job.hot %>"/>
       <input type="hidden" name="item_location" value="<%= job.location %>"/>
-      <input type="submit" name="submit" value="Apply" style="margin-left: 105px;  background-color: #008CBA; color: white; padding: 10px 20px;  text-align: center; text-decoration: none; display: inline-block;   width=10px;" />
+      <input type="submit" name="submit" value="Apply" type="button" class="btn btn-light" style="margin-left: 55px;   padding: 10px 24px;  text-align: center; text-decoration: none; display: inline-block; margin: 4px 2px; margin-left: 120px;"> <br>
+       
       </form>   
 
 	    
   	</div>
-
+</div>
      
   <% }); %>
   
