@@ -467,14 +467,6 @@ app.post('/course_registration',function(req,res){
 });
 
 
- let img_url = "";
-      let sender = req.body.sender;  
-
-      console.log("REQ FILE:",req.file);
-
-
-
-      
 
 
 app.get('/jobapply/:sender_id',function(req,res){
@@ -490,7 +482,6 @@ app.post('/jobapply',function(req,res){
       let email    = req.body.email;
       let phone  = req.body.phone;
       let dob = req.body.dob;
-      let img_url = "";
       let certificate = req.body.certificate;
       let item_name = req.body.item_name;
       let item_agent_id = req.body.item_agent_id;
@@ -507,15 +498,13 @@ app.post('/jobapply',function(req,res){
       let created_on = today;
 
     
-      let file = req.file;
-      if (file) {
-        uploadImageToStorage(file).then((img_url) => {
+      
       db.collection('jobapply').doc(ref).set({
       name: name,
       email:email,
       phone: phone,
       dob: dob,
-      image: img_url,
+      certificate:certificate,
       item_name:item_name,
       item_agent_id:item_agent_id,
       item_title:item_title,
@@ -539,7 +528,7 @@ app.post('/jobapply',function(req,res){
           console.log(error);
       }); 
      
-     }    
+         
 });
 
 //route url
