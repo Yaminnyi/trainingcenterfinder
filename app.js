@@ -515,7 +515,7 @@ app.post('/jobapply',function(req,res){
       email:email,
       phone: phone,
       dob: dob,
-      certificate:certificate,
+      image: img_url,
       item_name:item_name,
       item_agent_id:item_agent_id,
       item_title:item_title,
@@ -541,7 +541,7 @@ app.post('/jobapply',function(req,res){
      
      }    
 });
-}
+
 //route url
 
 app.get('/show', async function(req,res){
