@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <title>View Seaman registered</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <style>
       .item{
         width:370px;   
-        border:1px solid black;
-        background-color: lightblue;
+        
             
       }
       
@@ -19,19 +23,45 @@
   <h1>View</h1>
 
  
-  
+  <div class="container p-3 my-3 bg-primary text-white">
+   <h1 style="color:white;font-weight: bold; text-align:center;font-size:19px;">All Jobs</h1>
+   </div>
+  <% data.forEach(function(item){ %>
+
+    <div class="container p-3 my-3 bg-primary text-white">
+
+    <div class="item">
  
+      <label for="name" style="font-weight: bold; color:white; text-align:center;">User_Name:</label>
+      <p> <%= item.name %></p> 
  
- <div class="item">
- <% data.forEach(function(item){ %>
-      <h3> User_Name:  <%= item.name %></h3>
-      <p>EMail: <%= item.email  %><p>
-      <p>Phone: <%= item.phone %><p>
-       <p> Date: <%= item.dob %><p>
+      <label for="email" style="font-weight: bold; color:white; text-align:center;">EMail:</label>
+      <p> <%= item.email %></p> 
+
+      <label for="phone" style="font-weight: bold; color:white; text-align:center;">Phone:</label>
+      <p> <%= item.phone %></p> 
+
+      <label for="dob" style="font-weight: bold; color:white; text-align:center;">Date:</label>
+      <p> <%= item.dob %></p> 
+
+      <label for="item_courses" style="font-weight: bold; color:white; text-align:center;">Course Name:</label>
+      <p> <%= item.item_courses %></p> 
+ 
+      <label for="item_name" style="font-weight: bold; color:white; text-align:center;">Training center Name:</label>
+      <p> <%= item.item_name %></p>
+
+      <label for="item_tc_id" style="font-weight: bold; color:white; text-align:center;">Training center id:</label>
+      <p> <%= item.item_tc_id %></p>
      
-     <p>Course Name:<%= item.item_courses %><p>
-      <p>Training center Name:<%= item.item_name %><p>
-      <p>Training center id: <%= item.item_tc_id %></p>
+     <form action="../showjob" method="post">
+     
+      <input type="submit" name="submit" value="Delete" type="button" class="btn btn-light" style="margin-left: 55px;   padding: 10px 24px;  text-align: center; text-decoration: none; display: inline-block; margin: 4px 2px; margin-left: 120px;width:120px;"> <br>
+       
+      </form>   
+
+      
+    </div>
+</div>
            <% }); %>
        
     </div>

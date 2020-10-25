@@ -645,7 +645,17 @@ app.get('/showjob', async function(req,res){
 
 });
 
+app.get('/viewseaman', function(req,res){
+  
+  let doc_id = req.params.doc_id; 
 
+    db.collection("course_registration").doc(doc_id).delete().then(()=>{
+      
+        res.redirect('/viewseaman');
+        
+    }).catch((err)=>console.log('ERROR:', error));   
+
+});
 
 app.get('/viewseaman/:training_center_id', async function(req,res){
  let training_center_id = req.params.training_center_id;
