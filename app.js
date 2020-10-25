@@ -532,41 +532,7 @@ app.post('/jobapply',function(req,res){
 });
 
 //route url
-app.get('/give_review', async function(req,res){
 
-
-
-
-  const courseRef = db.collection('course_registration').orderBy('created_on', 'desc');
-  const snapshot = await courseRef.get();
-
-  if (snapshot.empty) {
-    console.log('Yamin:');
-    res.send('no data');
-  } 
-
-  let data = []; 
-
-  snapshot.forEach(doc => { 
-    
-    let give = {}; 
-
-    give = doc.data();
-    
-    give.id = doc.id; 
-    
-    let d = new Date(doc.data().created_on._seconds);
-    d = d.toString();
-    give.created_on = d;   
-
-    data.push(give);
-    
-  });  
-
-  console.log('DATA:', data); 
-  res.render('give_review.ejs', {data:data});
-
-});
 
  
 app.get('/show', async function(req,res){
