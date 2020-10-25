@@ -3,54 +3,74 @@
   <head>
     <meta charset="UTF-8">
     <title>View Seaman registered</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
  </head>
 
   <body>
-  <h1>View</h1>
+
+ <style>
+      .view{
+        width:370px;   
+        
+            
+      }
+      
+    </style>
+ </head>
+
+  <body>
+  
 
  
-  
-  <table cellspacing="1" cellpadding="5" border="1">
-    <tr>
-    
-  
-    <th>Name</th>
-    
-    <th>EMail</th>
-    <th>Phone</th>
-    <th>Date</th>
-    <th>Certificate</th>
-    <th>Agent Name</th>
-    <th>Agent Id</th>
-    <th>Job title</th>
-   
-
-    
-    
-  </tr>
-
-
+  <div class="container p-3 my-3 bg-primary text-white">
+   <h1 style="color:white;font-weight: bold; text-align:center;font-size:19px;">All Jobs</h1>
+   </div>
   <% data.forEach(function(view){ %>
-     <tr>
-     
-       <td><%= view.name %></td>
-      
-       <td><%= view.email %></td>
-      <td><%= view.phone %></td>
-       <td><%= view.dob %></td>
-       <td><%= view.certificate %></td>
-       <td><%= view.item_name %></td>
-       <td><%= view.item_agent_id %></td>
-       <td><%= view.item_title %></td>
-       
-     </tr>
-  <% }); %>
 
-	</table>
+    <div class="container p-3 my-3 bg-primary text-white">
+
+    <div class="view">
+ 
+      <label for="name" style="font-weight: bold; color:white; text-align:center;">User_Name:</label>
+      <p> <%= view.name %></p> 
+ 
+      <label for="email" style="font-weight: bold; color:white; text-align:center;">EMail:</label>
+      <p> <%= view.email %></p> 
+
+      <label for="phone" style="font-weight: bold; color:white; text-align:center;">Phone:</label>
+      <p> <%= view.phone %></p> 
+
+      <label for="dob" style="font-weight: bold; color:white; text-align:center;">Date:</label>
+      <p> <%= view.dob %></p> 
+
+      <label for="certificate" style="font-weight: bold; color:white; text-align:center;">Certificates</label>
+      <p> <%= view.certificate %></p> 
+ 
+      <label for="item_name" style="font-weight: bold; color:white; text-align:center;">Agent Name:</label>
+      <p> <%= view.item_name %></p>
+
+      <label for="item_agent_id" style="font-weight: bold; color:white; text-align:center;">Agent id:</label>
+      <p> <%= view.item_agent_id %></p>
+     
+     
+
+      
+    </div>
+</div>
+           <% }); %>
+       
+    </div>
+
  
  
 
   </body>
 
 </html>
+
+
+
