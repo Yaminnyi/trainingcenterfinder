@@ -23,19 +23,19 @@
 
   <body>
   
-  
+  <h1 style="color:black;">STCW courses</h1>
   <% data.forEach(function(course){ %>
 
    <div class="container p-3 my-3 bg-primary text-white">
 
-  <h1 style="color:white;">STCW courses</h1>
+  
     <div class="course">
     
       <p>Course Name:  <%= course.courses %></p>
       <p>Training Center Name: <%= course.name %><p>
       <p>Start Date: <%= course.date %><p>
        <p>End Date: <%= course.end %><p>
-     <p>  Course Detail: <textarea  name="w3review" rows="7" cols="44" style="background-color: #129bce; border-color:black;text-align: justify;"><%= course.detail %>  </textarea><p>
+     <p>  Course Detail: <textarea  name="w3review" rows="7" cols="44" class="container p-3 my-3 bg-primary text-white" style="border-color:white;text-align: justify;"><%= course.detail %>  </textarea><p>
      <p>Duration:<%= course.duration %><p>
       <p>Center Address<%= course.address %><p>
       <p>Course fee: <%= course.price %></p>
