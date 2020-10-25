@@ -366,29 +366,28 @@ app.get('/give_review/:sender_id',function(req,res){
 
 
 
-
-
 app.post('/give_review',function(req,res){
       
       let ref = generateRandom(8);
     
-      let name  = req.body.name;
-      
+     
       let tc = req.body.tc;
       let course = req.body.course;
-      let review = req.body.review;
-      let sender = req.body.sender; 
+      let review = req.body.review; 
+      let item_id = req.body.item_id;
+      let item_name = req.body.item_name;
      
 
       console.log("AA");
       
       db.collection('give_review').add({
       
-      name: name,
      
       tc: tc,
       course: course,
-      review: review
+      review: review.
+      item_id:item_id,
+      item_name:item_name
          
     }).then(success => {   
           console.log("DATA SAVED")
@@ -397,7 +396,9 @@ app.post('/give_review',function(req,res){
     let response = {
       "text": text
     };
-    callSend(sender,response);
+   console.log("USER_ID",user_id);
+     console.log("USERID", userInputs);
+    callSend(user_id,response);
     }).catch(error => {
           console.log(error);
       }); 
@@ -533,8 +534,6 @@ app.post('/jobapply',function(req,res){
 
 //route url
 
-
- 
 app.get('/show', async function(req,res){
 
 
