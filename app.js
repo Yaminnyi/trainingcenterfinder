@@ -533,17 +533,40 @@ app.post('/jobapply',function(req,res){
 });
 
 //route url
-app.get('/give_review', function(req, res){
+app.get('/give_review/:seaman_id', async function(req,res){
+ let seaman_id = req.params.seaman_id;
+  const seamanref = db.collection('course_registration').where('seaman_id','==',seaman_id);
+  const snapshot = await seamanref.get();
+
+  if (snapshot.empty) {
+    console.log('Yamin:');
+    res.send('no data');
+  } 
+else{
+let data = []; 
+
+  snapshot.forEach(doc => { 
     
+    let item = {}; 
+
+    item = doc.data();
+    
+    item.doc_id = doc.id; 
+    
+    let d = new Date(doc.data().created_on._seconds);
+    d = d.toString();
+    item.created_on = d;   
+
+    data.push(item);
+    
+  });  
+
+  console.log('Training Center students:', data); 
+  res.render('give_review.ejs', {data:data});
+
+}
   
-    if(!customer[user_id].course_registration){
-        customer[user_id].course_registration = [];
-    }
-    else{   
-         
-        
-        res.render('give_review.ejs', {course_registration:customer[user_id].course_registration,  user:customer[user_id]});    
-    }
+
 });
 
 
