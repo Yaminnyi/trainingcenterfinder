@@ -383,7 +383,7 @@ app.post('/give_review',function(req,res){
       db.collection('give_review').add({
       
      name:name,
-     id:id;
+     id:id,
       tc: tc,
       course: course,
       review: review
