@@ -766,8 +766,8 @@ let data = [];
 app.get('/view_review', async function(req,res){
 
 
-  const jobRef = db.collection('give_review').orderBy('created_on', 'desc');
-  const snapshot = await jobRef.get();
+  const seamanref = db.collection('give_review').orderBy('created_on', 'desc');
+  const snapshot = await seamanref.get();
 
   if (snapshot.empty) {
     console.log('Yamin:');
