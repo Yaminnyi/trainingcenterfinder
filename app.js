@@ -762,17 +762,19 @@ let data = [];
 
 
 
-app.get('/view_review/:seaman_id', async function(req,res){
- let seaman_id = req.params.seaman_id;
-  const seamanref = db.collection('give_review').where('id','==',seaman_id);
-  const snapshot = await seamanref.get();
+
+app.get('/view_review', async function(req,res){
+
+
+  const jobRef = db.collection('give_review').orderBy('created_on', 'desc');
+  const snapshot = await jobRef.get();
 
   if (snapshot.empty) {
     console.log('Yamin:');
     res.send('no data');
   } 
-else{
-let data = []; 
+
+  let data = []; 
 
   snapshot.forEach(doc => { 
     
@@ -780,25 +782,20 @@ let data = [];
 
     review = doc.data();
     
-    review.doc_id = doc.id; 
+    review.id = doc.id; 
     
-   
+    let d = new Date(doc.data().created_on._seconds);
+    d = d.toString();
+    review.created_on = d;   
 
     data.push(review);
     
   });  
 
-  console.log('Training Center students:', data); 
+  console.log('DATA:', data); 
   res.render('view_review.ejs', {data:data});
 
-}
-  
-
 });
-
-
-
-
 
 
 app.post('/show', function(req, res){
@@ -1838,7 +1835,7 @@ const showOrder2 = async(sender_psid, seaman_ref) => {
         return showtype(sender_psid);
       });
     }else{
-      seaman_id = seaman_ref;
+      
         let response = { "text": "You are correct." };
         callSend(sender_psid, response).then(()=>{
           return for_review(sender_psid);
@@ -1871,7 +1868,7 @@ const for_review = (sender_psid) => {
                  {
                 "type": "web_url",
                 "title": "View review",
-                "url":APP_URL+"view_review/"+seaman_id,
+                "url":APP_URL+"view_review/"+sender_psid,
                  "webview_height_ratio": "full",
                 "messenger_extensions": true,          
               
