@@ -371,6 +371,7 @@ app.post('/give_review',function(req,res){
       let ref = generateRandom(8);
     
      let name = req.body.name;
+     let id = req.body.id;
       let tc = req.body.tc;
       let course = req.body.course;
       let review = req.body.review;
@@ -382,6 +383,7 @@ app.post('/give_review',function(req,res){
       db.collection('give_review').add({
       
      name:name,
+     id:id;
       tc: tc,
       course: course,
       review: review
@@ -762,7 +764,7 @@ let data = [];
 
 app.get('/view_review/:seaman_id', async function(req,res){
  let seaman_id = req.params.seaman_id;
-  const seamanref = db.collection('give_review').where('name','==',name);
+  const seamanref = db.collection('give_review').where('id','==',seaman_id);
   const snapshot = await seamanref.get();
 
   if (snapshot.empty) {
