@@ -375,6 +375,7 @@ app.post('/give_review',function(req,res){
       let tc = req.body.tc;
       let course = req.body.course;
       let review = req.body.review;
+      let sender = req.body.sender; 
     
      
 
@@ -391,20 +392,22 @@ app.post('/give_review',function(req,res){
          
     }).then(success => {   
           console.log("DATA SAVED")
-    let text = "Thank you for your review. Your data has been saved.If you leave your message,you write cancel" + "\u000A";
+    let text = "Thank you for your add course. Your data has been saved.If you leave your message,you write cancel" + "\u000A";
    
     let response = {
       "text": text
     };
-   console.log("USER_ID",user_id);
-     console.log("USERID", userInputs);
-    callSend(user_id,response);
+    callSend(sender,response);
     }).catch(error => {
           console.log(error);
       }); 
      
          
 });
+
+
+
+
 
 
 
