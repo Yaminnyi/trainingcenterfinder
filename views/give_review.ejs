@@ -38,7 +38,10 @@
 <form id="form" action="../give_review" method="post" class="bg-primary text-white">  
    <h1 style="color:white; text-align:center; font-size:26px; font-weight: bold;">Give Review</h1><br>  
 
-
+<div class="form-group">
+   <label for="name" style="font-weight: bold; color:white; text-align:center;">UserName:</label>
+   <input type="text" name="name" placeholder="Enter your Name" style="width:390px;margin-left:7px;" required/>
+</div>
 <div class="form-group">
    <label for="tc" style="font-weight: bold; color:white; text-align:center;">Name of Training Center to review::</label>
    <input type="text" name="tc" placeholder="Enter your Email" style="width:390px;margin-left:7px;" required/>
@@ -57,7 +60,7 @@
       
      
    
-        <input type="hidden" name="item_name" value="<%= name %>"/>
+        
      
 
 

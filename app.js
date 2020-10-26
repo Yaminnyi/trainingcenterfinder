@@ -370,7 +370,7 @@ app.post('/give_review',function(req,res){
       
       let ref = generateRandom(8);
     
-     
+     let name = req.body.name;
       let tc = req.body.tc;
       let course = req.body.course;
       let review = req.body.review;
@@ -381,7 +381,7 @@ app.post('/give_review',function(req,res){
       
       db.collection('give_review').add({
       
-     
+     name:name,
       tc: tc,
       course: course,
       review: review
