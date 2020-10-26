@@ -1868,7 +1868,7 @@ const for_review = (sender_psid) => {
                  {
                 "type": "web_url",
                 "title": "View review",
-                "url":APP_URL+"view_review/"+sender_psid,
+               "url":APP_URL+"view_review/",
                  "webview_height_ratio": "full",
                 "messenger_extensions": true,          
               
