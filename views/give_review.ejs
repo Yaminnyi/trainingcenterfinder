@@ -35,33 +35,43 @@
     };
   </script>
 
+<form id="form" action="../give_review" method="post" class="bg-primary text-white">  
+   <h1 style="color:white; text-align:center; font-size:26px; font-weight: bold;">Give Review</h1><br>  
 
 
+<div class="form-group">
+   <label for="tc" style="font-weight: bold; color:white; text-align:center;">Name of Training Center to review::</label>
+   <input type="text" name="tc" placeholder="Enter your Email" style="width:390px;margin-left:7px;" required/>
+</div>
 
-       <% data.forEach(function(item){ %>
-       <div class="item">
+<div class="form-group">
+    <label for="course" style="font-weight: bold; color:white; text-align:center;">Course you attended:</label>
+    <input type="text" name="course" placeholder="Enter your Phone" style="width:390px;margin-left:7px;" required/>
+</div>
+
+
+<div class="form-group">
+    <label for="review" style="font-weight: bold; color:white; text-align:center;">Give Review:</label>
+    <input type="text" name="review" placeholder="Enter your DOB" style="width:390px;margin-left:7px;" required/>
+</div>
+      
      
-    
-        <form id="form" action="../give_review" method="post">  
-      <input type="text" name="name" value="<%= item.name %>" required/>  <br/>
+    <input type="hidden" name="item_id" value="<%= id %>"/>
+        
+        <input type="hidden" name="item_name" value="<%= name %>"/>
+     
+
+
+
+  <input type="submit" value="Give Review" type="button" class="btn btn-light" style="margin-left: 55px;   padding: 10px 24px;  text-align: center; text-decoration: none; display: inline-block; margin: 4px 2px; margin-left: 149px;"> 
+  </form>
   
 
-   <label for="tc" style="font-weight: bold; color:white; text-align:center;">Name of Training Center to review:</label>
-   <input type="text" name="tc"  placeholder="Enter your attended course"  style="width:390px;margin-left:7px;" required/>
 
-
-   <label for="course" style="font-weight: bold; color:white; text-align:center;">Course you attended:</label>
-   <input type="text" name="course" placeholder="Enter your attended course" style="width:390px;margin-left:7px;" required/>
-
-    <label for="review" style="font-weight: bold; color:white; text-align:center;">Give review:</label>
-    <input type="text" name="review" placeholder="Enter your Review" style="width:390px;margin-left:7px;" required/>
+       
+     
     
-    <input type="submit" name="submit" value="Review"/>
-  </form>
-  </div>
-
-<% }); %>
-
+  
  
   
 

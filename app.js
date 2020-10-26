@@ -374,8 +374,7 @@ app.post('/give_review',function(req,res){
       let tc = req.body.tc;
       let course = req.body.course;
       let review = req.body.review;
-      let name = req.body.name;
-     
+    
      
 
       console.log("AA");
@@ -385,8 +384,7 @@ app.post('/give_review',function(req,res){
      
       tc: tc,
       course: course,
-      review: review,
-      name: name
+      review: review
 
          
     }).then(success => {   
