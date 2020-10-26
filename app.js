@@ -374,8 +374,7 @@ app.post('/give_review',function(req,res){
       let tc = req.body.tc;
       let course = req.body.course;
       let review = req.body.review; 
-      let item_id = req.body.item_id;
-      let item_name = req.body.item_name;
+     
      
 
       console.log("AA");
@@ -385,9 +384,7 @@ app.post('/give_review',function(req,res){
      
       tc: tc,
       course: course,
-      review: review.
-      item_id:item_id,
-      item_name:item_name
+      review: review
          
     }).then(success => {   
           console.log("DATA SAVED")
