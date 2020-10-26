@@ -373,7 +373,8 @@ app.post('/give_review',function(req,res){
      
       let tc = req.body.tc;
       let course = req.body.course;
-      let review = req.body.review; 
+      let review = req.body.review;
+      let name = req.body.name;
      
      
 
@@ -384,7 +385,9 @@ app.post('/give_review',function(req,res){
      
       tc: tc,
       course: course,
-      review: review
+      review: review,
+      name: name
+
          
     }).then(success => {   
           console.log("DATA SAVED")
@@ -530,6 +533,22 @@ app.post('/jobapply',function(req,res){
 });
 
 //route url
+app.get('/give_review', function(req, res){
+    
+  
+    if(!customer[user_id].course_registration){
+        customer[user_id].course_registration = [];
+    }
+    else{   
+         
+        
+        res.render('give_review.ejs', {course_registration:customer[user_id].course_registration,  user:customer[user_id]});    
+    }
+});
+
+
+
+
 
 app.get('/show', async function(req,res){
 
@@ -718,42 +737,6 @@ let data = [];
 
 });
 
-
-app.get('/view_review/:seaman_id', async function(req,res){
-
- let seaman_id = req.params.seaman_id;
-
-
-  const seamanref = db.collection('give_review').where('id','==',seaman_id);
-  const snapshot = await seamanref.get();
-
-  if (snapshot.empty) {
-    console.log('Yamin:');
-    res.send('no data');
-  } 
-
-  let data = []; 
-
-  snapshot.forEach(doc => { 
-    
-    let review = {}; 
-
-    review = doc.data();
-    
-    review.doc_id = doc.id; 
-    
-    let d = new Date(doc.data().created_on._seconds);
-    d = d.toString();
-    review.created_on = d;   
-
-    data.push(review);
-    
-  });  
-
-  console.log('DATA:', data); 
-  res.render('view_review.ejs', {data:data});
-
-});
 
 
 
