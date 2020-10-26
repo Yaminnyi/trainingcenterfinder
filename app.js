@@ -1865,14 +1865,7 @@ const for_review = (sender_psid) => {
                 "messenger_extensions": true,          
               
                 },    
-                 {
-                "type": "web_url",
-                "title": "View review",
-               "url":APP_URL+"view_review/",
-                 "webview_height_ratio": "full",
-                "messenger_extensions": true,          
-              
-                },           
+                    
               ],
           }
 
@@ -1988,6 +1981,33 @@ const shopMenu =(sender_psid) => {
 
                 "title": "View",
                 "url":APP_URL+"show/",
+                 "webview_height_ratio": "full",
+                "messenger_extensions": true,          
+              },
+              
+            ],
+          }]
+        }
+      }
+    }  
+  callSend(sender_psid, response);
+}
+
+const view =(sender_psid) => {
+  let response = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [{
+            "title": "All courses",  
+            "image_url":"https://marlins.co.uk/wp-content/uploads/sites/8/2017/02/diversity-670x321.jpg",                  
+            "buttons": [              
+              {
+                "type": "web_url",
+
+                "title": "View",
+                "url":APP_URL+"view_review/",
                  "webview_height_ratio": "full",
                 "messenger_extensions": true,          
               },
