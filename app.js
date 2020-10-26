@@ -760,6 +760,41 @@ let data = [];
 
 
 
+app.get('/view_review/:seaman_id', async function(req,res){
+ let seaman_id = req.params.seaman_id;
+  const seamanref = db.collection('give_review').where('name','==',name);
+  const snapshot = await seamanref.get();
+
+  if (snapshot.empty) {
+    console.log('Yamin:');
+    res.send('no data');
+  } 
+else{
+let data = []; 
+
+  snapshot.forEach(doc => { 
+    
+    let review = {}; 
+
+    review = doc.data();
+    
+    review.doc_id = doc.id; 
+    
+    let d = new Date(doc.data().created_on._seconds);
+    d = d.toString();
+    review.created_on = d;   
+
+    data.push(review);
+    
+  });  
+
+  console.log('Training Center students:', data); 
+  res.render('view_review.ejs', {data:data});
+
+}
+  
+
+});
 
 
 
@@ -1803,7 +1838,7 @@ const showOrder2 = async(sender_psid, seaman_ref) => {
         return showtype(sender_psid);
       });
     }else{
-     
+      seaman_id = seaman_ref;
         let response = { "text": "You are correct." };
         callSend(sender_psid, response).then(()=>{
           return for_review(sender_psid);

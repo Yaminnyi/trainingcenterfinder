@@ -3,43 +3,67 @@
   <head>
     <meta charset="UTF-8">
     <title>STCW courses</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <style>
-    	.course{
-    		width:370px;   
-    		border:1px solid black;
-        background-color: lightblue;
-         		
-    	}
-    	
+      .review{
+        width:370px;   
+        
+            
+      }
+      
     </style>
  </head>
 
   <body>
-  <h1>Review</h1>
   
 
-  
-
-  
-    <div class="course">
-<% data.forEach(function(review){ %>
-      <h3>User Name:  <%= review.name %></h3>
-      <p>Training Center Name: <%= review.tc %><p>
-      <p>  Review: <textarea  name="w3review" rows="7" cols="44" style="background-color: lightblue; border-color:black;text-align: justify;"><%= review.review %>  </textarea><p>
-    
-
- <% }); %>
-	    
-  	</div>
-
-     
  
-  
+  <div class="container p-3 my-3 bg-primary text-white">
+   <h1 style="color:white;font-weight: bold; text-align:center;font-size:19px;">All Jobs</h1>
+   </div>
+  <% data.forEach(function(review){ %>
 
-  
+    <div class="container p-3 my-3 bg-primary text-white">
 
- </body>
+    <div class="review">
+ 
+      <label for="name" style="font-weight: bold; color:white; text-align:center;">User_Name:</label>
+      <p> <%= review.name %></p> 
+ 
+      <label for="tc" style="font-weight: bold; color:white; text-align:center;">Name of Training Center:</label>
+      <p> <%= review.tc %></p> 
+
+      <label for="review" style="font-weight: bold; color:white; text-align:center;">Review:</label>
+      <p> <%= review.review %></p> 
+
+      
+     
+     
+
+      
+    </div>
+</div>
+           <% }); %>
+       
+    </div>
+
+ 
+ 
+
+  </body>
 
 </html>
+
+
+
+
+
+  
+
+  
+    
