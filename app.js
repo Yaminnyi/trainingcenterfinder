@@ -1490,6 +1490,9 @@ const handlePostback = (sender_psid, received_postback) => {
           current_question = "q9";
           botQuestions(current_question, sender_psid);
         break; 
+        case "viewreview":         
+          view(sender_psid);
+        break; 
         case "review":         
           current_question = "q10";
           botQuestions(current_question, sender_psid);
@@ -1633,6 +1636,16 @@ const showtype = (sender_psid) => {
                   "type": "postback",
                   "title": "Find jobs",
                   "payload": "jobs", 
+                },               
+              ],
+          },{
+            "title": "View Review",
+            "image_url":"https://s3.amazonaws.com/blog4.0/blog/wp-content/uploads/Feature-image-5-positive-Review-Examples-1-1140x634.png",                       
+            "buttons": [
+                {
+                  "type": "postback",
+                  "title": "View",
+                  "payload": "viewreview",
                 },               
               ],
           },{
