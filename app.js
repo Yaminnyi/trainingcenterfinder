@@ -782,9 +782,7 @@ let data = [];
     
     review.doc_id = doc.id; 
     
-    let d = new Date(doc.data().created_on._seconds);
-    d = d.toString();
-    review.created_on = d;   
+   
 
     data.push(review);
     
