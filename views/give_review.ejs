@@ -38,7 +38,8 @@
 
 
 
-      
+       <% data.forEach(function(item){ %>
+       <div class="item">
      
     
         <form id="form" action="../give_review" method="post">  
@@ -46,7 +47,7 @@
   
 
    <label for="tc" style="font-weight: bold; color:white; text-align:center;">Name of Training Center to review:</label>
-   <input type="text" name="tc"  style="width:390px;margin-left:7px;" required/>
+   <input type="text" name="tc"  placeholder="Enter your attended course"  style="width:390px;margin-left:7px;" required/>
 
 
    <label for="course" style="font-weight: bold; color:white; text-align:center;">Course you attended:</label>
@@ -57,7 +58,7 @@
     
     <input type="submit" name="submit" value="Review"/>
   </form>
-  
+  </div>
 
 
 
