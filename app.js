@@ -1984,7 +1984,7 @@ const view =(sender_psid) => {
           "template_type": "generic",
           "elements": [{
             "title": "All courses",  
-            "image_url":"https://marlins.co.uk/wp-content/uploads/sites/8/2017/02/diversity-670x321.jpg",                  
+            "image_url":"https://gamethinking.io/wp-content/uploads/sites/5/2018/05/review-icon-png-1.png",                  
             "buttons": [              
               {
                 "type": "web_url",
