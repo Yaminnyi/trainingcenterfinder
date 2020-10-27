@@ -46,6 +46,7 @@ let training_center_id ='';
 
 let agent_id ='';
 let seaman_id ='';
+let seaman_ref ='';
 /*
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -1348,7 +1349,7 @@ const handleMessage = (sender_psid, received_message) => {
      current_question = '';     
      showOrder1(sender_psid, agent_ref);
   }else if(current_question == 'q10'){
-     let seaman_ref = received_message.text; 
+      seaman_ref = received_message.text; 
 
      console.log('seaman_ref: ', seaman_ref);    
      current_question = '';     
