@@ -829,7 +829,19 @@ app.get('/cart', function(req, res){
 
 app.get('/give_review/:sender_id',function(req,res){
     const sender_id = req.params.sender_id;
-    res.render('give_review.ejs',{title:"Review", sender_id:sender_id});
+    const courseRef = db.collection('course_registration').doc(seaman_ref);
+    const doc = await courseRef.get();
+  if (!doc.exists) {
+    console.log('No such document!');
+  } else {
+    
+    let data = doc.data();
+    data.doc_id = doc.id;
+    
+    res.render('give_review.ejs', {data:data,title:"Review", sender_id:sender_id});
+  } 
+  
+   
 });
 
 

@@ -11,6 +11,7 @@
  </head>
 
   <body>
+
   <script>
       (function(d, s, id){
       var js, fjs = d.getElementsByTagName(s)[0];
@@ -44,11 +45,11 @@
 </div>
 <div class="form-group">
    <label for="id" style="font-weight: bold; color:white; text-align:center;">ID:</label>
-   <input type="text" name="id" placeholder="Enter your ID" style="width:390px;margin-left:7px;" required/>
+   <input type="text" name="id" value="<%= data.id %>" placeholder="Enter your ID" style="width:390px;margin-left:7px;" required/>
 </div>
 <div class="form-group">
    <label for="tc" style="font-weight: bold; color:white; text-align:center;">Name of Training Center to review::</label>
-   <input type="text" name="tc" placeholder="Enter your Email" style="width:390px;margin-left:7px;" required/>
+   <input type="text" name="tc" value="<%= data.item_name %>" placeholder="Enter your Email" style="width:390px;margin-left:7px;" required/>
 </div>
 
 <div class="form-group">
