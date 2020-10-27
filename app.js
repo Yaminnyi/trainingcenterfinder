@@ -1610,7 +1610,7 @@ const showtype = (sender_psid) => {
               ],
           },{
             "title": "View Review",
-            "image_url":"https://s3.amazonaws.com/blog4.0/blog/wp-content/uploads/Feature-image-5-positive-Review-Examples-1-1140x634.png",                       
+            "image_url":"https://gamethinking.io/wp-content/uploads/sites/5/2018/05/review-icon-png-1.png",                       
             "buttons": [
                 {
                   "type": "postback",
