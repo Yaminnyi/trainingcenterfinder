@@ -1610,7 +1610,7 @@ const showtype = (sender_psid) => {
               ],
           },{
             "title": "View Review",
-            "image_url":"https://gamethinking.io/wp-content/uploads/sites/5/2018/05/review-icon-png-1.png",                       
+            "image_url":"https://thumbs.dreamstime.com/b/review-meeting-concept-little-man-showing-playcard-white-49949784.jpg",                       
             "buttons": [
                 {
                   "type": "postback",
@@ -1984,7 +1984,7 @@ const view =(sender_psid) => {
           "template_type": "generic",
           "elements": [{
             "title": "All courses",  
-            "image_url":"https://gamethinking.io/wp-content/uploads/sites/5/2018/05/review-icon-png-1.png",                  
+            "image_url":"https://static.wixstatic.com/media/e5eac2_aacf74a52d9a4b2e9aae7f93162ce5e5~mv2_d_1600_1472_s_2.jpg",                  
             "buttons": [              
               {
                 "type": "web_url",
