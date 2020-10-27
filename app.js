@@ -827,7 +827,7 @@ app.get('/cart', function(req, res){
 
 
 
-app.get('/give_review/:sender_id',function(req,res){
+app.get('/give_review/:sender_id',async(req,res)=>{
     const sender_id = req.params.sender_id;
     const courseRef = db.collection('course_registration').doc(seaman_ref);
     const doc = await courseRef.get();
