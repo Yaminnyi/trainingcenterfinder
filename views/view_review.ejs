@@ -3,70 +3,68 @@
   <head>
     <meta charset="UTF-8">
     <title>STCW courses</title>
-     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <style>
-      .review{
-        width:370px;   
-        
-            
-      }
+    	.course{
+    		width:350px;   
+    	
       
+     
+         		
+    	}
+    	
     </style>
  </head>
 
   <body>
-  
 
- 
   <div class="container p-3 my-3 bg-primary text-white">
-   <h1 style="color:white;font-weight: bold; text-align:center;font-size:19px;">All Jobs</h1>
-   </div>
-  <% data.forEach(function(review){ %>
+  <h1 style="color:white;font-weight: bold; text-align:center;font-size:19px;">STCW courses</h1>
+  </div>
+  <% data.forEach(function(rate){ %>
 
-    <div class="container p-3 my-3 bg-primary text-white">
+   <div class="container p-3 my-3 bg-primary text-white">
 
-    <div class="review">
+    <div class="rate">
  
-      <label for="name" style="font-weight: bold; color:white; text-align:center;">User_Name:</label>
-      <p> <%= review.name %></p> 
+      <label for="name" style="font-weight: bold; color:white; text-align:center;">User Name:</label>
+      <p> <%= rate.name %></p> 
+    
 
-    <label for="id" style="font-weight: bold; color:white; text-align:center;">ID:</label>
-      <p> <%= review.id %></p> 
- 
-      <label for="tc" style="font-weight: bold; color:white; text-align:center;">Name of Training Center:</label>
-      <p> <%= review.tc %></p> 
+   
+      <label for="id" style="font-weight: bold; color:white; text-align:center;">User id:</label>
+      <p> <%= rate.id %></p> 
+
+       
+      <label for="tc" style="font-weight: bold; color:white; text-align:center;">TC:</label>
+      <p> <%= rate.tc %></p> 
+
+
+      <label for="course" style="font-weight: bold; color:white; text-align:center;">Attended Courses:</label>
+      <p> <%= rate.course %></p> 
+
 
       <label for="review" style="font-weight: bold; color:white; text-align:center;">Review:</label>
-      <p> <%= review.review %></p> 
+      <textarea  name="w3review" rows="7" cols="44" class="container p-3 my-3 bg-primary text-white" style="border-color:white;text-align: justify;"><%= rate.review %>  </textarea><p> 
 
-      
-     
-     
 
-      
-    </div>
+ 
+
+	    
+  	</div>
 </div>
-           <% }); %>
-       
-    </div>
+     
+  <% }); %>
+  
+  
 
- 
- 
+  
 
-  </body>
+ </body>
 
 </html>
-
-
-
-
-
-  
-
-  
-    

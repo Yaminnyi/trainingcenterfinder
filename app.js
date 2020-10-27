@@ -359,51 +359,6 @@ app.post('/register',function(req,res){
 });
 
 
-app.get('/give_review/:sender_id',function(req,res){
-    const sender_id = req.params.sender_id;
-    res.render('give_review.ejs',{title:"Review", sender_id:sender_id});
-});
-
-
-
-app.post('/give_review',function(req,res){
-      
-      let ref = generateRandom(8);
-    
-     let name = req.body.name;
-     let id = req.body.id;
-      let tc = req.body.tc;
-      let course = req.body.course;
-      let review = req.body.review;
-      let sender = req.body.sender; 
-    
-     
-
-      console.log("AA");
-      
-      db.collection('give_review').add({
-      
-     name:name,
-     id:id,
-      tc: tc,
-      course: course,
-      review: review
-
-         
-    }).then(success => {   
-          console.log("DATA SAVED")
-    let text = "Thank you for your add course. Your data has been saved.If you leave your message,you write cancel" + "\u000A";
-   
-    let response = {
-      "text": text
-    };
-    callSend(sender,response);
-    }).catch(error => {
-          console.log(error);
-      }); 
-     
-         
-});
 
 
 
@@ -536,42 +491,41 @@ app.post('/jobapply',function(req,res){
 });
 
 //route url
-app.get('/give_review/:seaman_id', async function(req,res){
- let seaman_id = req.params.seaman_id;
-  const seamanref = db.collection('course_registration').where('seaman_id','==',seaman_id);
+app.get('/view_review', async function(req,res){
+
+
+
+
+  const seamanref = db.collection('give_review').orderBy('created_on', 'desc');
   const snapshot = await seamanref.get();
 
   if (snapshot.empty) {
     console.log('Yamin:');
     res.send('no data');
   } 
-else{
-let data = []; 
+
+  let data = []; 
 
   snapshot.forEach(doc => { 
     
-    let item = {}; 
+    let rate = {}; 
 
-    item = doc.data();
+    rate = doc.data();
     
-    item.doc_id = doc.id; 
+    rate.id = doc.id; 
     
     let d = new Date(doc.data().created_on._seconds);
     d = d.toString();
-    item.created_on = d;   
+    rate.created_on = d;   
 
-    data.push(item);
+    data.push(rate);
     
   });  
 
-  console.log('Training Center students:', data); 
-  res.render('give_review.ejs', {data:data});
-
-}
-  
+  console.log('DATA:', data); 
+  res.render('view_review.ejs', {data:data});
 
 });
-
 
 
 
@@ -766,40 +720,6 @@ let data = [];
 
 
 
-app.get('/view_review', async function(req,res){
-
-
-  const seamanref = db.collection('give_review').orderBy('created_on', 'desc');
-  const snapshot = await seamanref.get();
-
-  if (snapshot.empty) {
-    console.log('Yamin:');
-    res.send('no data');
-  } 
-
-  let data = []; 
-
-  snapshot.forEach(doc => { 
-    
-    let review = {}; 
-
-    review = doc.data();
-    
-    review.id = doc.id; 
-    
-    let d = new Date(doc.data().created_on._seconds);
-    d = d.toString();
-    review.created_on = d;   
-
-    data.push(review);
-    
-  });  
-
-  console.log('DATA:', data); 
-  res.render('view_review.ejs', {data:data});
-
-});
-
 
 app.post('/show', function(req, res){
     
@@ -907,6 +827,53 @@ app.get('/cart', function(req, res){
 
 
 
+app.get('/give_review/:sender_id',function(req,res){
+    const sender_id = req.params.sender_id;
+    res.render('give_review.ejs',{title:"Review", sender_id:sender_id});
+});
+
+
+
+app.post('/give_review',function(req,res){
+      
+      let ref = generateRandom(8);
+    
+     let name = req.body.name;
+     let id = req.body.id;
+      let tc = req.body.tc;
+      let course = req.body.course;
+      let review = req.body.review;
+      let sender = req.body.sender; 
+    
+      let today = new Date();
+      let created_on = today;
+
+      console.log("AA");
+      
+      db.collection('give_review').add({
+      
+     name:name,
+     id:id,
+      tc: tc,
+      course: course,
+      review: review,
+      created_on: created_on
+
+         
+    }).then(success => {   
+          console.log("DATA SAVED")
+    let text = "Thank you for your add course. Your data has been saved.If you leave your message,you write cancel" + "\u000A";
+   
+    let response = {
+      "text": text
+    };
+    callSend(sender,response);
+    }).catch(error => {
+          console.log(error);
+      }); 
+     
+         
+});
 
 
 
