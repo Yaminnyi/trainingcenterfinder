@@ -875,7 +875,7 @@ app.post('/give_review',function(req,res){
          
     }).then(success => {   
           console.log("DATA SAVED")
-    let text = "Thank you for your add course. Your data has been saved.If you leave your message,you write cancel" + "\u000A";
+    let text = "Thank you for your review. Your data has been saved.If you leave your message,you write cancel" + "\u000A";
    
     let response = {
       "text": text
@@ -1996,7 +1996,7 @@ const view =(sender_psid) => {
         "payload": {
           "template_type": "generic",
           "elements": [{
-            "title": "All courses",  
+            "title": "All Review",  
             "image_url":"https://static.wixstatic.com/media/e5eac2_aacf74a52d9a4b2e9aae7f93162ce5e5~mv2_d_1600_1472_s_2.jpg",                  
             "buttons": [              
               {
