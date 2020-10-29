@@ -494,9 +494,9 @@ app.post('/jobapply',function(req,res){
 //route url
 app.get('/viewseaman', function(req,res){
   
-  let name = req.params.name; 
+  let doc_id = req.params.doc_id; 
 
-    db.collection("course_registration").doc(name).delete().then(()=>{
+    db.collection("course_registration").doc(doc_id).delete().then(()=>{
       
         res.redirect('/viewseaman');
         
