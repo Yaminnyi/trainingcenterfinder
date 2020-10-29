@@ -427,6 +427,68 @@ app.post('/course_registration',function(req,res){
 });
 
 
+app.get('/offcourse_registration/:sender_id',function(req,res){
+    const sender_id = req.params.sender_id;
+    res.render('offcourse_registration.ejs',{title:"Add courses", sender_id:sender_id});
+});
+
+app.post('/offcourse_registration',function(req,res){
+      
+      
+      let ref = generateRandom(8);
+      let name  = req.body.name;
+      let email    = req.body.email;
+      let phone  = req.body.phone;
+      let dob = req.body.dob;
+      let item_id = req.body.item_id;
+      let item_courses = req.body.item_courses;
+      let item_name = req.body.item_name;
+      let item_tc_id = req.body.item_tc_id;
+      let item_duration = req.body.item_duration;
+      let item_price = req.body.item_price;
+
+      
+      
+     
+      let today = new Date();
+      let created_on = today;
+
+    
+      
+      db.collection('offcourse_registration').doc(ref).set({
+      name: name,
+      email:email,
+      phone: phone,
+      dob: dob,
+      item_id:item_id,
+      item_courses:item_courses,
+      item_name:item_name,
+      item_tc_id:item_tc_id,
+      item_duration:item_duration,
+      item_price:item_price,
+      created_on: created_on
+         
+    }).then(success => {   
+          console.log("DATA SAVED")
+    let text = "Thank you for your register. Your data has been saved.If you leave your message,you write cancel" + "\u000A";
+        text += "Your reference id is " + ref;
+    let response = {
+      "text": text
+    };
+    console.log("USER_ID",user_id);
+     console.log("USERID", userInputs);
+    callSend(user_id,response);
+    }).catch(error => {
+          console.log(error);
+      }); 
+     
+         
+});
+
+
+
+
+
 
 
 app.get('/jobapply/:sender_id',function(req,res){
