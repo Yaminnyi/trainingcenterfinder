@@ -492,6 +492,22 @@ app.post('/jobapply',function(req,res){
 });
 
 //route url
+app.get('/viewseaman', function(req,res){
+  
+  let name = req.params.name; 
+
+    db.collection("course_registration").doc(name).delete().then(()=>{
+      
+        res.redirect('/viewseaman');
+        
+    }).catch((err)=>console.log('ERROR:', error));   
+
+});
+
+
+
+
+
 app.get('/view_review', async function(req,res){
 
 
