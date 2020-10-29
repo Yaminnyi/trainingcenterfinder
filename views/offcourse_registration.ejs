@@ -28,29 +28,45 @@
     };
   </script>
 
-	<h1>Registration</h1>
+	<form id="form" action="../offcourse_registration" method="post" class="bg-primary text-white"> 
+   <h1 style="color:white; text-align:center; font-size:26px; font-weight: bold;">Register</h1><br>  
 
-	<form id="form" action="../offcourse_registration" method="post">	
-	    <input type="text" name="name"  required/>	<br/>
-        <input type="text" name="email"  required/> <br/>
-		<input type="text" name="phone"  required/>	<br/>
-      <input type="date" name="dob"  required/> <br/>
+<div class="form-group">
+   <label for="name" style="font-weight: bold; color:white; text-align:center;">UserName:</label>
+   <input type="text" name="name" placeholder="Enter your Name" style="width:390px;margin-left:7px;" required/>
+</div>
 
-		<input type="hidden" name="item_id" value="<%= id %>"/>
+<div class="form-group">
+   <label for="email" style="font-weight: bold; color:white; text-align:center;">Email:</label>
+   <input type="email" name="email" placeholder="Enter your Email" style="width:390px;margin-left:7px;" required/>
+</div>
+
+<div class="form-group">
+    <label for="phone" style="font-weight: bold; color:white; text-align:center;">Ph Number:</label>
+    <input type="text" name="phone" placeholder="Enter your Phone" style="width:390px;margin-left:7px;" required/>
+</div>
+
+
+<div class="form-group">
+    <label for="date" style="font-weight: bold; color:white; text-align:center;">Date of Birth:</label>
+    <input type="date" name="dob" placeholder="Enter your DOB" style="width:390px;margin-left:7px;" required/>
+</div>
+      
+     
+    <input type="hidden" name="item_id" value="<%= id %>"/>
         <input type="hidden" name="item_courses" value="<%= courses %>"/>
         <input type="hidden" name="item_name" value="<%= name %>"/>
-    	<input type="hidden" name="item_tc_id" value="<%= tc_id %>"/>
+      <input type="hidden" name="item_tc_id" value="<%= tc_id %>"/>
         <input type="hidden" name="item_duration" value="<%= duration %>"/>
         <input type="hidden" name="item_price" value="<%= price %>"/>
 
 
 
-		
-		
-		<input type="submit" name="submit" value="Register" style="margin-left: 55px;   padding: 10px 24px;  text-align: center; text-decoration: none; display: inline-block; margin: 4px 2px; margin-left: 149px;">
-     <a href="show1" type="button" class="btn btn-light" style=" text-align: center; text-decoration: none; display: inline-block;">Cancel</a>
-	</form>
-	
+  <input type="submit" value="Register" type="button" class="btn btn-light" style="margin-left: 55px;   padding: 10px 24px;  text-align: center; text-decoration: none; display: inline-block; margin: 4px 2px; margin-left: 149px;"> 
+
+  <a href="show1" type="button" class="btn btn-light" style=" text-align: center; text-decoration: none; display: inline-block;">Cancel</a>
+  </form>
+  
 
 	<script>
       
