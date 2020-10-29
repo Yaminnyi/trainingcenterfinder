@@ -492,9 +492,9 @@ app.post('/jobapply',function(req,res){
 });
 
 //route url
-app.get('/viewseaman', function(req,res){
+/*app.get('/viewseaman', function(req,res){
   
-  let training_center_id = req.params.training_center_id; 
+  let doc.id = req.params.training_center_id; 
 
     db.collection("course_registration").doc(training_center_id).delete().then(()=>{
       
@@ -502,7 +502,7 @@ app.get('/viewseaman', function(req,res){
         
     }).catch((err)=>console.log('ERROR:', error));   
 
-});
+});*/
 
 
 
