@@ -37,11 +37,11 @@
 
 	<form id="form" action="../course_registration" method="post" class="bg-primary text-white">
 <br>
-  <a href="show" style="color:white;"><-Back</a><br>	
+  <a href="show" style="color:white;"><-Back</a><br>  
    <h1 style="color:white; text-align:center; font-size:26px; font-weight: bold;">Register</h1><br>  
 
 <div class="form-group">
-	 <label for="name" style="font-weight: bold; color:white; text-align:center;">UserName:</label>
+   <label for="name" style="font-weight: bold; color:white; text-align:center;">UserName:</label>
    <input type="text" name="name" placeholder="Enter your Name" style="width:390px;margin-left:7px;" required/>
 </div>
 
@@ -60,19 +60,18 @@
     <label for="date" style="font-weight: bold; color:white; text-align:center;">Date of Birth:</label>
     <input type="date" name="dob" placeholder="Enter your DOB" style="width:390px;margin-left:7px;" required/>
 </div><br>
-			
+      
      
-		<input type="hidden" name="item_id" value="<%= id %>"/>
+    <input type="hidden" name="item_id" value="<%= id %>"/>
         <input type="hidden" name="item_courses" value="<%= courses %>"/>
         <input type="hidden" name="item_name" value="<%= name %>"/>
-    	<input type="hidden" name="item_tc_id" value="<%= tc_id %>"/>
+      <input type="hidden" name="item_tc_id" value="<%= tc_id %>"/>
         <input type="hidden" name="item_duration" value="<%= duration %>"/>
         <input type="hidden" name="item_price" value="<%= price %>"/>
 
 
 
   <input type="submit" value="Register" type="button" class="btn btn-light" style="padding: 10px 24px;  text-align: center; text-decoration: none; display: inline-block; margin: 4px 2px; margin-left: 100px;""> 
-
 
 	</form>
 	
