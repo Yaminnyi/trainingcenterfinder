@@ -797,6 +797,8 @@ let data = [];
 });
 
 
+app.get('/course_registration', async function(req,res){
+
 var list=[‘one’,’two’,’three’,’four’,’five’];
 list.forEach(function(element) {
 document.getElementById(element).addEventListener(“click”, function(){
@@ -812,6 +814,11 @@ document.getElementById(element).classList.remove(“checked”); document.getEl
 }
 });
 });
+
+}
+
+
+
 
 
 app.post('/show', function(req, res){
