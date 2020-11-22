@@ -1710,12 +1710,12 @@ const showtype = (sender_psid) => {
                 },               
               ],
           },{
-            "title": "You can give review and rate",
+            "title": "You can give review",
             "image_url":"https://s3.amazonaws.com/blog4.0/blog/wp-content/uploads/Feature-image-5-positive-Review-Examples-1-1140x634.png",                       
             "buttons": [
                 {
                   "type": "postback",
-                  "title": "Give review and rate",
+                  "title": "Give review",
                   "payload": "review",
                 },               
               ],
