@@ -2011,7 +2011,7 @@ const agent_already = (sender_psid) => {
         "payload": {
           "template_type": "generic",
           "elements": [{
-            "title":"You can add courses, view your courses and view students",
+            "title":"You can add jobs, You can view seaman registered",
                   
             "buttons": [                
                   {
